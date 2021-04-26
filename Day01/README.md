@@ -96,7 +96,7 @@ end
 
 ```
 
-Exercise 02
+Exercise 02a
 
 Create a program that prompts a user for their name. Make sure to consider whether they have any middle names, and account for them all. The program should then greet the user by their full name.
 
@@ -126,7 +126,7 @@ puts greeting
 
 ```
 
-Exercise 03
+Exercise 02b
 
 Modify the program above to ask the user, in addition to their first, middle, and last names, which name is their preferred name, and then greet the user by their preferred name, and tell them their full name.
 
@@ -135,3 +135,41 @@ e.g.
 Full Name: James Andrew Warren Ogryzek
 Preferred Name: Drew
 Output: "Hello Drew! Your full name is: James Andrew Warren Ogryzek."
+
+Exercise 02c
+
+Modify the program to ensure that the preferred name is part of the full name.
+
+Look at the Ruby documentation to find any helpful [string methods](https://ruby-doc.org/core-3.0.0/String.html).
+
+```ruby
+
+
+
+```
+
+---
+
+## Loops
+
+```ruby
+counter = 10
+while counter > 0 do
+    counter -= 1
+    puts "----"
+end
+
+while true do
+    puts "Give me some input"
+    user_input = gets.chomp
+    if user_input == "q"
+        break
+    end
+
+    puts "Your input was: #{user_input}"
+end
+```
+
+Exercise 03
+
+Prompt a user for the number of people in their family, and the full (and preferred) name of each of its members. Then list each member by preferred name and full name.
