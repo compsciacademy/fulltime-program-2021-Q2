@@ -1,40 +1,67 @@
-# Getting Starting
+# Intro to Ruby
 
-Markdown is a very useful tool for formatting documentation. Many README files are written using markdown.
+Let's look at a couple of ways to use Ruby on your computer.
 
-Here is a link to a [markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
-
----
-
-Today, we are going to be having a look at some of the tooling, such as markdown and git, that we will be using on the course, and of course, at Ruby!
-
-## Useful CLI Commands
+1.) Create a file with a ruby extension and run it using the Ruby interpreter
 
 ```
-pwd    prints the working directory
-ls     lists files and directories within a directory
-touch  creates a file if it doesn't exist otherwise updates its timestamp
-mkdir  creates a directory
-mv     moves a file or directory
-cp     copies a file or directory and its contents
-rm     removes a file or directory
-cd     change directory
-cat    concatenates files (also prints them to the terminal)
-echo   print to standard out
+echo 'puts "Hello, World!"' > hello.rb
+ruby hello.rb
+```
+2.) Use the interactive Ruby interpeter, irb.
+
+```
+irb
+> puts "Hello World!"
+exit
 ```
 
-**Exercise 01**
+## Variable Assignment
 
-Using the CLI commands we have just gone over, do the following:
+```ruby
+a = 11
+b = 5
+a / b
+2
 
-  * Create 2 new directories: dir_a, dir_b
-  * Create 1 new directory inside dir_b: dir_c
-  * Create 3 new files: a.txt, b.txt, c.txt
-  * Move file a.txt and b.txt into dir_a
-  * Move file c.txt into dir_c
-  * Copy files a.txt, b.txt into dir_b
+a = 11.0
+b = 5
+a / b
+=> 2.2
 
+name = "Drew Ogryzek"
 
+puts "Hello #{name}!"
+```
 
+We can use `gets` to take input from standard input. Keep in mind that this comes as a string with a trailing newline character `\n`.
 
+To convert a string to an integer, we can use `.to_i`, which will return a number if found or 0.
+
+Write a program that prompts a user for their first name and last name, then greets them.
+
+```ruby
+puts "What is your first name?"
+first_name = gets.chomp
+
+puts "What is your last name?"
+last_name = gets.chomp
+
+name = "#{first_name} #{last_name}"
+greet = "Hello there,"
+
+puts "#{greet} #{name}!"
+```
+
+Write a program that prompts a user to enter a couple of numbers, then outputs the sum of those numbers.
+
+```ruby
+puts "Give me a number: "
+first_number = gets.to_i
+
+puts "Give me a second number: "
+second_number = gets.to_i
+
+puts "sum: #{first_number + second_number}"
+```
 
