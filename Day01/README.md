@@ -18,6 +18,8 @@ mkdir  creates a directory
 mv     moves a file or directory
 cp     copies a file or directory and its contents
 rm     removes a file or directory
+cd     change directory
+cat    concatenates files (also prints them to the terminal)
 ```
 
 **Exercise 01**
