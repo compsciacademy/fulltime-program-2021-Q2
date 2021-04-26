@@ -65,3 +65,73 @@ second_number = gets.to_i
 puts "sum: #{first_number + second_number}"
 ```
 
+## if, elsif, else
+
+```ruby
+a = 10
+b = 5
+
+if a < b
+  puts "yes"
+else
+  puts "no"
+end
+
+```
+
+Exercise 01
+
+Create a program that prompts a user for the year of their computer. If it is newer than 3 years old, tell them they are good to go, and if not, let them know they might want to upgrade soon.
+
+```ruby
+
+puts "Hold many years old is your computer?"
+computer_age = gets.to_i
+
+if computer_age < 3
+    puts "Sounds good to me!"
+else
+    puts "Might be time for an upgrade!"
+end
+
+```
+
+Exercise 02
+
+Create a program that prompts a user for their name. Make sure to consider whether they have any middle names, and account for them all. The program should then greet the user by their full name.
+
+```ruby
+puts "What's your first name?"
+first_name = gets.chomp
+
+puts "Do you have any middle names? (yes/no)"
+have_middle_names = gets.chomp
+
+if have_middle_names == "yes"
+    puts "What are your middle names? (leave blank if none)"
+    middle_names = gets.chomp
+end
+
+puts "What is your last name?"
+last_name = gets.chomp
+
+if have_middle_names == "yes"
+    name = "#{first_name} #{middle_names} #{last_name}"
+else
+    name = "#{first_name} #{last_name}"
+end
+
+greeting = "Hello there, #{name}!"
+puts greeting
+
+```
+
+Exercise 03
+
+Modify the program above to ask the user, in addition to their first, middle, and last names, which name is their preferred name, and then greet the user by their preferred name, and tell them their full name.
+
+e.g.
+
+Full Name: James Andrew Warren Ogryzek
+Preferred Name: Drew
+Output: "Hello Drew! Your full name is: James Andrew Warren Ogryzek."
