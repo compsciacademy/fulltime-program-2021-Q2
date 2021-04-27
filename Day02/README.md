@@ -195,3 +195,63 @@ British Columbia: Victoria
 Alberta: Edmonton
 Etc...
 
+Possible Solution #1
+
+```rb
+
+# let's think through what information we might have for each 
+# country. We can assume that we have a list (array) of countries.
+countries = [
+    {
+        name: "Canada",
+        state_province_other: "province",
+        capital: "Ottawa",
+        states: [
+            {
+                name: "British Columbia",
+                capital: "Victoria"
+            },
+            {
+                name: "Alberta",
+                capital: "Edmonton"
+            },
+            {
+                name: "Ontario",
+                capital: "Toronto"
+            }
+        ]
+    },
+    {
+        name: "Japan",
+        state_province_other: "prefecture",
+        capital: "Tokyo",
+        states: [{}]
+    },
+    {},
+    {}
+]
+
+countries << new_country
+# Country Information:
+# Name: Canada
+# Capital: Ottawa
+# Provinces: 
+#   Alberta: Edmonton
+#   British Columbia: Victoria
+#   Ontario: Toronto
+#
+# Name: United States of America
+# Capital: Washington DC
+# States:
+#  Washington: Olympia
+#  Oregon: Salem
+#
+# Name: Japan
+# Capital: Tokyo
+# Prefectures:
+#   Kanagawa-ken: Yokohama-shi
+#   Osaka-fu: Osaka-shi
+#   Hyoko-ken: Kobe-shi
+# 
+
+```
