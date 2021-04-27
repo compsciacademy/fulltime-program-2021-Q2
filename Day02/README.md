@@ -307,3 +307,54 @@ a.) Create a class for computer objects. Computers should have a brand, be lapto
 
 b.) Add a method on computers to calculate a used sales price based on new sales price, age, and whether it is a desktop or laptop.
 
+```rb
+
+class Computer
+    attr_reader :brand, :model, :year, :price_when_new, :laptop
+
+    def initialize(brand, model, year, price_when_new, laptop=true)
+        @brand = brand
+        @model = model
+        @year = year
+        @price_when_new = price_when_new
+        @laptop=laptop
+    end
+
+    def to_s
+        "brand: #{@brand}, model: #{@model}, year: #{@year}, price_when_new: #{@price_when_new}, laptop: #{@laptop}"
+    end
+
+    # part b
+    def used_sales_price
+        age = Time.now.year - @year
+        price = @price_when_new / age
+        if @laptop
+            price += 100
+        end
+        price
+    end
+end
+
+mbp13 = Computer.new("Apple", 'MacBook Pro 13"', 2017, 1750)
+fps13 = Computer.new("Dell", 'FPS 13"', 2017, 1250)
+
+mbp13.used_sales_price
+fps13.used_sales_price
+
+
+```
+
+## Exercise 04
+
+Take a look back at Exercise 02, and rewite your solution to make use of classes. 
+
+
+
+
+
+
+
+
+
+
+
