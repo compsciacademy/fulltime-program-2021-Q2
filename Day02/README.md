@@ -255,3 +255,55 @@ countries << new_country
 # 
 
 ```
+
+## Classes
+
+A class is sort of a blueprint for an object. Some people think of them as factories. Let's take a look at some classes in Ruby.
+
+```ruby
+class Person
+    # constructor
+    def initialize(name)
+    end
+    # getter
+    # setter
+end
+
+
+class Car
+    attr_reader :brand, :model, :year
+    attr_accessor :color, :price
+    
+    def initialize(brand, model, year)
+        @brand, @model, @year = brand, model, year
+    end
+
+    def start
+        puts "Starting engine..."
+    end
+
+    def accelerate
+        puts "Starting to accelerate..."
+    end
+
+    def slow_down
+        puts "Slowing down..."
+    end
+
+    def stop
+        puts "Stopping..."
+    end
+
+    def turn_off
+        puts "Turning off.."
+    end
+end
+
+```
+
+## Exercise 03
+
+a.) Create a class for computer objects. Computers should have a brand, be laptops or desktops, have ages (or dates of production), and new sales prices.
+
+b.) Add a method on computers to calculate a used sales price based on new sales price, age, and whether it is a desktop or laptop.
+
