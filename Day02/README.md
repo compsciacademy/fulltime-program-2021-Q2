@@ -130,3 +130,68 @@ family_members = []
 
 
 ```
+
+Example of a possible solution to exercise 01:
+```ruby
+FAMILY_MEMBERS = []
+
+def add_family_member(full_name)
+    puts "Enter #{full_name}'s preferred name: "
+    user_input = gets.chomp
+    if user_input == 'q'
+        return
+    else
+        FAMILY_MEMBERS.push([full_name, user_input])
+    end
+end
+
+def list_family
+    FAMILY_MEMBERS.each do |member|
+        puts "Preferred Name: #{member[1]}"
+        puts "Full Name: #{member[0]}"
+    end
+end
+
+while true
+    puts "Enter a family member's full name, 'l' to list the family or 'q' to quit"
+    user_input = gets.chomp
+    if user_input == 'q'
+        break
+    elsif user_input == 'l'
+        list_family
+    else
+        add_family_member user_input
+    end
+end
+```
+
+## Hashes
+
+In Ruby, the Hashmap data structure is called a hash, and is quite useful! Let's work with hashes!
+
+```ruby
+family_member = {full_name: "Here is my full name", preferred_name: "Here is 
+my perferred name" }
+
+family_member[:full_name] = "James Andrew Warren Ogryzek"
+family_member[:preferred_name] = "Drew"
+
+family_member.each do |k, v|
+    puts "key: #{k}, value: #{v}"
+end
+
+```
+
+## Exercise 02
+
+Create a program that asks a user to input a country's name. Then asks whether the country has state, provinces or other, and asks for a list of them.
+
+For each item in the list of states, provinces or others, it asks for a capital.
+
+Finally, it should be able to print out the country with each state, province or other, and its capital, e.g.
+
+Country: Canada
+British Columbia: Victoria
+Alberta: Edmonton
+Etc...
+
