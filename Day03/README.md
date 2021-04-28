@@ -221,7 +221,71 @@ All of these objects must have more attributes and be able to perform more actio
 
 For now, let's just work on creating Cat, Bird, and Bag objects that satisfy the conditions discussed.
 
+```ruby
+# Cats
+#  - have bags
+#  - catch birds
+#  - put bird into bag
+#    + store for later*
+class Cat
+    # do all cats have bags?
+    # does one cat have one bag or many?
+    #  - how does this work?
+    
+    # NOTE: What criteria matters for catching
+    # a bird?
+    # TODO: ensure that objects being caught are
+    # indeed birds.
+    def catch(bird)
+        # if everything is good
+        # we have a bird object, then
+        store bird
+    end
 
+    # We will want to store a bird in a bag
+    # How many bags do we have? 1 or n? If n,
+    # how do we determine which bag? If 1,
+    # we need to see if the bird will fit
+    # Anything else?
+    def store(bird)
+    end
+end
 
+# Birds
+#  - have a size
+class Bird
+    attr_reader :size
 
+    def initialize(size)
+        @size = size
+    end
+end
 
+# Bags
+#  - hold birds
+#  - how many birds depends on bird size
+class Bag
+    def initialize
+        birds = []
+    end
+
+    # NOTE: we should maybe check to make sure
+    # that we are only accepting birds. Maybe?
+    # 
+    # We don't know the size-constraints. We need
+    # to figure that out, or make a decision, or...
+    # do nothing.
+    #
+    # TODO: Create a list of questions we need to 
+    # have answered for us to implement the Bird
+    # class.
+    def add(bird)
+        @birds << bird
+    end
+end
+
+```
+
+**Part B**
+
+Create a list of questions we need answered before we can continue.
