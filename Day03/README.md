@@ -87,7 +87,7 @@ puts count
 
 ## Functions
 
-Exercise 01
+## Exercise 01
 
 a.) Write a function that takes a list of numbers and returns that list of numbers sorted from smallest to largest.
 
@@ -111,7 +111,7 @@ puts sort_num_list(nums)
 puts sort_letter_list(letters)
 ```
 
-Exercise 1.5
+## Exercise 1.5
 
 Create a class with a constructor that verifies that a given parameter is an array.
 
@@ -138,7 +138,7 @@ puts p.name
 puts p.friends
 ```
 
-Exercise 02
+## Exercise 02
 
 Write a function that prints a triangle shape to STD Out, using 0s. It should accept an argument. The argument accepted is an integer and represents the number of rows in the triangle.
 
@@ -201,7 +201,7 @@ c.capital = ottawa
 c.cities << ottawa
 ```
 
-# Exercise 03
+## Exercise 03
 
 Let's think through an exercise where we start to develop objects for a game. This game is a game of cats and birds. Cats have various attributes, and birds have various attributes.
 
@@ -289,3 +289,63 @@ end
 **Part B**
 
 Create a list of questions we need answered before we can continue.
+
+**Part C**
+
+The bigger picture! What is the point of what we are working on? Do we _need_ classes? Are these the right ones? Is the behavior of the classes important to the end goal? What is the end goal?
+
+Let's try to get a better sense of the final product, such that we can work towards it without having so many questions about implementation details that we can not even begin.
+
+---
+
+**Big Picture**
+
+We have a game where players enter their cats into competitions. One example competition is where 2 or more cats compete to catch 1 bird. The cat that catches the bird wins. If neither cat catches the bird after a given amount of time, neither can wins (i.e. both cats lose?) -- to be determined
+
+There will (eventually) be many types of competitions, and many players can enter many cats into the competitions to compete for points, and prizes.
+
+**Feature Breakdown**
+
+Feature: Create a Player
+Description: We should have a user interface that allows someone to create a player for this game.
+Player Description: When a player is created, they have an amount of money: $100. 
+
+Feature: Obtain a Cat
+Description: Players can buy cats from the Pet Store. Each time a player visits the Pet Store, 5 cats spawn and are available for purchase. (There may be some limitations on the attributes of cats, that spawn, based on some player attributes -- to be determined)
+
+Feature: Persist the Data
+Description: After I create a player, I should be able to restart my computer and keep my player. Likewise for my cats, experience points, money, or whatever else I have.
+
+Feature: Compete in a Competition
+Description: ...
+
+## Exercise 04
+
+Create some methods for Writing and Reading country data (countries) to a file.
+
+```ruby
+class Country
+    attr_accessor :known_cities
+
+    def initialize(name, capital)
+        @name = name
+        @capital = capital
+        @known_cities = []
+    end
+end
+
+canada = Country.new("Canada", "Ottawa")
+canada.known_cities = ["Toronto", "Vancouver", "Victoria", "Halifax", "Montreal"]
+
+usa = Country.new("USA", "Washington DC")
+usa.known_cities = ["Los Angeles", "New York", "Austin", "Miami", "Seattle"]
+
+# Exercise 04 -- Solution Setup
+#
+def write_country; end
+def write_countries; end
+
+def read_country; end
+def read_countries; end
+
+```

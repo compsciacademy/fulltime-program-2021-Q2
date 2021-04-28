@@ -1,51 +1,60 @@
-class Country
-    attr_reader :country
-    attr_accessor :cities
+# Let's talk about files :D
 
-    def initialize(country, cities=[])
-        @country = country
-        @cities = cities
-    end
-
-    # setter
-    def capital=(capital)
-        @capital = capital
-    end
-
-    # def cities=(cities)
-    #     @cities = cities
-    # end
-end
-
-class City
-    attr_accessor :population
-    attr_reader :name
-
-    def initialize(name)
-        @name = name
+def read_file(file_name)
+    File.open(file_name, 'r') do |file|
+        file.read
     end
 end
 
-class Province; end
-class State; end
-class Prefecture; end
-class Other; end
-city = City.new("Vancouver")
-cities = []
-cities << city
+def append_to_file(file_name, file_data)
+    File.open(file_name, 'a') do |file|
+        file.write(file_data)
+    end
+end
 
-puts cities
+def write_to_file(file_name, file_data)
+    File.open(file_name, 'w') do |file|
+        file.write(file_data)
+    end
+end
 
-puts "..........."
+# lol = File.open('lol.txt')
+# puts "old text:"
+# puts lol.read
+# lol.close
+# File.open('lol.txt') do |lol|
+#     puts 'old text:'
+#     puts lol.read
+# end
+puts 'old text:'
+puts read_file('lol.txt')
 
-puts [City.new("Vancouver")]
+# hey = File.open('lol.txt', 'w')
+# hey.write("Hello my friend :)\n")
+# hey.close
+# File.open('lol.txt', 'w') do |hey|
+#     hey.write("Hello my friend :)\n")
+# end
+write_to_file('lol.txt', "Hello my friend! lol\n")
 
-# c = Country.new("Canada", cities)
-# c = Country.new("Canada", [City.new("Vancouver")])
+# what = File.open('lol.txt', 'a')
+# what.write('What are you doing?')
+# what.close
+# File.open('lol.txt', 'a') do |what|
+#     what.write("What are you doing?\n")
+# end
+append_to_file('lol.txt', "What do you think you are doing?\n")
 
+# lol = File.open('lol.txt')
+# puts "new text:"
+# puts lol.read
+# lol.close
+# File.open('lol.txt') do |lol|
+#     puts 'new text:'
+#     puts lol.read
+# end
+puts 'new text:'
+puts read_file('lol.txt')
 
-
-# ottawa = City.new("Ottawa")
-# ottawa.population = 1,500,000
-# c.capital = ottawa
-# c.cities << ottawa
+write_to_file('hey.txt', "Hey there my friends!\n")
+puts read_file('hey.txt')
