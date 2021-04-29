@@ -306,17 +306,17 @@ There will (eventually) be many types of competitions, and many players can ente
 
 **Feature Breakdown**
 
-Feature: Create a Player
+Feature: Create a Player  
 Description: We should have a user interface that allows someone to create a player for this game.
 Player Description: When a player is created, they have an amount of money: $100. 
 
-Feature: Obtain a Cat
+Feature: Obtain a Cat  
 Description: Players can buy cats from the Pet Store. Each time a player visits the Pet Store, 5 cats spawn and are available for purchase. (There may be some limitations on the attributes of cats, that spawn, based on some player attributes -- to be determined)
 
-Feature: Persist the Data
+Feature: Persist the Data  
 Description: After I create a player, I should be able to restart my computer and keep my player. Likewise for my cats, experience points, money, or whatever else I have.
 
-Feature: Compete in a Competition
+Feature: Compete in a Competition  
 Description: ...
 
 ## Exercise 04

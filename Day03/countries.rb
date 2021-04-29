@@ -19,5 +19,5 @@ usa.known_cities = ["Los Angeles", "New York", "Austin", "Miami", "Seattle"]
 
 # Look at the ruby documentation, and find a way to read a file line by line.
 countries = File.open('countries')
-    countries.each { |line| puts "#{countries.lineno} #{line}" }
+countries.each { |line| puts "#{countries.lineno} #{line}" }
 countries.close
