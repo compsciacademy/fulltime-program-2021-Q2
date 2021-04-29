@@ -142,5 +142,15 @@ Use this string to determine whether a letter is a consonant or a vowel:
 
 ```ruby
 
+def write(word)
+    File.open('words', 'a') do |file|
+        file.write(word)
+    end
+end
 
+def save(word)
+    word_to_write = word
+
+    write word_to_write
+end
 ```
