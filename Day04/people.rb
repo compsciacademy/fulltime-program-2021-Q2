@@ -19,10 +19,8 @@ def read_all
     people = []
     File.open('people', 'r') do |file|
         file.each do |line|
-            name = line.split(',')[0]
-            age = line.split(',')[1]
-            person = Person.new(name, age)
-            people << person
+            name, age = line.split(', ')
+            people << Person.new(name, age)
         end
     end
 
