@@ -35,8 +35,8 @@ def test
     write(p2)
     people = read_all
     people.each do |person|
-        puts person.name
-        puts person.age
+        puts person
+        puts person.inspect
     end
     system('rm people')
 end
