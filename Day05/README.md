@@ -9,3 +9,12 @@ Create a program that prompts a user to create, update (edit) or list users. A u
 I.e. no two users can have the same username, no two users can have the same email address.
 
 The program should have a way to save users before exiting, and load users into memory on startup.
+
+
+### Aside
+
+When writing code, similar to writing prose, as one does, you will sometimes (often) need to make some decisions with regards to how to organize things.
+
+With natural languages, we have a lot of reference material to ... well, reference
+
+Within our system, we have inputs, outputs, and data. Inputs are ways to receive data. Outputs are ways to give (or display or present) data, and of course data is data.
