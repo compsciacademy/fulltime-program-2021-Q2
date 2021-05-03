@@ -115,3 +115,41 @@ end
 ```
 
 b) Expand that program to satisfy the conditions for the use cases outlined in your user workflows.
+
+What do I need?
+  - users
+  - a way to identify lists as user lists
+  - user permissions to create, read, update, delete lists
+  - a way to store lists
+
+Today's Homework is to create 2 things:
+
+1.) Create a user interface
+2.) Create a ShoppingList class
+
+
+1.) User Interface
+```ruby
+while true do
+    puts "enter a command: "
+    user_input = gets.chomp.downcase
+    case user_input
+    when 'q'
+        break
+    when 'nu'
+        puts "create a new user"
+    when 
+    end 
+end
+```
+
+2.) ShoppingList Class
+```ruby
+class ShoppingList
+end
+
+shopping_list = ShoppingList.new
+
+shopping_list.save
+shopping_list.items
+```
