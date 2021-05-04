@@ -291,3 +291,7 @@ d.) Let's side-shelf the above for now. We will come back to this set of problem
 Let's create a new competition type, "Play Fighting." Cats can enter into a play fighting competition with each other.
 
 Write an algorithm that determines the winner of a playfight between 2 cats, based on attributes you decide.
+
+**Homework** 
+
+Go back to c.) and work on your algorithm!
