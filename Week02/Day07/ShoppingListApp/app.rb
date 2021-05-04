@@ -13,71 +13,62 @@ d  delete list
 
 MENU
 
+def prompt(message)
+    puts message
+    gets.chomp
+end
+
+def build_item_list
+    items = []
+    while true do
+        item = prompt "add a shopping list item (press 'd' if done): "
+        break if item == 'd'
+        items << item
+    end
+    items
+end
+
+def update_list
+    puts "'a' to add an item"
+    puts "'r' to remove an item"
+    puts ""
+    user_input = prompt "enter a command: "
+    items = ShoppingList.read
+
+    if user_input == 'a'
+        puts "items: #{items}"
+        items << prompt("item to add: ")
+        list = ShoppingList.new(items)
+        list.save
+    elsif user_input == 'r'
+        list = ShoppingList.read
+        list.each_with_index do |item, i|
+            puts "#{i}: #{item}"
+        end
+        remove = prompt("Which item would you like to remove?").to_i
+        list.delete_at(remove)
+        
+        ShoppingList.new(list).save
+    end
+end
+
 puts menu
 
 while true do
-    print 'enter a command: '
-    user_input = gets.chomp.downcase
+    user_input = prompt('enter a command: ')
+
     case user_input
     when 'q'
         break
     when 'c'
-        items = []
-        while true do
-            puts "add a shopping list item (press 'd' if done): "
-            item = gets.chomp
-            break if item == 'd'
-            items << item
-        end
-        list = ShoppingList.new(items)
-        if list.save
-            puts "saved list ... "
-        else
-            puts "Something went wrong :("
-        end
+        items = build_item_list
+        ShoppingList.new(items).save
     when 'r'
-        list = ShoppingList.read
-        puts "#{list}"
+        puts "#{ShoppingList.read}"
     when 'u'
-        puts "'a' to add an item"
-        puts "'r' to remove an item"
-        puts ""
-        print "enter a command: "
-        items = ShoppingList.read
-
-        user_input = gets.chomp.downcase
-        if user_input == 'a'
-            puts "items: #{items}"
-            puts "item to add: "
-            item = gets.chomp
-            items << item
-
-            list = ShoppingList.new(items)
-            if list.save
-                puts "saved list ... "
-            else
-                puts "Something went wrong :("
-            end
-        elsif user_input == 'r'
-            list = ShoppingList.read
-          
-            list.each_with_index do |item, i|
-                puts "#{i}: #{item}"
-            end
-
-            puts "Which item would you like to remove?"
-            remove = gets.to_i
-            list.delete_at(remove)
-            shopping_list = ShoppingList.new(list)
-            shopping_list.save
-        end
-
+        update_list
     when 'd'
-        if ShoppingList.delete
-            puts "deleted shopping list"
-        else
-            puts "Something went wrong"
-        end
+        ShoppingList.delete
     else
         next
     end

@@ -1,3 +1,5 @@
+require_relative './datastore'
+
 class ShoppingList
     attr_writer :items
 
@@ -6,30 +8,14 @@ class ShoppingList
     end
 
     def save
-        filename = 'shopping_list'
-        method = 'w'
-        data = @items
-        File.open(filename, method) do |file|
-            file.write(data.join(', '))
-        end
+        DataStore.open(@items.join(', '), 'w')
     end
 
     def self.read
-        filename = 'shopping_list'
-        method = 'r'
-        item = ''
-        File.open(filename, method) do |file|
-            item += file.read
-        end
-        item.split(', ')
+        DataStore.open('').split(', ')
     end
 
     def self.delete
-        filename = 'shopping_list'
-        method = 'w'
-        data = ''
-        File.open(filename, method) do |file|
-            file.write(data)
-        end
+        DataStore.open('', 'w')
     end
 end
