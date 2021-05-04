@@ -1,15 +1,11 @@
+class Recipe
+    attr_reader :ingredients
 
-module Greetings
-    def self.greet
-        ['hello', 'hi', 'hey', 'yo'].sample
+    def initialize(*ingredients)
+        @ingredients = ingredients.flatten
     end
 end
 
-class Person
-    def greet
-        Greetings.greet
-    end
-end
+salad = Recipe.new("lettuce", "beef chunks", 'gravy', 'sour cream', 'pineapples', 'raisons', 'cherries', 'tangerines', 'tomotoes')
 
-p  = Person.new
-puts p.greet
+puts salad.ingredients.to_s
