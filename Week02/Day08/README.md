@@ -48,6 +48,9 @@ NOTE: Add a commit whenever something meaningful happens.
   
 Testing is an interesting area of software development. How good your tests are is really dependent on how well you write them, and whether you use them.  
   
+
+**Exercise 03**  
+  
 We have discussed some tests in `user_tests.rb`. Have a look and finish the `email_address_format` test on your own.
 
 
@@ -58,3 +61,28 @@ def email_address_format(email_address)
 
 end
 ```
+
+**Exercise 04**
+
+Continue with the user class, and this time add read & write methods that will persist user data to disk.
+
+Here's an example workflow that highlights the expected behavior
+
+```shell
+? irb
+> load "./user.rb"
+> user = User.new("jo", "jo@dot.com")
+> user.save
+> user = User.new("corey", "corey@dot.com")
+> user.save
+> exit
+
+? irb
+> load "./user.rb"
+> User.all
+=> "jo, jo@dot.com", "corey, core@dot.com"
+> exit
+? 
+```
+Before building any functionality into the user class, make sure to write a test that fails, then make it pass. Each time you complete a test, make a commit that explains what you did.  
+  

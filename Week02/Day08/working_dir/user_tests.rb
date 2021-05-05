@@ -52,3 +52,14 @@ def run_tests
 end
 
 run_tests
+
+# test that user = User.new(name, email); user.greet => "Hello. My name is <name>!"
+username = "Dan"
+actual = user.greet
+expected = "Hello. My name is #{username}!"
+
+if actual != expected
+    # fail
+else
+    # pass
+end
