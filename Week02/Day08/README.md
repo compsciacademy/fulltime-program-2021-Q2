@@ -43,3 +43,18 @@ Create 2 functions that raise errors if a condition is met. You can do this in a
 Try to be creative.  
   
 NOTE: Add a commit whenever something meaningful happens.
+
+## Testing  
+  
+Testing is an interesting area of software development. How good your tests are is really dependent on how well you write them, and whether you use them.  
+  
+We have discussed some tests in `user_tests.rb`. Have a look and finish the `email_address_format` test on your own.
+
+
+```ruby
+def email_address_format(email_address)
+    # ensure that email addresses match the pattern:
+    # `<string>@<string>.<string>`
+
+end
+```
