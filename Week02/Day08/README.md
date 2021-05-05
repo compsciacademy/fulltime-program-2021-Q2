@@ -40,5 +40,6 @@ raise StandardError.new("This is an error message")
   
 Create 2 functions that raise errors if a condition is met. You can do this in a `begin; rescue; end` block, and handle those errors.  
   
-Try to be creative.
-
+Try to be creative.  
+  
+NOTE: Add a commit whenever something meaningful happens.
