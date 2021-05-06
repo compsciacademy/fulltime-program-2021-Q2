@@ -70,7 +70,7 @@ class User
         # with the data last written to the data store
     end
 
-    def self.find_user_by_email(email)
+    def self.find_by_email(email)
         # returns a user object based on the email
         # address
     end
@@ -104,4 +104,15 @@ MyTest.expect_equals(user1.email, 'sue@park.com')
 user1.save
 MyTest.expect_equals(User.last.name, user1.name)
 MyTest.expect_equals(User.last.email, user1.name)
+
+# MyTest.expect(user.save).to(fail)
 ```
+
+b.) Implement the `find_by_email` class method of User. Note, that we may assume that email addresses are unique, which means that this is a constraint that our system now must support.
+
+Yes, that's right! In addition to implementing `find_by_email`, please implement a check that ensures user emails are unique, prior to saving.
+
+**BONUS**
+
+1.) write a function that takes a string, and _**prints**_ a string with any hidden characters (spaces, tabs, newlines, return characters, etc. in the string, in a different color) to standard out.  
+  
