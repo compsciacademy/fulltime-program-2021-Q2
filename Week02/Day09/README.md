@@ -24,11 +24,11 @@ end
 # now have somewhat of our own testing framework.
 # i.e.
 module MyTest
-    def expect_equal(actual, expected)
+    def self.expect_equal(actual, expected)
         if actual == expected
             puts "PASS"
         else
-            puts "FAIL"
+            puts "FAIL Expected: #{expected}, Actual: #{actual}"
         end
     end
 end
@@ -87,8 +87,8 @@ MyTest.expect_equals(user1.email, 'sue@park.com')
 # test that the last saved user data matches the
 # user that we saved last
 user1.save # saves the user data
-MyTest.expect_equals(user1.name, User.last.name)
-MyTest.expect_equals(user1.email, User.last.email)
+MyTest.expect_equals(User.last.name, user1.name)
+MyTest.expect_equals(User.last.email, user1.name)
 
 ```
 
@@ -102,6 +102,6 @@ MyTest.expect_equals(user1.name, 'sue')
 MyTest.expect_equals(user1.email, 'sue@park.com')
 
 user1.save
-MyTest.expect_equals(user1.name, User.last.name)
-MyTest.expect_equals(user1.email, User.last.email)
+MyTest.expect_equals(User.last.name, user1.name)
+MyTest.expect_equals(User.last.email, user1.name)
 ```
