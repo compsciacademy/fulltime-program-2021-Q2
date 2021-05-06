@@ -114,5 +114,15 @@ Yes, that's right! In addition to implementing `find_by_email`, please implement
 
 **BONUS**
 
-1.) write a function that takes a string, and _**prints**_ a string with any hidden characters (spaces, tabs, newlines, return characters, etc. in the string, in a different color) to standard out.  
+1.) Write a function that takes a string, and _**prints**_ a string with any hidden characters (spaces, tabs, newlines, return characters, etc. in the string, in a different color) to standard out.  
+  
+2.) Think about, then implement a way to run the tests such that they create and use test data, and not live production data. The application should be able to run independently of the tests, and its own data should persist, as well as remain unaffected by the tests.
+
+**Homework**  
+  
+Looking at what we discussed today, look back at the game of Competition Cats. Think about what some of the objects in the game are, and how we might write tests, and use those tests to write code for those objects and their behavior.  
+  
+Try to implement the following classes: Cat, Competition, Game, Player. As well as any peripherals that may be be needed to support those classes.  
+  
+An end goal to have in mind can be, a game where 2 players enter a cat each into a competition.  
   

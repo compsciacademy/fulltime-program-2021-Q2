@@ -1,3 +1,5 @@
+class EmailNotUniqueError < StandardError; end
+
 class User
     attr_reader :name, :email
 
@@ -6,12 +8,25 @@ class User
     end
 
     def save
-        # saves user object data to some sort of data
-        # store that can be used to read from to 
-        # instantiate instances of user objects
-        File.open('users', 'a') do |file|
-            file.write("#{@name}, #{@email}\n")
+        if email_unique? @email
+            File.open('users', 'a') do |file|
+                file.write("#{@name}, #{@email}\n")
+            end
+        else
+            raise EmailNotUniqueError.new("Email exists!")
         end
+        self
+    end
+
+    def email_unique?(email)
+        email_list = []
+        File.open('users', 'r') do |file|
+            file.each do |line|
+                email_list << line.split(', ')[1].chomp
+            end
+        end
+
+        email_list.count(email) > 0 ? false : true
     end
 
     def self.all
@@ -37,5 +52,13 @@ class User
     def self.find_by_email(email)
         # returns a user object based on the email
         # address
+        File.open('users', 'r') do |file|
+            file.each do |line|
+                name, user_email = line.split(', ')
+                if user_email.chomp == email
+                    return User.new(name, user_email.chomp)
+                end
+            end
+        end
     end
 end
