@@ -112,3 +112,44 @@ git push -u origin main # (optional) sets main as the _main_ branch and pushes
 git remote set-head origin -a # updates origin (github) to use main
 
 ```
+
+## Working with Yield, and More Robust Testing
+
+Let's think through our testing framework and a couple of ways we could make it somewhat more rubust! We'll get to [yield](https://ruby-doc.org/docs/keywords/1.9/Object.html#method-i-yield) in a moment, but before we do, let's look at something cool!  
+  
+```ruby
+class Person
+    attr_reader :name
+
+    def initialize(name)
+        @name = name
+    end
+
+    def my_name
+        "#{name} lol #{name}"
+    end
+
+    def my_favorite_thing
+        "#{name}: soup"
+    end
+
+    def my_age 
+        "#{name}: 12 years old"
+    end
+end
+
+p = Person.new("lolly")
+
+
+#find methods that begin with my_
+puts Person.instance_methods.grep(/my_/)
+
+['my_age', 'my_name', 'my_favorite_thing']
+```
+
+## Exercise 01  
+  
+Using our newly acquired git-foo, continue breaking out the competition cats code into an organized (or somewhat organized) codebase, while adding a user interface (and functionality) that allows 2 players to compete. If there is only 1 player, then an automated player (affectionately called, "the computer") will play against the player.
+  
+It is your choice whether to persist data. However, do make sure to have branches, commits, and pull requests to show the history of your progress.  
+  
