@@ -107,6 +107,8 @@ To set a branch as the _main_ branch, you can use the `-u` or `--set-upstream-to
 ```sh
 git branch -m master main # move (rename) master to main
 # rename master to main on github, if exists
-git push -u origin main # sets main as the _main_ branch
+git branch --set-upstream-to origin/main main
+git push -u origin main # (optional) sets main as the _main_ branch and pushes
+git remote set-head origin -a # updates origin (github) to use main
 
 ```
