@@ -92,3 +92,12 @@ git commit -m 'Adds a new feature'
 git push origin new-feature # pushes new-feature branch to origin (github)
 
 ```
+
+Some more commands
+```sh
+git fetch # downloads refs from remote
+git diff origin/master # compare differences between fetched refs and current branch
+git pull origin master # pull changes from origin remote to master branch
+git merge origin/master # merge origin/master refs into current branch
+
+``` 
