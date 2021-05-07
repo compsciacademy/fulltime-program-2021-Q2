@@ -101,3 +101,12 @@ git pull origin master # pull changes from origin remote to master branch
 git merge origin/master # merge origin/master refs into current branch
 
 ``` 
+
+To set a branch as the _main_ branch, you can use the `-u` or `--set-upstream-to` option. If we wish to rename our `master` branch to `main`, for example, here is the flow:
+
+```sh
+git branch -m master main # move (rename) master to main
+# rename master to main on github, if exists
+git push -u origin main # sets main as the _main_ branch
+
+```
