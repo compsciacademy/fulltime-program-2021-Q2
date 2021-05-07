@@ -60,4 +60,4 @@ git commit -m 'Initial commit'
 git remote add <REMOTE_NAME> <REMOTE_ADDRESS>
 ```
 
-  
+If you'd like to setup an SSH key, make sure to follow [the guide](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account).    
