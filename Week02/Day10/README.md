@@ -60,4 +60,35 @@ git commit -m 'Initial commit'
 git remote add <REMOTE_NAME> <REMOTE_ADDRESS>
 ```
 
-If you'd like to setup an SSH key, make sure to follow [the guide](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account).    
+If you'd like to setup an SSH key, make sure to follow [the guide](https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account).  
+
+**Create a New Branch**  
+  
+```sh
+git branch organize-structure
+git branch --list
+
+
+```
+The asterisk `*` shows which branch we are currently on.  
+  
+Working with branches
+
+```sh
+git branch --list
+git branch <branchname> # create a new branch
+git checkout <branchname> # checkout a new branch
+git checkout -b <branchname> # create and checkout a new branch
+git branch --delete <branchname> # deletes a branch
+```
+
+A potential workflow:
+```sh
+git branch new-feature
+git checkout new-feature
+# do some work
+git add -A # stage all changes for commit
+git commit -m 'Adds a new feature'
+git push origin new-feature # pushes new-feature branch to origin (github)
+
+```

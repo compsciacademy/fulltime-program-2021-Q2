@@ -1,3 +1,5 @@
+require_relative '../lib/player'
+
 def test_player_setup
     # Profile setup: two players - one with cat, one without
     puts "======TEST PLAYER SETUP======"
