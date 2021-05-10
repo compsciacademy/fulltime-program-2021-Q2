@@ -44,6 +44,6 @@ One you have a player selected, you can select to compete in a competition or qu
 **Compete in a Compeition**  
 There are two competitions for v1, where Player1's Cat competes against Player2's Cat: Playfight or Race.  
   
-  **Playfight**:  
-  **Race**: 
+  **Playfight**: A best of 3 rounds, where the winner is determined by _an algorithm_. 
+  **Race**: The faster cat will win. There are 3 rounds. "Faster" is determined by ... _an algorithm_.
   
