@@ -11,9 +11,15 @@ Create a list of features that the game should support. Let's follow this rule: 
 When someone starts the game, they are prompted to find or create their player character.
 
   * start game
-    * find or create Player
-        * get a cat
+    * select game style (player vs player or computer)
+        * find or create Player
+            * select or get a cat
+                * select: from a list of player owned cats
+                * get: how to get a cat? *PENDING v2 (for now, a player will start with a cat)
 
+    * load and run competition
+        * display competition outcome
+    * compete again or quit
 
 Start Game
     Describe what starting a game entails here.  
