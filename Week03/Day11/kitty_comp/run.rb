@@ -1,85 +1,102 @@
-# Main entry point for our Kitty Comp game!
-require './player'
+# **Start or Quit**  
+#     We are prompted to start a game or quit the program.  
 
-class App
-    # whatever configuration, etc. is needed can be loaded or
-    # defined here. For now, this may just be an empty class that 
-    # runs the game.
-    def run
-        start
-    end
-
-    def start
-        menu = <<-MENU
-Kitty Comp -- The Fresh New Game!
-
-N  New Player
-F  Find Player
-
-Press Q to Quit or make a selection to Start Game!
-        MENU
-
-        puts menu
-        loop do
-            user_input = gets.chomp.downcase
-            case user_input
-            when "q"
-                break
-            when "n"
-                create_player
-            when "f"
-                find_player
-            else
-                next              
-            end
-        end
-    end
-
-    def create_player
-        puts "New player name: "
-        name = gets.chomp
-        puts "creating a new player..."
-        puts "return player: #{name}"
-
-        # loop do
-        #     puts "New player name: "
-        #     name = gets.chomp
-        # end
-    end
-
-    def find_player
-        # If not, you are told that there is no player 
-        # by that name, and prompted to select whether 
-        # to find or create a player.
-        puts "Find player name: "
-        name = gets.chomp
-        @player = (name == "Drew" ? "Drew" : nil)
-        puts "finding player"
-        if @player
-            puts "Found player..."
-            puts "return payer: #{name}"
-        else
-            puts "Player not found"
-            find_or_create_player
-        end
-    end
-
-    def find_or_create_player
-        loop do
-            puts "F  Find player"
-            puts "N  New player"
-            user_input = gets.chomp.downcase
-            case user_input
-            when "f"
-                find_player
-            when "n"
-                create_player
-            else
-                break
-            end
-        end
+#   * **Quit**: Exits the program  
+#   * **Start**: New Player or Select Player
+#     * **Select Competition**: Race or Playfight
+#     * **Compete**: Win, Lose, or Draw
+#   * **Compete Again or Quit**: Repeat or Exit
+class Player
+    attr_reader :name
+    def initialize(name)
+        @name = name
     end
 end
 
-app = App.new
-puts app.run
+@players = []
+@player = nil
+
+def get_player
+    if @players.empty?
+        @player = create_player
+    else
+        @player = select_or_create_player
+    end
+end
+
+def create_player
+    puts "New Player name: "
+    name = gets.chomp
+    if name_exists? name
+        puts "Name taken. Try again."
+        create_player
+    else
+        @player = Player.new(name)
+        @players << @player
+        return @player
+    end
+end
+
+def select_player
+    puts "Select a player by name: "
+    names = []
+    @players.each do |player| 
+        names << player.name 
+    end
+    puts names
+
+    name = gets.chomp
+    if names.include? name
+        @players.each do |player|
+            if player.name == name
+                return player
+            end
+        end
+    else
+        puts "Player '#{name}' not found."
+        select_player
+    end
+end
+
+def select_or_create_player
+    puts "'s' select or 'c' create player:"
+    user_input = gets.chomp.downcase
+    case user_input
+    when 's'
+        return select_player
+    when 'c'
+        return create_player
+    end
+end
+
+def select_competition
+    puts "selecting competition..."
+    puts "You #{["won", "lost", "tied"].sample}!"
+end
+
+def play_game
+    get_player
+    select_competition
+end
+
+def name_exists?(name)
+    @players.each do |player|
+        if player.name == name
+            return true
+        end
+    end
+    false
+end
+
+loop do
+    if @player
+        puts "Player1: #{@player.name}"
+    end
+    puts "'s' start or 'q' quit"
+    user_input = gets.chomp.downcase
+    if user_input == 'q'
+        break
+    else
+        play_game
+    end
+end
