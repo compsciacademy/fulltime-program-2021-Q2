@@ -6,7 +6,7 @@ It's possible that some features will build on others, and/or that some sets of 
   
 ## Exercise 01  
   
-Create a list of features that the game should support.  
+Create a list of features that the game should support. Let's follow this rule: Our MVP (Minimal Viable Product) is also going to be our MAF (Maximum Available Features). That is, do not add any features unless they are absolutely necessary, e.g. A Player must have a Cat to enter into a competition.  
   
 When someone starts the game, they are prompted to find or create their player character.
 
