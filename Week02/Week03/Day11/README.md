@@ -28,5 +28,22 @@ Find or Create Player
     Describe what Find or Create Player entails here.  
   
 Get a Cat  
-    Describe what geting a cat entails here.  
-      
+    Describe what geting a cat entails here. 
+    
+
+**Start Game**  
+To start a game, select start game. You will be prompted to find or create a player. 
+
+  * **Create a Player**: You will be prompted to give a player name. The name must not be the name of an already existing player.
+  * **Find a Player**: You are prompted to give the name of a player. If the player is found by that name, it will be loaded as the current player. If not, you are told that there is no player by that name, and prompted to select whether to find or create a player.
+
+  * **Get a Cat**: A player has cats. Initially, when a player is created, they will be given a starter cat. More ways to obtain cats will be added in future versions.
+
+One you have a player selected, you can select to compete in a competition or quit.  
+  
+**Compete in a Compeition**  
+There are two competitions for v1, where Player1's Cat competes against Player2's Cat: Playfight or Race.  
+  
+  **Playfight**:  
+  **Race**: 
+  
