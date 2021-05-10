@@ -15,9 +15,11 @@ end
 
 @players = []
 @player = nil
+@computer_player = nil
 
 def get_player
     if @players.empty?
+        puts "No current players saved..."
         @player = create_player
     else
         @player = select_or_create_player
@@ -28,7 +30,7 @@ def create_player
     puts "New Player name: "
     name = gets.chomp
     if name_exists? name
-        puts "Name taken. Try again."
+        puts "Name: '#{name}' taken. Try again."
         create_player
     else
         @player = Player.new(name)
@@ -37,12 +39,17 @@ def create_player
     end
 end
 
-def select_player
-    puts "Select a player by name: "
+def player_names
     names = []
     @players.each do |player| 
         names << player.name 
     end
+    names
+end
+
+def select_player
+    puts "Select a player by name: "
+    names = player_names
     puts names
 
     name = gets.chomp
@@ -66,12 +73,40 @@ def select_or_create_player
         return select_player
     when 'c'
         return create_player
+    else
+        puts "unrecognized user: #{user_input}"
+        select_or_create_player
     end
 end
 
 def select_competition
-    puts "selecting competition..."
-    puts "You #{["won", "lost", "tied"].sample}!"
+    puts "select 'r' for race or 'p' for playfight:"
+    case gets.chomp
+    when 'r'
+        compete('race')
+    when 'p'
+        compete('playfight')
+    else
+        puts 'unrecognized command'
+        select_competition
+    end
+end
+
+def determine_winner(player, computer_player, competition_type='race')
+    return [player, computer_player].sample
+end
+
+def compete(competition_type)
+    winner = determine_winner(@player, @computer_player, competition_type)
+    outcome = ["won", "lost", "tied"].sample
+    case outcome
+    when "won"
+        puts "#{winner.name} #{outcome} the #{competition_type}!"
+    when "lost"
+        puts "#{winner.name} #{outcome} the #{competition_type}!"
+    when "tied"
+        puts "The #{competition_type} is #{outcome}!"
+    end
 end
 
 def play_game
@@ -89,6 +124,10 @@ def name_exists?(name)
 end
 
 loop do
+    if @computer_player.nil?
+        @computer_player = Player.new("ComputerMan")
+    end
+
     if @player
         puts "Player1: #{@player.name}"
     end
