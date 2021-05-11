@@ -59,3 +59,23 @@ class Person
 end
 ```
 
+## Exercise 02  
+  
+This time, let's build out a Pacman-like game. First, let's think through some of the objects we might have, how they might interact, and what other things may be necessary.  
+  
+Pacman eats balls. There are two types of balls, regular balls which just count as single unit points. All regular balls on a board must be consumed for the board to be cleared.  
+
+There are super balls, or balls that when consumed cause Pacman to be able to consume ghosts for a limited amount of time. Consuming ghosts gives Pacman points. The ghosts respawn after they are consumed.
+  
+There are up to N number of ghosts (how many?) on a board. Ghosts come in a variety of colors. Do the colors have any special attributes or properties? Do ghosts have any abilities other than to move around on the board?  
+  
+Thinking through this, it's pretty obvious that balls, ghosts, and pacman could be objects. There may also be some other objects (or at least classes) to be instantiated for a game, but let's start here.  
+  
+**Part a.)**  
+
+Define the properties, attributes, methods, etc. for Ball and Ghost classes. Then write a program that instantiates at least 2 of each.  
+  
+```ruby
+class Ball; end
+class Ghost; end
+```
