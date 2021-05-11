@@ -79,3 +79,100 @@ Define the properties, attributes, methods, etc. for Ball and Ghost classes. The
 class Ball; end
 class Ghost; end
 ```
+
+## Exercise 03
+
+Let's switch our focus a little now to developing a useful application for our office! That's right, it's time for the Employee App! Hurray!!!  
+  
+How is our employee application going to work? Here are a couple of requirements, but it isn't an exhaustive list.
+  
+The administrator should be able to save an employee. Employees have a name, employee id, email address, salary, start date, starting salary, vacation days and maybe some more stuff that we don't remember offhand, but will surely let you know is missing, as soon as we use the system.  
+  
+The administrator should be able to find employees (or search for employees) by their attributes, e.g. "find all employees with a yearly salary greater than $100,000," or "find employee with the email address hello@friends.com."  
+  
+Employees should be able to view their own records and update their email addresses.  
+  
+Only the administrator should be able to view (and edit) all records, as well as create or delete records.  
+  
+**Features**:
+ * Add employee to system  
+ * View employees  
+ * Find an employee  
+ * Edit employee  
+ * Delete employee  
+ * Permissioned access: Admin vs employee (employee can only view self/edit email)
+
+```ruby
+employees = {
+    "christian" =>  "christian@arab.com", 
+    "drew" => "drew@ogryzek.com",
+    "welder jo" => "welder.jo@welding.com"
+}
+
+def load(employees)
+    employees.each do |name, email|
+        Employee.new(name, email).save
+    end
+end
+
+load(employees)
+```
+
+Example of some ideas for Admin vs Employee:
+
+```ruby
+class Employee
+  attr_reader :is_admin
+
+  def initialize(name, email, is_admin='false')
+    @is_admin = is_admin
+  end
+
+  def is_admin?
+    @is_admin
+  end
+end
+```
+
+Then, you can check if `@employee` (`current_user`, etc.) `is_admin?`, and offer some functionality to them:
+
+e.g. 
+```ruby
+admin_menu = <<-ADMIN_MENU
+
+ADMIN MENU
+----------
+
+u  update employee
+d  delete employee
+a  add employee
+
+ADMIN_MENU
+
+if @employee.is_admin?
+    puts admin_menu
+end
+```
+
+Or perhaps instead of calling the logged in user `@employee`, it could be something like `@current_user`. Whatever you like...  
+  
+Another thing you may think of is how to store passwords. You might not wish to store them using plain text, so what can you do? One way, which may have some issues, but will work for us, for now can be to encrypt the passwords.  
+  
+```ruby
+def encrypt(some_string)
+    # this algorithm is going to replace
+    # consonants with * and vowels with _
+    # with the following exceptions:
+    # q,r,s,t are replaced by &&, a, f z
+    # are replaced by ^.
+    #
+    # Specials characters and numbers are
+    # unsupported.
+    #
+    # e.g.
+    #   encrypt("pizza")
+    #   => "*_^^^"
+end
+
+```
+
