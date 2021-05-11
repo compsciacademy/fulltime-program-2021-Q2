@@ -110,6 +110,9 @@ def compete(competition_type)
 end
 
 def play_game
+    if @computer_player.nil?
+        @computer_player = Player.new("ComputerMan")
+    end
     get_player
     select_competition
 end
@@ -124,10 +127,6 @@ def name_exists?(name)
 end
 
 loop do
-    if @computer_player.nil?
-        @computer_player = Player.new("ComputerMan")
-    end
-
     if @player
         puts "Player1: #{@player.name}"
     end
