@@ -175,4 +175,3 @@ def encrypt(some_string)
 end
 
 ```
-
