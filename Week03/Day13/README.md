@@ -2,7 +2,7 @@
   
 ## Exercise 01  
 
-[Employee Application](https://github.com/compsciacademy/fulltime-program-2021-Q2/tree/main/Week03/Day12#exercise-030) continued...  
+[Employee Application](https://github.com/compsciacademy/fulltime-program-2021-Q2/tree/main/Week03/Day12#exercise-03) continued...  
   
 Our client is happy with the current state of progress. Now that they have had a chance to see the demo, they realized there were some features they wanted, that they forgot to mention, and are hoping to be able to have them added before they begin their initial alpha testing.  
   
