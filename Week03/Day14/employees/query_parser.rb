@@ -36,4 +36,17 @@ module QueryParser
             :evaluator => right.split(' ')[1..-2].join(' ')
         }
     end
+
+    def self.view_queries(query_strings)
+        query_strings.each_with_index do |query_string, index|
+            query = QueryParser.parse_query_string(query_string)
+            puts "query number: #{index + 1}"
+            puts "query type: #{query[:query_type]}"
+            puts "record type: #{query[:record_type]}"
+            puts "attribute: #{query[:attribute]}"
+            puts "evaluator: #{query[:evaluator]}"
+            puts "value: #{query[:value]}"
+            puts "-------------------------"
+        end
+    end
 end
