@@ -19,14 +19,14 @@ He did realize that he had neglected to ask for some additional features that he
   
 The company regularly has projects that are overseen by a project manager from within the company, and often have up to 3 to 5 contract workers from various contracting companies.  
   
-We will need to be able to add contract workers, with similar functionality as employees, e.g. `find contractor where email_address equal joe@joeswelding.com`, etc. And also have a way to track projects, who is managing a projet, and which employees and contract workers are assigned to the projects.  
+We will need to be able to add contract workers, with similar functionality as employees, e.g. `find contractor where email_address equals joe@joeswelding.com`, etc. And also have a way to track projects, who is managing a projet, and which employees and contract workers are assigned to the projects.  
   
 We will also want to be able to support some of the following queries (NOTE: this is not an exhaustive list - more items may be added as the client remembers what he needs):
 ```
 find contractor where email_address is may@HeyItsMay.com
 
 find project where city is 'los angeles'
-find projects where contact_employees include frank@heyitsfrankies.ca
+find projects where contactor.email_address equals frank@heyitsfrankies.ca
 find projects where manager.email_address is like *@company.com
 ```
   
@@ -35,7 +35,7 @@ There are a lot of ways that we could potentially develop our system to handle s
 In the above, there are 4 queries. 2 of them are quite similar, if not identical to queries we have already solved for:
 ```
 find contractor where email_address is may@HeyItsMay.com
-find projects where contact_employees include frank@heyitsfrankies.ca
+find projects where contractor.email_address equals frank@heyitsfrankies.ca
 ```
 
 The other two, however, introduce some additional difficulty that will have to be accounted for, both by our methods of parsing queries, and of course our methods for handling them.  
