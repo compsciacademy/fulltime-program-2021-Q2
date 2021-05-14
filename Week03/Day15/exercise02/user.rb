@@ -13,11 +13,20 @@ class User
     end
 
     def self.all(environment='production')
-        File.open("#{environment}_user", 'r') do |file|
-            file.map do |line|
-                username, email = line.split(', ')
-                User.new(username, email.chomp)
+        begin
+            File.open("#{environment}_user", 'r') do |file|
+                file.map do |line|
+                    username, email = line.split(', ')
+                    User.new(username, email.chomp)
+                end
             end
+        rescue StandardError => e
+            # we could implement a Log module or class
+            # that makes a record of errors that are
+            # handled:
+            # Log.message("Handled Error: #{e.message}")
+            system("touch #{environment}_user")
+            self.all(environment)
         end
     end
 end

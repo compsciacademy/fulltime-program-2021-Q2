@@ -17,6 +17,7 @@ class App
         env = check_env
         load_ui(env)
     end
+    
 
     def check_env
         environment = ENV['ENVIRONMENT']
@@ -40,8 +41,13 @@ class App
                 break
             when "l"
                 users = User.all(environment)
-                users.each do |user|
-                    puts "#{user.username}: #{user.email}"
+                if users.empty?
+                    puts "There are no users yet!"
+                    next
+                else
+                    users.each do |user|
+                        puts "#{user.username}: #{user.email}"
+                    end
                 end
             when "a"
                 puts "username: "
