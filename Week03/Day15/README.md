@@ -67,3 +67,12 @@ end
   - 2.) There are functional tests that can read/write to a test data store
   - 3.) Uses env vars to differentiate between application runtime and test runtime (i.e. to use different persistent data depending on whether it is running live or testing)  
     
+  
+**c.)** Back to the Project Management Application...  
+  
+In addition to the above, projects have materials that are required for work to be done. Materials are ordered, and orders have delivery dates, prices, etc. really, all the things you'd expect an order to have.  
+  
+Think through what type of functionality will need to be added to your application to support Project Material Order status, costs, delays, etc.  
+  
+We will also want to (eventually) perform queries such as, "How much money was wasted on waiting for project material orders to be delivered?" (this is not in actual query syntax)  
+  
