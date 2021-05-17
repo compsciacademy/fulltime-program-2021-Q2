@@ -157,7 +157,9 @@ Extend the above classes to also support CRUD operations, which implies we will 
 
 order = Order.last
 order_item = OrderItem.last
-``` 
+```   
+  
+
   
 **b.) But wait, there's more to be done...**  
    
