@@ -59,9 +59,9 @@ Some example material searches:
 ```
 find suppliers
 find materials where cost is greater than 100 and cost is less than 1000
-find locations where location.manager.email is drmanage@work.com
+find locations where manager.email is drmanage@work.com
 
-find suppliers where supplier.email is not sales@weldingsupplies.com
+find suppliers where email is not sales@weldingsupplies.com
 find materials where supplier.email is supplierOne@lolsupplies.com
 find materials where sku is 555skuLoL
 find materials where name is SteelBeam
