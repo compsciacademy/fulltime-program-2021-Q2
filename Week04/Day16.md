@@ -76,3 +76,80 @@ find materials where order.date is before 05/05/2021 and order.date is after 01/
 
 find materials from suppliers where name is IronPellets and cost is less than 35 and cost is more than 10
 ```
+
+**Working with Objects**:  
+  
+Whether we decide to use existing (built-in) data structures like Arrays and Hashes, or to create our own using Classes,
+is up to us as the developer. If we would like to be able to do something with the data that a data structure holds, but
+that functionality isn't provided with it, we might have a reasonable use-case for developing our own data structure and
+that's a great time to opt for a Class.  
+  
+```ruby  
+# Items have a name and price, and can be used
+# to do things inside orders. That is, an OrderItem
+# must belong to an Order.
+class OrderItem
+    attr_reader :name, :price, :order
+    def initialize(order, name, price)
+        @order, @name, @price = order, name, price
+        @order.add_item(self)
+    end
+end
+
+class Order
+    attr_reader :order_number
+    attr_accessor :items
+    def initialize
+        current_number = get_current_order_number
+        @order_number, @items = current_number, []
+        update_order_number(current_number)
+    end
+
+    def add_item(item)
+        @items << item
+    end
+
+    def get_current_order_number
+        # will raise an exeption if the file `.order_number`
+        # does not exist
+        File.open('.order_number', 'r') do |file|
+            file.map do |line| 
+                current_order_number = line.to_i
+            end.first
+        end
+    end
+
+    def update_order_number(current_number)
+        File.open('.order_number', 'w') do |file|
+            file.write(current_number + 1)
+        end
+    end
+end
+
+order = Order.new
+item = OrderItem.new(order, "DooHickey", 19.95)
+
+puts "Order Number: #{order.order_number}"
+puts "Order Items: "
+order.items.each_with_index do |item, index|
+    puts "\t - (#{index}): #{item.name} @ #{item.price}"
+end
+
+puts item.order.order_number
+```
+
+In the above example, we have created an `OrderItem` that belongs to `Order` via the `Item`
+constructor where an `Order` object is passed in. This allows us to add items to orders and
+easily find the item's order or item's order's order number, etc.  
+  
+With this newfound view of the world of objects, how will will we develop our system?  
+  
+## Exercise 02
+  
+**a.) Start by Finishing Orders and Order Items**  
+  
+Extend the above classes to also support CRUD operations, which implies we will need to have functions that will create (save), update (find, change, and save), and of course delete (remove) records from whatever sort of data store we are using. In this case, we have saved some data to a file, that's a reasonable way to proceed with the other cases.  
+  
+**b.) But wait, there's more to be done...**  
+   
+We are also still missing materials, projects, locations, suppliers... and the list seems to never end.    
