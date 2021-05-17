@@ -9,6 +9,7 @@ require "./menu"
 require "./user.rb"
 
 class App
+    attr_reader :environment
     def call
         # do any pre-call configuation loading, etc.
         # start application

@@ -26,3 +26,53 @@ Thing through a system that only deals with the following: Materials, Orders, In
   
 We already have the tools in our belt to develop a system that interacts with users through a command line interface, as well as is able to store data. Let's put this all together, and create an application for managing our inventory.  
   
+---
+
+In order to work on our assignment, let's think through the problem a little...  
+  
+Is there a difference between a material and an order item? What might they look like?  
+```ruby
+{
+    "name": "iron-bar",
+    "sku": "1005E111-iron",
+    "properties": {"key": "value"},
+    "cost": "",
+    "supplier": ""
+}
+```
+
+**Question**: What is a Material? Indeed, wouldn't it be nice if we hade some use-casesm for how our system should work?  
+  
+So glad you asked! Let's look at some use cases with example data. This should help us determine what our system needs to support in order for it to function properly.  
+  
+## Use Cases  
+  
+I should be able to search Materials based on the following:  
+  
+  * Supplier - should return a list of all materials from a given supplier
+  * SKU - should return a list of all materials available from all suppliers (or in inventory) with a given SKU
+  * Name - should return a list of all materials available from all suppliers (or in inventory) with a given Name
+  * Description - should return a list of all materials available from all suppliers (or in inventory) with a similar Description
+
+Some example material searches:  
+  
+```
+find suppliers
+find materials where cost is greater than 100 and cost is less than 1000
+find locations where location.manager.email is drmanage@work.com
+
+find suppliers where supplier.email is not sales@weldingsupplies.com
+find materials where supplier.email is supplierOne@lolsupplies.com
+find materials where sku is 555skuLoL
+find materials where name is SteelBeam
+find materials where description is like "available in yellow"
+```
+
+Other examples:  
+```
+find materials where name is StealBeam and location is '555 Mill Street' and cost is less than 5000
+find materials where supplier.email is sales@weldingsupplies.com and sku is D15NA00111
+find materials where order.date is before 05/05/2021 and order.date is after 01/05/2021 and project.location is '325 Davie Avenue'
+
+find materials from suppliers where name is IronPellets and cost is less than 35 and cost is more than 10
+```
