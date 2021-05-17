@@ -158,8 +158,10 @@ Extend the above classes to also support CRUD operations, which implies we will 
 order = Order.last
 order_item = OrderItem.last
 ```   
+   
+**HOMEWORK**: Check out the [`bonus.rb`](https://github.com/compsciacademy/fulltime-program-2021-Q2/blob/main/Week04/Day16/Exercise02/Bonus_I/bonus.rb#L43) for details.  
   
-
+Good luck & Have fun!  
   
 **b.) But wait, there's more to be done...**  
    
