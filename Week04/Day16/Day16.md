@@ -150,6 +150,16 @@ With this newfound view of the world of objects, how will will we develop our sy
   
 Extend the above classes to also support CRUD operations, which implies we will need to have functions that will create (save), update (find, change, and save), and of course delete (remove) records from whatever sort of data store we are using. In this case, we have saved some data to a file, that's a reasonable way to proceed with the other cases.  
   
+```ruby
+# Exercise 02 a.) Bonus I
+# Write methods on the Order and OrderItem classes
+# that will return the last saved item of each.  
+
+order = Order.last
+order_item = OrderItem.last
+``` 
+  
 **b.) But wait, there's more to be done...**  
    
 We are also still missing materials, projects, locations, suppliers... and the list seems to never end.    
+  
