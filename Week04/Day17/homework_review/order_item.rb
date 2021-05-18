@@ -10,4 +10,15 @@ class OrderItem
             file.write("#{@order.order_number}, #{@name}, #{@price}\n")
         end
     end
+
+    def self.find_by_order(order)
+        File.open('order_items', 'r') do |file|
+            file.map do |line|
+                order_number, name, price = line.split(', ')
+                if order_number.to_i == order.order_number
+                    OrderItem.new(order, name, price.to_i)
+                end
+            end
+        end
+    end
 end
