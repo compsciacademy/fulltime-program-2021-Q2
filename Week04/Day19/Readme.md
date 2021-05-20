@@ -19,3 +19,29 @@ Today's first exercise is going to be a little bit of a review. We talked about 
   
 Take a little time and write an application that allows a user to log in, using an email and password. Use the encryption algorithm you developed last time to store (and verify) the password.  
   
+---
+
+In the solution we just came up with we added a hash `session` that we can use to add other things we might wish to use.  
+  
+```ruby
+# ...
+      if @session['user']
+        puts "CURRENT USER: #{@session['user'].email}"
+      else
+        puts "Create a new user or login to be greeted"
+      end
+# ...
+
+```
+  
+## Exercise 02  
+  
+Extend our current application with user profiles. That is, add a profile for a user that can be saved, and also preferences for that profile that can be added to a current session on user login.  
+  
+For example, preferred greeting for morning, afternoon, evening, and night time.  
+
+```
+Merry morning to ya drew@example.com!
+Spendid evening drew@example.com.
+What a lovely after 12 o'clock it is drew@example.com
+```
