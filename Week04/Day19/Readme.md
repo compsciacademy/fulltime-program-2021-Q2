@@ -45,3 +45,18 @@ Merry morning to ya drew@example.com!
 Spendid evening drew@example.com.
 What a lovely after 12 o'clock it is drew@example.com
 ```
+
+## Exercise 03  
+  
+Let's revisit our Competition Cats game. We would like to be able to have N number of players. What does a play do? What are requirements for players to do what they do?  
+  
+A player needs a cat in order to enter into any competition. We will need to decide whether players start with a cat, n cats, or there are ways to acquire cats. Further, do cats have a life expectancy? Do they need to be replaced? Are there win/lose end-game (entire game/career) scenarios? These are things that you can determine on your own, as it is your game.  
+  
+It is important however, that you do determine some of these things as you will need to program them. Having an understanding of what your goals are is going to be helpful in reaching them. Without clear goals, the path can quickly become unclear.  
+  
+Some examples:
+  Players start with tokens.
+  Tokens can be used to purchase cats.
+  Pet stores sell cats.
+  Pet stores can be visited (each time a pet store is visited, it may or may not have cats)
+  
