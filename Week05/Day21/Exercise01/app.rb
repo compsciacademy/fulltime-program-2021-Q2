@@ -1,6 +1,6 @@
-
 # We want to be able to create N users.
 # We also want to be able to CRUD users.
+require './ui'
 
 class App
   def call
