@@ -14,3 +14,34 @@ Create a program that takes a number, and creates (writes to disk) that number o
   
 Additionally, you should be able to view all users, view (and edit/update) a single user, and delete a user. Or, create an individual user with your own custom inputs.  
   
+## Exercise 02  
+  
+Welcome to the World Wide Web!  
+  
+We have some reading and catching up to do. There are some amazing resources, and we will familiarize ourselves with them over the coming days.  
+  
+  * [ietf - HTTP Protocol](https://datatracker.ietf.org/doc/html/rfc2616)
+  * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+  * [W3.org](https://www.w3.org/Protocols/)
+  
+  
+For now, we'll just jump in and start to play with some code. Let's start with [Sinatra](http://sinatrarb.com/), because it's a gem of a library! ;)  
+  
+The example Sinatra wants us to start with is:  
+
+```ruby
+require 'sinatra'
+get '/frank-says' do
+  'Put this in your pipe & smoke it!'
+end
+
+```
+
+**Part 1**  
+  
+See if you can get this to work on your machine.  
+  
+**Part 2**  
+  
+Look at the [Sinatra source code](https://github.com/sinatra/sinatra), and see if you can figure out where the `get` method is defined and _how_ it works.  
+  
