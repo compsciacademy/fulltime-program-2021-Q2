@@ -90,4 +90,12 @@ With that information, you should now be able to do exercise 2 a.
   
 ## Exercise 2) a.  
   
-Create a Sinatra application that takes a user's name and email, and writes them to a data store. 
+Create a Sinatra application that takes a user's name and email, and writes them to a data store.  
+  
+## Exercise 2) b.  
+  
+Create an application that allows a user to set the background color.  
+  
+## Exercise 3)  
+  
+Create an application that allows you to 
