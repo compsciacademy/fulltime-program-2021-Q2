@@ -70,7 +70,7 @@ Here's an example application that shows `get`, `post` and url `params`...
 require 'sinatra'
 
 get '/' do
-    "<form method='POST' action='/'>" \
+    "<form method='POST' action='/greet'>" \
     "<input name='name'><br>" \
     "<input type='submit'>" \
     "</form>"
@@ -78,6 +78,10 @@ end
 
 post '/' do
     "Hello #{params[:name]}!"
+end
+
+post '/greet' do
+  "hahahahahahaa greeting you, #{params[:name]}"
 end
 
 ```
