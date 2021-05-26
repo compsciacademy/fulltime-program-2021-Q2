@@ -44,4 +44,7 @@ See if you can get this to work on your machine.
 **Part 2**  
   
 Look at the [Sinatra source code](https://github.com/sinatra/sinatra), and see if you can figure out where the `get` method is defined and _how_ it works.  
+   
+**B.)**  
   
+I want to run `ruby --version` in directory a, and have it use ruby 3.x, then move to directory b, and when I run `ruby --version` it should be pointing to ruby 2.x. How would you design a program that would allow ue to do this?  
