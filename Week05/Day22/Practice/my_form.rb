@@ -13,11 +13,11 @@ module Form
 
     File.open(filename, 'r') do |file|
       file.map do |line|
-        if line.includes("<%")
-          eval_code(line)
-        else
+        # if line.include?("<%")
+        #   eval_code(line)
+        # else
           line
-        end
+        # end
       end
     end
 

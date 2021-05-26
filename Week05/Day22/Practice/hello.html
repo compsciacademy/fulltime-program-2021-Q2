@@ -4,11 +4,9 @@
 
 <h1>My Hello Page!</h1>
 
-<p>Hello <% params[:name] %>!  
-
-  <ol>
-    <li>An item that I have
-    <li>An item that you have
-    <li>An item that nobody has
-    <li>What color is it?
-  </ol>
+<!-- Exercise 03 -- make this work -->
+<ol>
+<% params[:names].each do |name| %>!  
+  <li>Hello there <%= name %>!
+<% end %>
+</ol>

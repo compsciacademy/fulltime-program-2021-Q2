@@ -1,12 +1,15 @@
 require 'sinatra'
 require './my_form.rb'
 
+enable :sessions
+
 get '/' do
-    Form.show('form.html')
+    erb :welcome
 end  
 
 post '/' do
-    "Hello #{params[:name]}!"
+    session[:name] = params[:name]
+    "Thank you!"
 end
 
 get '/lol' do
