@@ -64,3 +64,26 @@ Eric Herman | [The Tale of the Sun and the Moon](https://www.youtube.com/watch?v
   
 We should be able to add songs to the list.  
   
+Here's an example application that shows `get`, `post` and url `params`...  
+  
+```ruby
+require 'sinatra'
+
+get '/' do
+    "<form method='POST' action='/'>" \
+    "<input name='name'><br>" \
+    "<input type='submit'>" \
+    "</form>"
+end  
+
+post '/' do
+    "Hello #{params[:name]}!"
+end
+
+```
+
+With that information, you should now be able to do exercise 2 a.  
+  
+## Exercise 2) a.  
+  
+Create a Sinatra application that takes a user's name and email, and writes them to a data store. 
