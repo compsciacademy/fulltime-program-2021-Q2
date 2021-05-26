@@ -94,8 +94,16 @@ Create a Sinatra application that takes a user's name and email, and writes them
   
 ## Exercise 2) b.  
   
-Create an application that allows a user to set the background color.  
+Create an application that allows a user to set the background color and the text color.  
   
 ## Exercise 3)  
   
-Create an application that allows you to 
+Create an application that allows you to create a list of songs for a user. If that user comes back, the list should _persist_.  
+  
+For example, if my username is Drew, and my song list is displayed like this:
+
+artist | title  
+--- | ---  
+Eric Herman | [The Tale of the Sun and the Moon](https://www.youtube.com/watch?v=UoWFJ690U6E)  
+  
+When I sign in as Drew, I should see that song list.  

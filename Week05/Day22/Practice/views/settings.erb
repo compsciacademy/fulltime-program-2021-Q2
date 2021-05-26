@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<% color = session[:color] || "#FFFFFF" %>
+<% background_color = session[:background_color] || "#000000" %>
+
+<style>
+body {
+  color: <%= color %>;
+  background-color: <%= background_color %>;
+}
+</style>
+
+<nav>
+<a href="/">Home</a> | <a href="/settings">settings</a>
+</nav>
+
+<h1>User Settings</h1>
+
+<form method="POST" action="/settings">
+    <label>Text Color</label><input name="color"><br>
+    <label>Background Color</label><input name="background-color"><br>
+    <input type="submit">
+</form>
