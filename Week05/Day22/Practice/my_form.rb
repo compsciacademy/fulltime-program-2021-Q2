@@ -14,6 +14,23 @@ module Form
     File.open(filename, 'r') do |file|
       file.map do |line|
         # if line.include?("<%")
+        #
+        # Question: How should this differentiate between
+        # something like:
+        #
+        #  people.each do |person|
+        #     person.to_s
+        #  end
+        #
+        # and say something like:
+        #
+        # session[:color] = params[:color]
+        #
+        # Here's some light reading for inspiration:
+        # https://github.com/ruby/ruby/blob/master/lib/erb.rb
+        #
+        #
+        #
         #   eval_code(line)
         # else
           line
