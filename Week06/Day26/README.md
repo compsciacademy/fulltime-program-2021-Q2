@@ -161,3 +161,15 @@ proc_tester_with_many_params l
 proc_tester_with_many_params p
 
 ```
+
+## Exercise 04  
+  
+We would like to be able to have some files within directories in a Sinatra app required implicitly based on file directory, rather than explicitly requiring each.  
+  
+**a.) Stylesheets**: add a directory for stylesheets, such that you are able to use them in your views.  
+  
+**b.) Javascript**: add a directory for JavaScript, such that you are able to place scripts in it, and use them in your views.  
+  
+**NOTE**: you may benefit from using a search engine to help find information for reference.  
+  
+**Bonus**: How would you require all files from a directory in a non-Sinatra, Ruby app? Is this different from how you would in a Sinatra app? _Why_ (or _Why not_)?  
