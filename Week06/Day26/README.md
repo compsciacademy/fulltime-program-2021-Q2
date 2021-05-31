@@ -24,3 +24,21 @@ We could move it out to its own file, `nav.erb` within the `views/` directory, a
   
 Sign up for Heroku, if you haven't already. Have a look at the documentation, and see if you can deploy your application to Heroku!  
   
+Heroku needs to know what language your app is using, what dependencies it requires and where to get them.  
+  
+For our app, we will want to add a couple of files.  
+  
+One, a [Gemfile](https://bundler.io/man/gemfile.5.html), which is a common file in Ruby for showing dependencies. 
+
+```
+source 'https://rubygems.org'
+gem 'sinatra'
+
+```
+
+Heroku will also want to have a configuration file, in Ruby we typically use a [`config.ru`](https://devcenter.heroku.com/articles/rack#sinatra).  
+  
+```ru
+require './app'
+run Sinatra::Application
+```
