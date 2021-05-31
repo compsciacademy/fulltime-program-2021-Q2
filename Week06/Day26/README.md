@@ -42,3 +42,15 @@ Heroku will also want to have a configuration file, in Ruby we typically use a [
 require './app'
 run Sinatra::Application
 ```
+
+After installing Heroku, check out the [Deploying with Git](https://devcenter.heroku.com/articles/git) documentation.  
+  
+If you initialize a git repository before running `heroku create`, it will automatically set a heroku remote for you.  
+  
+```
+heroku create app-name
+git push heroku master
+git apps:open app-name
+```
+
+
