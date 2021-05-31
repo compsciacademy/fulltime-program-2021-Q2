@@ -126,6 +126,7 @@ p = Proc.new { |x, y| x.times { puts y } }
 # Take note of what type of class each of these are
 l.class
 p.class
+what.class
 
 # When envoking lambdas and procs, we use `call`, e.g.
 # Try calling each to see what they do with both the 

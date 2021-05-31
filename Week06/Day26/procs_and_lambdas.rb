@@ -4,7 +4,8 @@
 
 # Instiate a proc and a lambda
 l = lambda { |x, y| x.times { puts y } }
-p = Proc.new { |x, y| x.times { puts y } }
+# p = Proc.new { |x, y| x.times { puts y } }
+p = proc { |x, y| x.times { puts y } }
 
 # Take note of what type of class each of these are
 # l.class
