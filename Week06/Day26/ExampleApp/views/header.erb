@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<% color = session[:color] || "#FFFFFF" %>
+<% background_color = session[:background_color] || "#000000" %>
+
+<style>
+body {
+  color: <%= color %>;
+  background-color: <%= background_color %>;
+}
+</style>
