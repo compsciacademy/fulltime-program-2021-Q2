@@ -11,12 +11,14 @@ end
 
 # instantiate a new user and display
 # a form to get email and password
-get '/user' do; end
+get '/user/new' do
+    erb :"users/new"
+end
 
 # send email and password params from
 # user form. Use this to Create(save)
 # a user
-post '/user' do; end
+post '/user/create' do; end
 
 # find a user by email can be
 # used to update a user
@@ -34,7 +36,12 @@ post '/delete-user/:email' do
     user = User.find_by_email(params[:email])
     user.delete
     # delete user here
-    redirect :"users/index"
+    redirect :users
+end
+
+get '/users/create' do
+    User.create_many
+    redirect :users
 end
 
 # list all users
