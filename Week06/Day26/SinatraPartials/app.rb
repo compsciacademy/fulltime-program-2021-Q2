@@ -10,6 +10,13 @@ get '/drewland' do
     erb :drewland
 end
 
+post '/drewland' do
+    File.open('lol', 'a') do |file|
+        file.write(params[:color])
+    end
+    redirect '/drewland'
+end
+
 post '/' do
     session[:name] = params[:name]
     redirect '/'
