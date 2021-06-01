@@ -33,3 +33,44 @@ Before you begin building out the CLI to automate the creation of resources, put
   
 It's probably a good idea to manually create something first, and then work on automating its creation.  
   
+---
+## Getting started with Exercise 1  
+  
+The initial setup for a MyNatra application can be quite simple. It could be as simple as creating a directory and a single file inside it.  
+  
+Running the command `mynatra new MyBlog` could create a directory called `MyBlog/` with a file inside called `app.rb`  
+  
+```ruby
+# MyBlog/app.rb
+require 'sinatra'  
+```
+
+And that could be it!  
+  
+Of course, if we want our development framework to include things that we pretty much know we are going to use to get started, indeed saving time on later projects is a big reason to automate the initial setup this way, then what would be a more robust starting point?  
+  
+In this case, we might consider adding a Gemfile, some views with styles and scripts in place for us to just start coding.  
+  
+```
+MyBlog/
+|
+---app.rb
+|
+---views/
+|     |
+|     ---footer.erb
+|     ---getting_started.erb
+|     ---header.erb
+|     |
+---public/
+|     |
+|     ---scripts/
+|     |     |
+|     |     ---main.js
+|     ---styles/
+|     |     |
+|     |     ---main.css
+|     |     |
+---gemfile
+
+```
