@@ -74,3 +74,21 @@ MyBlog/
 ---gemfile
 
 ```
+
+## Adding Resources  
+  
+When we add a resource with CRUD, what does that mean? Well, it means we will want to be able to Create, Read, Update, and Delete entities of that resource. So... what precisely do we need to acomplish each of those operations?  
+  
+**Create**: add data attributes that can be saved somehow for later retreval.  
+  
+**Read**: retrieve data attributes for an entity.  
+  
+**Update**: replace data attributes for an entity.  
+  
+**Delete**: delete data attributes for an entity (delete the entity).  
+  
+So, how will this be implemented for the following: 
+```
+mynatra resource user email password
+```
+

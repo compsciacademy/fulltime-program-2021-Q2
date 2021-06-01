@@ -1,0 +1,10 @@
+<%= erb :header %>
+
+<h1>Users</h1>
+<ul>
+    <% @users.each do |user| %>
+        <li>Email: <%= user.email %></li>
+    <% end %>
+</ul>
+
+<% erb :footer %>
