@@ -36,3 +36,62 @@ Flesh out what precisely we expect the output to be of that command. That is, ma
   
 We've done that in the [MyBlog](/MyBlog/) directory. But there are some design decisions we may still choose to make later, as well as various features that we have yet to add...  
   
+---  
+  
+## Working with SQL & PostgreSQL  
+  
+SQL or Structured Query Language is a DSL (a domain-specific language) for working with relatational data. We are going to take a look at using SQL (the DSL) and using a Relational Database Management System, PostgreSQL, which will provide an _interface_ for using SQL to work with data.  
+
+Depending on your operating system, there are some different ways to install [PostgreSQL](https://www.postgresql.org/download/), which range from downloading and clicking on an executable then clicking through a GUI installer to just running a command such as `<package-manager> install postgresql`, which is likely how you will be installing if you're using macOS, Linux, or WSL on Windows...  
+  
+**Linux (Ubuntu/WSL)**    
+  
+Install:  
+```
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+psql --version
+```
+
+The default admin user is `postgres`. We'll need to set a password for it.
+```
+sudo passwd postgres 
+```
+
+Start and Stop the PostgreSQL service
+```
+sudo service postgresql start
+sudo service postgresql stop
+```
+
+Run the `psql` command as the user `postgres` (the default admin user).
+```
+sudo -u postgres psql
+```
+
+This will give a postgres command line interface. Type in "help" for help.
+```
+postgres=# help
+You are using psql, the command-line interface to PostgreSQL.
+Type:  \copyright for distribution terms
+       \h for help with SQL commands
+       \? for help with psql commands
+       \g or terminate with semicolon to execute query       
+       \q to quit
+```
+
+List the databases with `\l`  
+```
+postgres=# \l
+                              List of databases
+   Name    |  Owner   | Encoding | Collate |  Ctype  |   Access privileges   
+-----------+----------+----------+---------+---------+-----------------------
+ postgres  | postgres | UTF8     | C.UTF-8 | C.UTF-8 |
+ template0 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+           |          |          |         |         | postgres=CTc/postgres 
+ template1 | postgres | UTF8     | C.UTF-8 | C.UTF-8 | =c/postgres          +
+           |          |          |         |         | postgres=CTc/postgres 
+(3 rows)
+
+postgres=#
+```
