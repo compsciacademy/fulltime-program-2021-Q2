@@ -95,3 +95,55 @@ postgres=# \l
 
 postgres=#
 ```
+
+## Create a Postgres User, Database and some Data
+
+Now that we have PostgreSQL installed and set up on our machine, with the admin user `postgres`, let's create a non-admin user, and a dabase to use.  
+   
+Start postgresql  
+```
+sudo service postgresql start
+```  
+
+Switch your current user to `postgres` to create a user and dabase.  
+  
+```
+su postgres
+```
+This should prompt you for the password you made for the `postgres` user earlier.
+  
+Now that you are using the `postgres` user (check by echoing the `$USER` to the terminal), you can call the `createuser` and `createdb` programs as the `postgres` admin user.
+```
+createuser <my-user>
+createdb <my-user> 
+```
+Type `exit` and press enter to exit from the `postgres` user back to your own user.  
+
+Create a table for storing blog posts.  
+  
+```
+CREATE TABLE posts (
+  title  varchar(50),
+  body varchar(250)
+);
+```
+
+List the tables `\dt`
+
+Enter some data into the table you just created.  
+  
+```
+INSERT INTO posts VALUES ('My First Post', 'It is a lovely day. Everybody is happy. The sun is shining. People are walking.');
+
+```
+
+Select all the data in the `posts` table.  
+```
+SELECT * FROM posts;
+```
+Exit the psql cli client, and shut down the postgresql service.  
+  
+```
+exit
+sudo service postgresql stop
+```
