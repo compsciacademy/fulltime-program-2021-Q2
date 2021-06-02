@@ -1,0 +1,13 @@
+<%= erb :header %>
+
+<h1>New Post</h1>
+
+<form method="POST" action="/posts/create">
+    <p>Title:</p>
+    <input name="title"><br>
+    <p>Body:</p>
+    <textarea name="body" type="text"></textarea><br>
+    <input type="submit">
+</form>
+
+<%= erb :footer %>

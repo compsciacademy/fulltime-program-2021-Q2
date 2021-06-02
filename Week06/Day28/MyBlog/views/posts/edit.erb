@@ -1,0 +1,15 @@
+<%= erb :header %>
+
+<form method="POST" action="/posts/update/<%= @post.id %>">
+    <p>Title:</p>
+    <input name="title" value="<%= @post.title %>"><br>
+    <p>Body:</p>
+    <textarea name="body" type="text"><%= @post.body %></textarea><br>
+    <input type="submit">
+</form>
+
+<form method="POST" action="/posts/delete/<%= @post.id %>">
+    <input type="submit" value="Get Rid of It!!!">
+</form>
+
+<%= erb :footer %>
