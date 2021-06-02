@@ -147,3 +147,10 @@ Exit the psql cli client, and shut down the postgresql service.
 exit
 sudo service postgresql stop
 ```
+  
+## Exercise 02 HOMEWORK ASSIGNMENT  
+  
+Continuing with the MyBlog project, add comments to blog posts. A comment should have a `username` as an optional input (display "Anonomous" if no username is given), and a comment body as data attributes.  
+  
+Stretch Goal: Add likes and/or upvotes and downvotes to blog posts, and comments.  
+  
