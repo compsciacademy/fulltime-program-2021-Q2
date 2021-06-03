@@ -123,3 +123,43 @@ describe Foodie::Food do
     end
 end
 ```
+
+## Adding other gems  
+  
+There's a method called `pluralize` that can take a word and give its plural. This method is part of a gem called `activesupport`. Let's require that in our gem specification.  
+  
+```ruby
+# ...
+
+spec.add_dependency "activesupport"
+
+# ...
+```
+
+Now, a `bundle install` should add the new dependcy `activesupport` to our bundle. With `activesupport` installed, let's make use of it by adding a `pluralize` method to `Foodie::Food`. But, before we do, let's spec it out:  
+  
+```ruby
+it "pluralizes a word" do
+  expect(Foodie::Food.pluralize("Tomato")).to eql("Tomatoes")
+end
+
+```
+
+Running `bundle exec rpsec spec` will fail, since there is no `pluralize` method defined on `Foodie::Food`. Now that we have a failing spec, let's make it pass!  
+
+```ruby
+# lib/foodie/food.rb
+require 'active_support/inflector'
+
+module Foodie
+  class Food
+    def self.portray(food); end
+
+    def self.pluralize(word)
+      word.pluralize
+    end
+  end
+end
+
+```
+
