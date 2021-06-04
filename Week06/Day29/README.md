@@ -163,3 +163,111 @@ end
 
 ```
 
+## Add a CLI  
+
+Define a CLI in `lib/foodie/cli.rb`:  
+  
+```ruby
+require 'thor'
+module Foodie
+  class CLI < Thor
+
+  end
+end
+
+```
+
+Add the dependency to your gemspec
+
+```ruby
+# foodie.gemspec.rb
+
+# ...
+
+spec.add_dependency "thor"
+
+# ...
+
+```
+
+Before developing out our CLI, let's make sure we are ready to test it, as we go. BDD (Behavior Driven Development) is an interesting testing methodology. There are some tools we can use to _test it out_, such as the gem Cucumber! Let's do that.
+
+We are using RSpec for testing the main application logic in our gem, and now adding Cucumber for testing the CLI. THere's another tool that is useful for testing that works well with both of those. It's called... Aruba.
+```ruby
+spec.add_development_dependency "cucumber"
+spec.add_development_dependency "aruba"
+
+```
+
+Run `bundle install` to install the dependencies, and then let's add some feature tests to `features/food.feature'
+
+```yaml
+Feature: Food
+  In order to portray or pluralize food
+  As a CLI
+  I want to be as objective as possible
+
+  Scenario: Broccoli is gross
+    When I run `foodie portray broccoli`
+    Then the output should contain "Gross!"
+
+  Scenario: Tomato, or Hakuna Matada?
+    When I run `foodie pluralize --word Tomato`
+    Then the output should contain "Tomatoes"
+
+```
+
+Now we want to have our Foodie gem's CLI actually execute some commands when we call `foodie <command>`. To do so, let's add an executable script.  
+  
+```sh
+#!/usr/bin/env ruby
+
+puts "LoLFACE!!!!"
+
+```
+
+Create an exe directory in the foodie gem root directory, and add this script simply named `foodie` to it and run `chmod +x exe/foodie` to make sure it is executable:
+
+```ruby
+#!/usr/bin/env ruby
+require 'foodie/cli'
+
+Foodie::CLI.start
+```
+
+Let's define some Thor Tasks inside the Foodie::CLI
+
+```ruby
+
+require 'thor'
+require 'foodie'
+
+module Foodie
+  class CLI < Thor
+    desc "portray [FOOD]", "Determines where a food item is gross or delicious"
+    def portray(food)
+      puts Foodie::Food.portray(food)
+    end
+
+    desc "pluralize -w/--word [WORD]", "Pluralizes a word"
+    method_option :word, aliases: "-w"
+    def pluralize
+      puts Foodie::Food.pluralize(options[:word])
+    end
+  end
+end
+
+```
+
+Now, you should be able to run commands like:
+```
+bundle exec exe/foodie portray broccoli
+bundle exec exe/foodie pluralize tomato
+```
+
+Make sure the cucumber feature tests work
+```
+bundle exec cucumber features
+```
+And it's all green!  
+  
