@@ -112,3 +112,178 @@ Now, we can run `bundle install`, and then `bundle exec exe/mynatra` to see that
 Commands:
   mynatra help [COMMAND]  # Describe available commands or one specific command
 ```
+
+## Adding Generators  
+  
+Let's try adding a couple of commands. We can start with an idea of what we want to put in, and what we hope to get out.  
+  
+We actually may even have some [precedence](https://github.com/compsciacademy/fulltime-program-2021-Q2/tree/main/Week07/Day31#exercise-01) for this.  
+  
+Here are some example commands (i.e. _inputs_):
+```
+mynatra new MyBlog && cd MyBlog
+mynatra resource post title body
+mynatra resource comment body
+```
+If we run `mynatra new MyBlog` we expect the following output:
+```
+MyBlog/
+  |-app.rb
+  |
+  |-views/
+    |
+    |-footer.erb
+    |-getting_started.erb
+    |-header.erb
+  |
+  |-public/
+    |
+    |-scripts/
+      |
+      |-main.js
+    |-styles/
+      |
+      |-main.css
+  |
+  |-gemfile
+
+```
+For a working example, have a look at [Day28/MyBlog](https://github.com/compsciacademy/fulltime-program-2021-Q2/tree/main/Week06/Day28/MyBlog).  
+  
+
+```ruby
+require 'thor'
+
+module MyNatra
+  class CLI < Thor
+    desc "new [PROJECT]", "Creates a new directory with MyNatra project scaffolding"
+    def new(project)
+      MyNatra::Generators::Scaffold.start([project])
+    end
+
+  end
+end
+
+```
+
+Now that we have an idea what our _new_ command will do, we need to create the Generator to support it. That can go in `lib/mynatra/generators/scaffold.rb`  
+  
+```ruby
+require 'thor/group'
+
+module MyNatra
+  module Generators
+    class Scaffold < Thor::Group
+      include Thor::Actions
+      argument :project, type: :string
+
+      def create_project
+        empty_directory(project)
+      end
+
+      # now, we can fill in the rest of the scaffolding
+      # with the base project.
+      #
+      # copy_file(source, *args, &block)
+      # directory(source, *args, &block)
+      #
+      # args.first is used as the destination, if given.
+
+      def copy_base
+        directory('./base', project)
+      end
+    end
+  end
+end
+
+```
+
+We can use the methods that `Thor::Actions` give us, `copy_file` and/or `directory` to copy some base scaffolding. In order to do this, we need to actually _have_ that base scaffolding, which we know is arranged like this:
+
+```
+MyBlog/
+  |-app.rb
+  |
+  |-views/
+    |
+    |-footer.erb
+    |-getting_started.erb
+    |-header.erb
+  |
+  |-public/
+    |
+    |-scripts/
+      |
+      |-main.js
+    |-styles/
+      |
+      |-main.css
+  |
+  |-gemfile
+
+```
+
+Now, we just need to define _each_ of those files.
+
+`app.rb`
+```rb
+require 'sinatra'
+
+# require all controllers in the ./controllers/ directory
+controller_paths = Dir["./controllers/*.rb"].each { |file| require_relative file }
+controllers = controller_paths.map { |controller_path| controller_path[/controllers\/(.*?)_controller/m, 1] }
+controllers.each { |controller| use Object.const_get("#{controller.capitalize}Controller") }
+
+```
+  
+`contollers/getting_started_controller.rb`
+```ruby
+class GettingStartedController < Sinatra::Base
+  get '/' do
+    erb :getting_started
+  end
+end
+
+```
+
+`views/getting_started.erb`
+```html
+<%= erb :header %>
+
+<h1>Getting Started with MyNatra</h1>
+
+<p>Here's all the stuff you need to know to get started</p>
+
+<%= erb :footer %>
+```
+
+`views/header.erb`
+```html
+<!DOCTYPE html>
+
+<link rel="stylesheet" src="styles/main.css">
+<script src="scripts/main.js"></script>
+
+```
+
+`views/footder.erb`
+```html
+<div class=footer>
+    <p> put something here.
+</div>
+```
+
+`public/styles/main.css`
+```css
+body {
+  background-color: #ee67f2;
+  color: #f71e59;
+}
+
+```
+
+`/public/scripts/main.js`
+```js
+// main.js
+
+```
