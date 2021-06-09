@@ -16,6 +16,7 @@ module MyNatra
       # and put it in the models directory
       def create_models
         @name = name.singularize.downcase
+        @name_plural = @name.pluralize
         @attributes = attributes
         template("./templates/model.erb", "./models/#{name}.rb")
       end
@@ -27,7 +28,11 @@ module MyNatra
         template("./templates/controller.erb", "./controllers/#{name.pluralize}_controller.rb")
       end
 
-      def create_views; end
+      def create_views
+        # @name = name.singularize.downcase
+        # @name_plural = @name.pluralize
+        # @attributes = attributes
+      end
     end
   end
 end

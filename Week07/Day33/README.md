@@ -74,10 +74,50 @@ And of course the `model.erb` to use as the template for our models.
 
 ```ruby
 class <%= @name.capitalize %>
+  @@<%= @name_plural.capitalize %> = []
+  @@count = 0
 <% @attributes.each do |attribute| -%>
   attr_accessor :<%= attribute %>
 <% end -%>
 
+
+  def save
+    if self.id.nil?
+      self.id = new_id
+      @@<%= @name_plural.capitalize %>.push(self)
+    else
+      self.id = self.id.to_i
+      @@<%= @name_plural.capitalize %>.each_with_index do |<%= @name %>, index|
+        if self.id == <%= name %>.id
+          @@<%= @name_plural.capitalize %>[index] = self
+        end
+      end
+    end
+  end
+
+  def delete
+    @@<%= @name_plural.capitalize %>.each_with_index do |<%= @name %>, index|
+      if <%= @name %>.id == self.id
+        @@<%= @name_plural.capitalize %>.delete_at index
+      end
+    end
+  end
+
+  def self.find(id)
+    @@<%= @name_plural.capitalize %>.each do |<%= @name %>|
+      return <%= @name %> if <%= @name %>.id == id
+    end
+  end
+
+  def self.all
+    @@<%= @name_plural.capitalize %>
+  end
+
+  private
+
+  def new_id
+    @@count += 1
+  end
 end
 
 ```
