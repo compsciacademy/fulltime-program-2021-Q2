@@ -287,3 +287,15 @@ body {
 // main.js
 
 ```
+
+Now, we should be able to run `bundle exec exe/mynatra new MyBlog` and have a base project set up for us. Great!  
+  
+Let's move on to the next step...
+
+```
+cd MyBlog
+bundle exec exe/mynatra resource post title body
+```
+
+And make that generate the required files for performing CRUD operations on the post resource, including views, controllers, models, and whatever else we may need.  
+  

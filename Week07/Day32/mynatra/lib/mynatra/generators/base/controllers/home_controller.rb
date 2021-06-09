@@ -1,6 +1,4 @@
-class HomeController < Sinatra::Base
-  set :root, "#{File.dirname('../')}"
-  
+class HomeController < ApplicationController
   get '/' do
     erb :home
   end
