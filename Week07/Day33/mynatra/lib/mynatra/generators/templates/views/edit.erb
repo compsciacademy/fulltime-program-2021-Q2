@@ -1,0 +1,16 @@
+<%%= erb :header %>
+
+<form method="POST" action="/<%= @name_plural %>/update/<%%= @<%= @name %>.id %>">
+  <% @attributes.each do |attribute| -%>
+    <p><%= attribute.capitalize %>:</p>
+    <input name="<%= attribute %>" value="<%%= @<%= @name %>.<%= attribute %>%>"><br>
+  <% end -%>
+
+    <input type="submit">
+</form>
+
+<form method="POST" action="/<%= @name_plural %>/delete/<%%= @<%= @name %>.id %>">
+    <input type="submit" value="Get Rid of It!!!">
+</form>
+
+<%%= erb :footer %>

@@ -1,10 +1,10 @@
 class <%= @name.capitalize %>
   @@<%= @name_plural.capitalize %> = []
   @@count = 0
+  attr_accessor :id
 <% @attributes.each do |attribute| -%>
   attr_accessor :<%= attribute %>
 <% end -%>
-
 
   def save
     if self.id.nil?

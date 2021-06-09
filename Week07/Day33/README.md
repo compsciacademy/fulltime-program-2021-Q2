@@ -139,12 +139,12 @@ Add a method to `create_controller` in our `MyNatra::Generators::Resource`
 And a template to support it
 ```python
 class <%= @name_plural.capitalize %>Controller < ApplicationController
-  get '/<%= @name %>/new' do
+  get '/<%= @name_plural %>/new' do
     @<%= @name %> = <%= @name.capitalize %>.new
     erb :"<%= @name %>/new"
   end
    
-  post '/<%= @name %>/create' do
+  post '/<%= @name_plural %>/create' do
     <%= @name %> = <%= @name.capitalize %>.new 
   <% @attributes.each do |attribute| -%>
   <%= @name %>.<%= attribute %> = params[:<%= attribute %>]
@@ -160,7 +160,7 @@ class <%= @name_plural.capitalize %>Controller < ApplicationController
   <%= @name %>.<%= attribute %> = params[:<%= attribute %>]
   <% end -%> 
     <%= @name %>.save
-    redirect :"<%= @name_plural %>/#{<%= @name %>.id}"
+    redirect :"<%= @name_plural %>/#{@<%= @name %>.id}"
   end
 
   get '/<%= @name_plural %>/:id' do
@@ -181,3 +181,81 @@ class <%= @name_plural.capitalize %>Controller < ApplicationController
 end
 
 ```
+
+## Create Views
+
+and add an edit view template to `templates/views/edit.erb`:
+```python
+<%%= erb :header %>
+
+<form method="POST" action="/<%= @name_plural %>/update/<%%= @<%= @name %>.id %>">
+  <% @attributes.each do |attribute| -%>
+    <p><%= attribute.capitalize %>:</p>
+    <input name="<%= attribute %>" value="<%%= @<%= @name %>.<%= attribute %>%>"><br>
+  <% end -%>
+
+    <input type="submit">
+</form>
+
+<form method="POST" action="/<%= @name_plural %>/delete/<%%= @<%= @name %>.id %>">
+    <input type="submit" value="Get Rid of It!!!">
+</form>
+
+<%%= erb :footer %>
+
+```
+
+add an index view template to `templates/views/index.erb`
+```python
+<%%= erb :header %>
+
+<h1><%= @name_plural.capitalize %></h1>
+<ul>
+  <%% @<%= @name_plural %>.each do |<%= @name %>| %>
+    <li><a href="/<%= @name_plural %>/<%%= <%= @name %>.id %>"><%%= <%= @name %>.id %></a></li>
+    <ul>
+  <% @attributes.each do |attribute| -%>
+    <li><%%= <%= @name %>.<%= attribute%> %></li>
+  <% end -%>
+  </ul>
+  <%% end %>
+</ul>
+
+<%%= erb :footer %>
+
+```
+
+And finally add a new template to `templates/views/new.erb`
+
+```py
+<%%= erb :header %>
+
+<h1>New <%= @name.capitalize %></h1>
+
+<form method="POST" action="/<%= @name_plural %>/create">
+  <% @attributes.each do |attribute| -%>
+    <p><%= attribute.capitalize %>:</p>
+    <input name="<%= attribute %>" value="<%%= @<%=@name %>.<%= attribute %>%>"><br>
+  <% end -%>
+    <input type="submit">
+</form>
+
+<%%= erb :footer %>
+
+```
+
+and of course a `create_views` method to the resource generator:
+```ruby
+# ...
+  def create_views
+    @name = name.singularize.downcase
+    @name_plural = @name.pluralize
+    @attributes = attributes
+    template("./templates/views/edit.erb", "./views/#{@name_plural}/edit.erb")
+    template("./templates/views/index.erb", "./views/#{@name_plural}/index.erb")
+    template("./templates/views/new.erb", "./views/#{@name_plural}/new.erb")
+  end
+#...
+
+```
+And that should just about do it!

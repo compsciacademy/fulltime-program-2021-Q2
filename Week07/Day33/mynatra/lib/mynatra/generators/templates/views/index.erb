@@ -1,0 +1,15 @@
+<%%= erb :header %>
+
+<h1><%= @name_plural.capitalize %></h1>
+<ul>
+  <%% @<%= @name_plural %>.each do |<%= @name %>| %>
+    <li><a href="/<%= @name_plural %>/<%%= <%= @name %>.id %>"><%%= <%= @name %>.id %></a></li>
+    <ul>
+  <% @attributes.each do |attribute| -%>
+    <li><%%= <%= @name %>.<%= attribute%> %></li>
+  <% end -%>
+  </ul>
+  <%% end %>
+</ul>
+
+<%%= erb :footer %>

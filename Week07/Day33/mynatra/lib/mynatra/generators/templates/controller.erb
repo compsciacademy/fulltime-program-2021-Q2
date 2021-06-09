@@ -1,26 +1,28 @@
+require_relative '../models/<%= @name %>'
+
 class <%= @name_plural.capitalize %>Controller < ApplicationController
-  get '/<%= @name %>/new' do
+  get '/<%= @name_plural %>/new' do
     @<%= @name %> = <%= @name.capitalize %>.new
-    erb :"<%= @name %>/new"
+    erb :"<%= @name_plural %>/new"
   end
    
-  post '/<%= @name %>/create' do
-    <%= @name %> = <%= @name.capitalize %>.new 
+  post '/<%= @name_plural %>/create' do
+    @<%= @name %> = <%= @name.capitalize %>.new 
   <% @attributes.each do |attribute| -%>
-  <%= @name %>.<%= attribute %> = params[:<%= attribute %>]
+  @<%= @name %>.<%= attribute %> = params[:<%= attribute %>]
   <% end -%> 
-    <%= @name %>.save
+    @<%= @name %>.save
     redirect :"<%= @name_plural %>"
   end
 
   post '/<%= @name_plural %>/update/:id' do
-    <%= @name %> = <%= @name.capitalize %>.new 
-    <%= @name %>.id = params[:id]
+    @<%= @name %> = <%= @name.capitalize %>.new 
+    @<%= @name %>.id = params[:id]
   <% @attributes.each do |attribute| -%>
-  <%= @name %>.<%= attribute %> = params[:<%= attribute %>]
+  @<%= @name %>.<%= attribute %> = params[:<%= attribute %>]
   <% end -%> 
-    <%= @name %>.save
-    redirect :"<%= @name_plural %>/#{<%= @name %>.id}"
+    @<%= @name %>.save
+    redirect :"<%= @name_plural %>/#{@<%= @name %>.id}"
   end
 
   get '/<%= @name_plural %>/:id' do

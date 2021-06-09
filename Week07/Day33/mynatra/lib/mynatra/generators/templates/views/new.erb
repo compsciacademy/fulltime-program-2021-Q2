@@ -1,0 +1,13 @@
+<%%= erb :header %>
+
+<h1>New <%= @name.capitalize %></h1>
+
+<form method="POST" action="/<%= @name_plural %>/create">
+  <% @attributes.each do |attribute| -%>
+    <p><%= attribute.capitalize %>:</p>
+    <input name="<%= attribute %>" value="<%%= @<%=@name %>.<%= attribute %>%>"><br>
+  <% end -%>
+    <input type="submit">
+</form>
+
+<%%= erb :footer %>
