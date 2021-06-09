@@ -20,7 +20,11 @@ We can start by adding support for the CLI interface resource command, e.g.
 # ...
 ```
 
-And then we just need to make that do something. Let's start by adding a method to `create_models`:
+And then we just need to make that do something. 
+
+## Create Models
+
+Let's start by adding a method to `create_models`:
 
 ```ruby
 require 'thor/group'
@@ -65,5 +69,75 @@ Since we're using the `singularize` method from Active Support, we need to add i
 ```
 
 `bundle install` and now we should be able to create a new project, cd into it, add a resource and have our models!  
+
+And of course the `model.erb` to use as the template for our models.
+
+```ruby
+class <%= @name.capitalize %>
+<% @attributes.each do |attribute| -%>
+  attr_accessor :<%= attribute %>
+<% end -%>
+
+end
+
+```
   
 ...  
+
+## Create Controllers
+
+Add a method to `create_controller` in our `MyNatra::Generators::Resource`
+```ruby
+      def create_controllers
+        @name = name.singularize.downcase
+        @name_plural = @name.pluralize
+        @attributes = attributes
+        template("./templates/controller.erb", "./controllers/#{name.pluralize}_controller.rb")
+      end
+```
+
+And a template to support it
+```python
+class <%= @name_plural.capitalize %>Controller < ApplicationController
+  get '/<%= @name %>/new' do
+    @<%= @name %> = <%= @name.capitalize %>.new
+    erb :"<%= @name %>/new"
+  end
+   
+  post '/<%= @name %>/create' do
+    <%= @name %> = <%= @name.capitalize %>.new 
+  <% @attributes.each do |attribute| -%>
+  <%= @name %>.<%= attribute %> = params[:<%= attribute %>]
+  <% end -%> 
+    <%= @name %>.save
+    redirect :"<%= @name_plural %>"
+  end
+
+  post '/<%= @name_plural %>/update/:id' do
+    <%= @name %> = <%= @name.capitalize %>.new 
+    <%= @name %>.id = params[:id]
+  <% @attributes.each do |attribute| -%>
+  <%= @name %>.<%= attribute %> = params[:<%= attribute %>]
+  <% end -%> 
+    <%= @name %>.save
+    redirect :"<%= @name_plural %>/#{<%= @name %>.id}"
+  end
+
+  get '/<%= @name_plural %>/:id' do
+    @<%= @name %> = <%= @name.capitalize %>.find(params[:id].to_i)
+    erb :"<%= @name_plural %>/edit"
+  end
+
+  post '/<%= @name_plural %>/delete/:id' do
+    @<%= @name %> = <%= @name.capitalize %>.find(params[:id].to_i)
+    @<%= @name %>.delete
+    redirect :<%= @name_plural %>
+  end
+
+  get '/<%= @name_plural %>' do
+    @<%= @name_plural %> = <%= @name.capitalize %>.all
+    erb :"<%= @name_plural %>/index"
+  end
+end
+
+```

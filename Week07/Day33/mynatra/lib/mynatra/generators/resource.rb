@@ -20,7 +20,13 @@ module MyNatra
         template("./templates/model.erb", "./models/#{name}.rb")
       end
 
-      def create_controllers; end
+      def create_controllers
+        @name = name.singularize.downcase
+        @name_plural = @name.pluralize
+        @attributes = attributes
+        template("./templates/controller.erb", "./controllers/#{name.pluralize}_controller.rb")
+      end
+
       def create_views; end
     end
   end

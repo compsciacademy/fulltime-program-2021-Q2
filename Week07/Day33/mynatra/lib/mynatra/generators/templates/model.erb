@@ -1,5 +1,6 @@
 class <%= @name.capitalize %>
-  <% @attributes.each do |attribute| %>
-    attr_accessor :<%= attribute %>
-  <% end %>
+<% @attributes.each do |attribute| -%>
+  attr_accessor :<%= attribute %>
+<% end -%>
+
 end
