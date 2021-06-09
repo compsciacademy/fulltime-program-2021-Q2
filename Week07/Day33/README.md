@@ -258,4 +258,14 @@ and of course a `create_views` method to the resource generator:
 #...
 
 ```
-And that should just about do it!
+And that should just about do it!  
+  
+## Homework  
+  
+**Part 1**: Read the [bundler documentation](https://bundler.io/guides/creating_gem.html) and create a useable _gem_, such that we can all run `gem install <your-gem-name>` (e.g. `gem install mynatra`), and then use it locally to start some web development projects.  
+  
+**Part 2**: Let's get ready for a dive into JavaScript. There are some excellent resources available for us, that we will be using as references. Familiarize yourself with some of them:
+  * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)
+  * [Eloquent JavaScript](https://eloquentjavascript.net/)
+  * [The Modern JavaScript Tutorial](https://javascript.info/)  
+  
