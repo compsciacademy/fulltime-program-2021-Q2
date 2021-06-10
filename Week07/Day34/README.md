@@ -146,5 +146,39 @@ Guess the Number Game
   
   </script>
 
+```
+
+## Events
+
+[A simple example](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#a_simple_example)  
+  
+```html
+<!DOCTYPE html>
+<title>Working with Events</title>
+
+
+<button>Change color</button>
+<button>don't change color</button>
+
+<script>
+button = document.querySelector('button');
+
+function random(number) {
+  return Math.ceil(Math.random() * number);
+}
+
+button.onclick = function() {
+  const randomColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+  document.body.style.backgroundColor = randomColor;
+}
+
+</script>
 
 ```
+
+## Homework  
+  
+Remember the Songs Application that we worked on waaaaaaay back when?  
+  
+Create a web page that has input to add songs with links, and use an event listener to append new songs to a table of songs that is displayed. You don't have to persist any data through a page reload.  
+  

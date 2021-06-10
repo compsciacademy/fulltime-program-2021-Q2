@@ -16,5 +16,4 @@ For those using Windows, [Windows Subsystem for Linux](https://docs.microsoft.co
 ---
 If you have any issues or difficulty downloading or installing any of the above, feel free to reach out to us for assistance, either via email or web-based conferencing.
 
-**NOTE***: VS Code is recommended as it is the code editor our instructors will be using. However, if you have a prefered editor and feel comfortable following lessons using that, please feel free to do so.
-
+**NOTE**: VS Code is recommended as it is the code editor our instructors will be using. However, if you have a prefered editor and feel comfortable following lessons using that, please feel free to do so.
