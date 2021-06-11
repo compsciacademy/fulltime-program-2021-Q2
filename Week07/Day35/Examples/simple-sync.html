@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>Simple Sync</title>
+
+<button>Click Me!</button>
+
+<script>
+const button = document.querySelector('button');
+button.addEventListener('click', () =>{
+  let myDate;
+  let date = new Date();
+  // let dummyDate;
+  console.log(date);
+  for (let i=0; i < 10000000; i++) {
+    let theDate = new Date();
+  }
+  myDate = new Date();
+  console.log(myDate);
+   
+  let pElement = document.createElement('p');
+  pElement.textContent = `difference: ${myDate.getSeconds() - date.getSeconds()}`;
+  document.body.appendChild(pElement);
+});
+</script>
