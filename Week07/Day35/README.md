@@ -106,6 +106,9 @@ let doSomething = (something, somethingElse) => {
 We have an example of using `XMLHttpRequest` and a local file server in the `Examples/Ajax` directory.  
   
 ## Homework  
+  
+Resources:
+  - [Deep JavaScript: Theory and techniques](https://exploringjs.com/deep-js/)
 
 Have a look at MDN's [Fetching Data](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data) as a reference, and see if you can figure out how to communicate between JavaScript on a website and a Sinatra App through an API call.  
 
