@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<title>JavaScript Protoypes</title>
+
+<script>
+
+// a person constructor function
+function Person(first, last, age, gender, interests) {
+  this.name = {
+    "first": first,
+    "last": last
+  }
+
+  this.age = age;
+  this.gender = gender;
+  this.interests = interests;
+}
+
+Person.prototype.goodbye = function() {
+  console.log(`Hey there!!! ${this.name.first} is gone... SsssSsseeeee ya!`);
+}
+
+
+</script>
