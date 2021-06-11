@@ -167,10 +167,17 @@ function random(number) {
   return Math.ceil(Math.random() * number);
 }
 
-button.onclick = function() {
+// button.onclick = function() {
+//   const randomColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+//   document.body.style.backgroundColor = randomColor;
+// }
+
+function changeBackgroundColor() {
   const randomColor = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
   document.body.style.backgroundColor = randomColor;
 }
+
+button.addEventListener('click', changeBackgroundColor);
 
 </script>
 
