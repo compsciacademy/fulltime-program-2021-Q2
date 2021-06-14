@@ -15,6 +15,8 @@ class Book
   validates :title, presence: true
   validates :author, presence: true
   validates :isbn, presence: true
+
+  scope :by_author, ->(author_name) { where(author: author_name) }
 end
 
 get '/' do
@@ -27,6 +29,13 @@ namespace '/v1' do
   end
 
   get '/books' do
-    Book.all.to_json
+    books = Book.all
+
+    if params[:author]
+      books = books.send(:by_author, params[:author])
+    end
+
+    books.to_json
   end
+
 end

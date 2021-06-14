@@ -229,3 +229,34 @@ namespace '/v1' do
 end
 
 ```
+
+## Exercise 1  
+  
+Read the documentation for the [scope](https://guides.rubyonrails.org/active_record_querying.html) keyword in Rails, and see if you can figure out how to add a _filter_ for Books...  
+  
+For example, if I want find all books where a given author name is the the name of the book's author, how should it look?  
+  
+```ruby
+scope :by_author, ->(author_name) { where(author: author_name) }
+```
+
+Let's call this scope (filter) if `params[:author]` is a url parameter: 
+
+```ruby
+# server.rb
+
+# ...
+
+  get '/books' do
+    books = Book.all
+
+    if params[:author]
+      books = books.send(:by_author, params[:author])
+    end
+
+    books.to_json
+  end
+
+# ...
+
+```
