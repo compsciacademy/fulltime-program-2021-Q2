@@ -173,3 +173,59 @@ gem 'mongoid'
 ```
 
 Then we can run `bundle install` to have everything ready for our local development environment, and instead of running `ruby server.rb`, we can run `bundle exec ruby server.rb`...
+  
+## Using [SINATRA::NAMESPACE](http://sinatrarb.com/contrib/namespace)
+  
+Sinatra Namespace is part of the Sinatra Contrib gem, so we will `require 'sinatra/namespace' in our application, and `gem 'sinatra-contrib'` in our gemfile.  
+  
+```ruby
+# server.rb
+require 'sinatra/namespace'
+
+# ...
+
+```
+
+```ruby
+# Gemfile
+# ...
+gem 'sinatra-contrib'
+# ...
+```
+Run `bundle install` to update the dependencies.  
+  
+To use namespace, we can just define it with our routes, like so:  
+```ruby
+# server.rb
+
+# ...
+
+namespace '/api/v1' do
+  # return a list of all books
+  get '/books' do
+  end
+
+  # create a new book
+  post '/book' do
+  end
+end
+
+```
+
+So, let's add an endpoint to get all of the books. In this case, we want to define the content type in our HTTP headers to be `json` for our API. To do this, we can ad a `before` block within the namespace.  
+  
+```ruby
+
+
+namespace '/v1' do
+  before do
+    content_type 'application/json'
+  end
+
+  # return a list of all books
+  get '/books' do
+    Book.all.to_json
+  end
+end
+
+```

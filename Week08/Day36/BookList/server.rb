@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'mongoid'
+require 'sinatra/namespace'
 
 # load mongoid config
 Mongoid::load! 'mongoid_config.yml'
@@ -18,4 +19,14 @@ end
 
 get '/' do
   '<h1>Book List</h1>'
+end
+
+namespace '/v1' do
+  before do
+    content_type 'application/json'
+  end
+
+  get '/books' do
+    Book.all.to_json
+  end
 end
