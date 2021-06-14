@@ -38,4 +38,15 @@ namespace '/v1' do
     books.to_json
   end
 
+  post '/books' do
+    book_params = JSON.parse(request.body.read)
+    puts "##########################################"
+    puts "##########################################"
+    puts "The request body is: #{book_params}"
+    puts "##########################################"
+    puts "##########################################"
+
+    # book = Book.new(book_params)
+  end
+
 end

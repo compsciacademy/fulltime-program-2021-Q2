@@ -260,3 +260,62 @@ Let's call this scope (filter) if `params[:author]` is a url parameter:
 # ...
 
 ```
+
+So, what if we want to _create_ a new book through an API endpoint?  
+  
+Well, of course we can add a post request, and a way to handle it. We already have a pretty good idea about what that endpoint will look like, so how will we use mongoid to process the request and store a book object?  
+  
+```ruby
+# server.rb
+# ...
+namespace '/v1' do
+# ...
+
+  post '/books' do
+    # instatiate a new book
+    # we can use Book.new --- but how?
+    #
+    # we can use .save on the instantiated object... but how?
+    #
+    # we also want to send a response... but how?
+  end
+
+# ...
+end
+# ...
+
+```
+
+We can do `Book.create()` which will take parameters for a book object and try to save that to the database. This is like doing the following:
+```ruby
+Book.create(title: 'The Selfish Gene', author: 'Richard Dawkins', isbn: '9780192860927')
+
+# is equivalent to 
+book = Book.new(title: 'The Selfish Gene', author: 'Richard Dawkins', isbn: '9780192860927')
+book.save
+
+# the difference here being that we have a chance to do something with `book` before we call save, if we want to.
+```
+
+```ruby
+# server.rb
+# ...
+namespace '/v1' do
+# ...
+
+  post '/books' do
+    book_params = JSON.parse(request.body.read)
+    puts book_params
+  end
+
+# ...
+end
+# ...
+
+```
+
+## Exercise 2
+
+Keeping in mind that we can call `Book.create` directory or `Book.new` to instantiate a new book object, then perform some actions, if we'd like to, on that object....
+
+See if you can finish up the `post '/books' do; end` route handler.  
