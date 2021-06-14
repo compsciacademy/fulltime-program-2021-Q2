@@ -1,6 +1,6 @@
 development:
   clients:
     default:
-      database: booklist_dev
+      database: BookList
       hosts:
         - localhost:27017  

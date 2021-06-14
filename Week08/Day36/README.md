@@ -97,7 +97,7 @@ require 'sinatra'
 require 'mongoid'
 
 # load mongoid config
-Mongoid.load! 'mongoid.yml'
+Mongoid.load! 'mongoid_config.yml'
 
 # ...
 ```  
@@ -110,11 +110,66 @@ When using Mongoid, we can add `include Mongoid::Document` to the Ruby class def
 # ...
 
 class Book
-  include::Document
+  include Mongoid::Document
 
   field :title, type: String
   field :author, type: String
   field :isbn, type: String
+
+  validates :title, presence: true
+  validates :author, presence: true
+  validates :isbn, presence: true
+  # validates_presence_of :isbn
+
 end
 
 ```
+
+the `validates` function is pretty self-explanatory. Mongoid uses [ActiveModel Validations](https://www.rubydoc.info/gems/activemodel/ActiveModel/Validations).  
+  
+We can use mongoid's `create_indexes` rake task to create the indexes for our models...   
+  
+Make sure to start the mongo process, pointing to [the configuration](https://docs.mongodb.com/manual/reference/configuration-options/): 
+
+WSL
+```
+sudo service mongodb start
+```
+
+Linux
+```
+mongod --config /etc/mongod.conf
+```
+
+macOS
+```
+# intel processor
+mongod --config /usr/local/etc/mongod.conf 
+
+# M1 processor
+mongod --config /opt/homebrew/etc/mongod.conf
+```
+
+Start `irb` load up the `server.rb`, then `create_indexes` and create a book entry.  
+  
+```
+irb
+load "./server.rb"
+Book.create_indexes
+Book.create(title: 'The Selfish Gene', author: 'Richard Dawkins', isbn: '9780192860927')
+```
+
+If all go well, then great!  
+  
+Let's add a gemfile to help manage our dependencies... 
+  
+```ruby
+# Gemfile
+source 'https://rubygems.org'
+
+gem 'sinatra'
+gem 'puma'
+gem 'mongoid'
+```
+
+Then we can run `bundle install` to have everything ready for our local development environment, and instead of running `ruby server.rb`, we can run `bundle exec ruby server.rb`...
