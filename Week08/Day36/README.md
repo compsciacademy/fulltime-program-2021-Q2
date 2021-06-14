@@ -319,3 +319,20 @@ end
 Keeping in mind that we can call `Book.create` directory or `Book.new` to instantiate a new book object, then perform some actions, if we'd like to, on that object....
 
 See if you can finish up the `post '/books' do; end` route handler.  
+
+## Exercise 3: Homework  
+  
+Now that we have created an API with the ability to use API endpoints to create a new Book and read a list of Books, there are 2 more _main_ parts to consider:  
+  
+  + a.) Add the other routes and supporting helper functions to be able to perform CRUD operations on Books.
+  + b.) Create a client application that uses the BookList API. It should provide a web-interface for CRUD operations, and use XHR to communicate to the server as needed.  
+  
+**NOTE**: We used the Postman application, because it is pretty convenient, and allows us to save collections and requests, as well as many other things. It's a good tool, and quite popular. However, we didn't _need_ to use it.  
+  
+One way we can test our API is to use a command line utility, such as cURL, e.g.  
+  
+```
+curl -i -X POST -H "Content-Type: application/json" -d'{"title":"The Extended Phenotype", "author":"Richard Dawkins", "isbn":"9780198788911"}' http://localhost:4567/v1/books
+```
+
+**BONUS**: If you don't want to type all that out all the time, you can do whatever you want... for example, you can write a bash script or a ruby script even, that prompts you for information, and then sends it out... 

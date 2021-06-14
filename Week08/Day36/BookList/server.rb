@@ -38,15 +38,26 @@ namespace '/v1' do
     books.to_json
   end
 
-  post '/books' do
-    book_params = JSON.parse(request.body.read)
-    puts "##########################################"
-    puts "##########################################"
-    puts "The request body is: #{book_params}"
-    puts "##########################################"
-    puts "##########################################"
-
-    # book = Book.new(book_params)
+  post '/books' do 
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>"
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>"
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>"
+    puts request.body.read
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>"
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>"
+    puts ">>>>>>>>>>>>>>>>>>>>>>>>"
+    
+    book_params = begin
+      JSON.parse(request.body.read)
+    rescue
+      halt 400, { message: 'Bad JSON syntax' }.to_json
+    end
+  
+    begin
+      Book.create(book_params)
+      status 200
+    rescue
+      halt 422, { message: "Could not save book with given params" }.to_json
+    end
   end
-
 end
