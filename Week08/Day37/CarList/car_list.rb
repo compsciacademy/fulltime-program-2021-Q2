@@ -69,16 +69,20 @@ namespace '/api' do
     car.to_json
   end
 
-  post '/cars' do
+  helpers do
+    def request_params
     # read the request body and attempt to parse JSON
-    begin
-      new_car_params = JSON.parse(request.body.read)
-    rescue
-      halt 400, { message: 'The JSON was unparsable' }.to_json
+      begin
+        JSON.parse(request.body.read)
+      rescue
+        halt 400, { message: 'The JSON was unparsable' }.to_json
+      end
     end
+  end
 
+  post '/cars' do
     begin
-      car = Car.new(new_car_params)
+      car = Car.new(request_params)
     rescue
       halt 406, { message: 'Incorrect params!'}.to_json
     end
@@ -90,7 +94,22 @@ namespace '/api' do
       body car.to_json
     else
       status 422
-      body new_car_params.to_json
+      body request_params
     end
   end
+
+  patch '/cars/:id' do |id|
+    car = Car.where(id: id).first
+    unless car
+      halt 404, { message: 'Cannot find a car with that id' }.to_json
+    end
+
+    if car.update(request_params)
+    else
+      status 422
+      body request_params
+    end
+  end
+
+  delete '/cars/:id' do |id|; end
 end
