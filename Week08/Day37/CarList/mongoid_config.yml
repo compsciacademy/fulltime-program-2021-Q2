@@ -3,4 +3,4 @@ development:
     default:
       database: CarList
       hosts:
-        - localhost: 27017
+        - localhost:27017

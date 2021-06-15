@@ -82,4 +82,86 @@ class Car
 end
 ```
 
-Let's start with that, and see if we can actually create some cars using IRB.
+Start MongoDB if you need to, pointing to [the configuration](https://docs.mongodb.com/manual/reference/configuration-options/): 
+
+WSL
+```
+sudo service mongodb start
+```
+
+Linux
+```
+mongod --config /etc/mongod.conf
+```
+
+macOS
+```
+# intel processor
+mongod --config /usr/local/etc/mongod.conf 
+
+# M1 processor
+mongod --config /opt/homebrew/etc/mongod.conf
+```
+
+Let's start with that, and see if we can actually create some cars using IRB.  
+
+```ruby
+? irb
+> load './car_list.rb'
+> Car.create(brand: 'Ford', model: 'Mustang', color: 'Grabber Blue', year: 1968)
+
+```
+
+If all goes well, we're up and running!
+  
+Next, we can add a namespace (using the `sinatra-contrib` gem), if we want, and add CRUD endpoints to it...  
+  
+```ruby
+require 'sinatra'
+require 'sinatra/namespace'
+require 'mongoid'
+
+Mongoid.load! 'mongoid_config.yml'
+
+class Car
+  include Mongoid::Document
+
+  field :brand
+  field :model
+  field :color
+  field :year, type: Integer
+
+  validates :brand, :model, :color, presence: true
+  validates :year, numericality: { only_integer: true }, length: { is: 4 }
+end
+
+namespace '/api' do
+  # set the content type for all endpoints
+  before do
+    content_type 'application/json'
+  end
+
+  get '/cars' do
+    Car.all.map { |car| Serializer.new(car) }.to_json
+  end
+end
+
+# add a serializer 
+class Serializer
+  def initialize(car)
+    @car = car
+  end
+
+  def as_json(*)
+    fields = {
+      id: @car.id.to_s,
+      brand: @car.brand,
+      model: @car.model,
+      color: @car.color,
+      year: @car.year
+    }
+    fields[:errors] = @car.errors if @car.errors.any?
+    fields
+  end
+end
+```
