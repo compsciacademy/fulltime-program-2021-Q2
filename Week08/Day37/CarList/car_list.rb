@@ -111,5 +111,9 @@ namespace '/api' do
     end
   end
 
-  delete '/cars/:id' do |id|; end
+  delete '/cars/:id' do |id|
+    car = Car.where(id: id).first
+    car.destroy if car 
+    status 204
+  end
 end

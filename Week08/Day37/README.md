@@ -204,3 +204,9 @@ end
 
 
 ```
+
+Check [the code](https://github.com/compsciacademy/fulltime-program-2021-Q2/blob/main/Week08/Day37/CarList/car_list.rb) for changes. We added a `helpers do; end` block, as well as endpoints to support updating and deleting entities.  
+  
+## Homework  
+
+Create a client application that uses the CarList API. It should provide a web-interface for CRUD operations, and use XHR to communicate to the server as needed.      
