@@ -165,3 +165,42 @@ class Serializer
   end
 end
 ```
+
+**HINT**: Checkout the codebase to see how we rewrote this!  
+  
+---
+
+How about if we want to _create_ new Cars... well, let's define an endpoint that handles POST requests to _create_ new cars...  
+  
+```ruby
+# ...
+
+post '/cars' do
+  request_body = request.body.read
+  begin
+    new_car_params = JSON.parse(request_body)
+  rescue
+    halt 400, { message: "bad JSON, yo!" }.to_json
+  end
+
+  car = Car.new(new_car_params)
+
+  if car.save
+    # happy path
+    # send 201 status code
+    # and Location: /api/cars/car.id
+    response.headers['Location'] = "/api/cars/#{car.id}"
+    status 201
+  else
+    # could not process the request
+    # send 422 unprocessable entity 
+    # body new_car_params.to_json
+    status 422
+    body new_car_params.to_json
+  end
+end
+
+# ...
+
+
+```
