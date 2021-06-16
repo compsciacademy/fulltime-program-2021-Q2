@@ -32,3 +32,26 @@ displayArea.textContent = res;
 
 <!-- ... -->
 ```
+
+A working example using `fetch()`  
+```html
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Car List</title>
+
+<script>
+const url = 'http://localhost:4567/api/cars'
+
+fetch(url)
+  .then(lol => lol.json())
+  .then(cars => {
+    cars.forEach(car => {
+      let pElement = document.createElement('p');
+      pElement.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
+      document.body.appendChild(pElement);
+      console.log(car);
+    })
+  })
+
+</script>
+```
