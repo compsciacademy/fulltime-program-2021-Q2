@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Car List</title>
+
+<script>
+const url = 'http://localhost:4567/api/cars'
+
+fetch(url)
+  .then(lol => lol.json())
+  .then(cars => {
+    cars.forEach(car => {
+      console.log(car);
+    })
+  })
+
+</script>
