@@ -55,3 +55,33 @@ fetch(url)
 
 </script>
 ```
+
+Great! So, we've managed to figure out how to make API calls to our web API, and get JSON back, so we can use it on the client side. All we did in this case to enable CORS, was add `response.headers['Access-Control-Allow-Origin'] = '*'` to the `before do; end` block in the `/api/` namespace.  
+  
+## Exercise 02  
+  
+Let's continue to build out our client so that it can perform all actions on cars that our API supports.  
+  
+---
+
+There are some somewhat useful or helpful things to keep in mind... We have worked a little with adding event listeners, and onclick attributes.   
+  
+```html
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Example</title>
+
+<a href="#" onclick="myFunction(); return false;">click me</a><br>
+<a href="javascript:void(0);" onclick="myFunction();">click me too</a><br>
+<a href="#" id="myLink">Can't Click Me</a>
+
+<script>
+function myFunction() {
+  alert("Hello there");
+}
+
+myLink.addEventListener('click', myFunction, false)
+//myLink.setAttribute('onclick', "myFunction();");
+
+</script>
+```

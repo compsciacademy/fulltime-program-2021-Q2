@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Example</title>
+
+<a href="#" onclick="myFunction(); return false;">click me</a><br>
+<a href="javascript:void(0);" onclick="myFunction();">click me too</a><br>
+<a href="#" id="myLink">Can't Click Me</a>
+
+<script>
+function myFunction() {
+  alert("Hello there");
+}
+
+// myLink.addEventListener('click', myFunction, false)
+myLink.setAttribute('onclick', "myFunction();");
+
+</script>

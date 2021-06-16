@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <title>Car List</title>
+<style>
+  #myDiv {
+    width: 500px;
+    height: 300px;
+    background-color: #555555;
+    color: #ff0000;
+  }
+</style>
+
+<div id="myDiv">
+
+</div>
 
 <script>
 const url = 'http://localhost:4567/api/cars'
 
-fetch(url)
-  .then(lol => lol.json())
-  .then(cars => {
-    cars.forEach(car => {
-      let pElement = document.createElement('p');
-      pElement.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
-      document.body.appendChild(pElement);
-      console.log(car);
+function loadIndex(url) {
+  fetch(url)
+    .then(lol => lol.json())
+    .then(cars => {
+      cars.forEach(car => {
+        let myDiv = document.querySelector('#myDiv');
+        let pElement = document.createElement('p');
+        let link = document.createElement('a');
+        link.setAttribute('href', car.id)
+        link.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
+        pElement.appendChild(link)
+        myDiv.appendChild(pElement);
+        console.log(car);
+      })
     })
-  })
+}
+
+loadIndex(url);
 
 // let request = new XMLHttpRequest();
 // request.open('GET', url);
