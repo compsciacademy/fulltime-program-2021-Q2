@@ -17,6 +17,30 @@
 <script>
 const url = 'http://localhost:4567/api/cars'
 
+function loadCar(car_id) {
+  brandParagraph = document.createElement('p');
+  modelParagraph = document.createElement('p');
+  colorParagraph = document.createElement('p');
+  yearParagraph = document.createElement('p');
+  fetch(url)
+    .then(resp => resp.json())
+    .then(cars => {
+      cars.forEach(car => {
+        if (car.id == car_id) {
+          brandParagraph.textContent = `Brand: ${car.brand}`;
+          modelParagraph.textContent = `Model: ${car.model}`;
+          colorParagraph.textContent = `Color: ${car.color}`;
+          yearParagraph.textContent = `Year: ${car.year}`;
+        }
+      })
+    });
+  removeParagraphs();
+  myDiv.appendChild(brandParagraph);
+  myDiv.appendChild(modelParagraph);
+  myDiv.appendChild(colorParagraph);
+  myDiv.appendChild(yearParagraph);
+}
+
 function loadIndex(url) {
   fetch(url)
     .then(lol => lol.json())
@@ -25,8 +49,9 @@ function loadIndex(url) {
         let myDiv = document.querySelector('#myDiv');
         let pElement = document.createElement('p');
         let link = document.createElement('a');
-        link.setAttribute('href', car.id)
+        link.setAttribute('href', '#')
         link.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
+        link.setAttribute('onclick', `loadCar("${car.id}");return false;`)
         pElement.appendChild(link)
         myDiv.appendChild(pElement);
         console.log(car);
@@ -35,6 +60,28 @@ function loadIndex(url) {
 }
 
 loadIndex(url);
+
+function removeParagraphs() {
+  paragraphs = document.querySelectorAll('p');
+  paragraphs.forEach(paragraph => {
+    myDiv.removeChild(paragraph);
+  });
+}
+
+let addIndex = document.createElement('button');
+addIndex.textContent = 'index';
+addIndex.addEventListener('click', () =>{
+  removeParagraphs();
+  loadIndex(url);
+}, false);
+myDiv.appendChild(addIndex);
+
+let myButton = document.createElement('button');
+myButton.textContent = 'clear';
+myButton.addEventListener('click', () =>{
+  removeParagraphs();
+}, false);
+myDiv.appendChild(myButton);
 
 // let request = new XMLHttpRequest();
 // request.open('GET', url);

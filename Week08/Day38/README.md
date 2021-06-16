@@ -46,9 +46,13 @@ fetch(url)
   .then(lol => lol.json())
   .then(cars => {
     cars.forEach(car => {
+      let myDiv = document.querySelector('#myDiv');
       let pElement = document.createElement('p');
-      pElement.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
-      document.body.appendChild(pElement);
+      let link = document.createElement('a');
+      link.setAttribute('href', car.id)
+      link.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
+      pElement.appendChild(link)
+      myDiv.appendChild(pElement);
       console.log(car);
     })
   })
@@ -84,4 +88,32 @@ myLink.addEventListener('click', myFunction, false)
 //myLink.setAttribute('onclick', "myFunction();");
 
 </script>
+```
+
+**Part I**: Using the examples above, write some code that clears the content of myDiv and appends the car object values when a link to a car is clicked.
+  
+Here's some code to get you started  
+  
+```js
+// removeParagraphs removes all paragraphs that are 
+// children of myDiv
+function removeParagraphs() {
+  paragraphs = document.querySelectorAll('p');
+  paragraphs.forEach(paragraph => {
+    myDiv.removeChild(paragraph);
+  });
+}
+
+// updateCar takes a car object, and a url and then
+// sends a patch request with the given object.
+function updateCar(car, baseUrl) {
+  patchUrl = `${baseUrl}/${car.id}`
+  fetch(patchUrl, {
+    method: 'PATCH',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(car)
+  })
+}
 ```
