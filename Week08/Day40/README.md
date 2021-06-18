@@ -62,12 +62,13 @@ From there we could move to the _show_ view for that car, or we could move to th
   </head>
   <body>
     <h1>New Car</h1>
-      <div id="displayArea">
-        <label for="brand">Brand: </label><input id="brand"><br>
-        <label for="model">Model: </label><input id="model"><br>
-        <label for="color">Color: </label><input id="color"><br>
-        <label for="year">Year: </label><input id="year"><br>
-        <button>Create</button>
+
+    <div id="displayArea">
+      <label for="brand">Brand: </label><input id="brand"><br>
+      <label for="model">Model: </label><input id="model"><br>
+      <label for="color">Color: </label><input id="color"><br>
+      <label for="year">Year: </label><input id="year"><br>
+      <button>Create</button>
       <hr>
     </div>
   </body>
@@ -88,14 +89,15 @@ However, in our case, we don't particularly have any special information to shar
     <title>Car List</title>  
   </head>
   <body>
-    <h1>New Car</h1>
-      <div id="displayArea">
-        <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1973 <button>Show/Edit</button></p>
-        <label for="brand">Brand: </label><input id="brand">Ford<br>
-        <label for="model">Model: </label><input id="model">Mustang<br>
-        <label for="color">Color: </label><input id="color">Black<br>
-        <label for="year">Year: </label><input id="year">1973<br>
-        <button>Update</button>
+    <h1>1973 Mustang</h1>
+    
+    <div id="displayArea">
+      <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1973 <button>Show/Edit</button></p>
+      <label for="brand">Brand: </label><input id="brand">Ford<br>
+      <label for="model">Model: </label><input id="model">Mustang<br>
+      <label for="color">Color: </label><input id="color">Black<br>
+      <label for="year">Year: </label><input id="year">1973<br>
+      <button>Update</button>
       <hr>
     </div>
   </body>
