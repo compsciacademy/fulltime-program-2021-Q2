@@ -239,3 +239,8 @@ function getCarsIndex() {
 
 getCarsIndex();
 ```
+
+**Exercise 01) b.** After going through the process above, we found that we may have a preference to have the function that builds the view, call whatever it needs to call to get the data. Create a function that will create a view for Show & Edit. This function may call another function that returns the required data, or use or reuse data that already exists.  
+  
+In fact, why don't we try both ways and compare.  
+  
