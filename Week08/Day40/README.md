@@ -90,7 +90,7 @@ However, in our case, we don't particularly have any special information to shar
   </head>
   <body>
     <h1>1973 Mustang</h1>
-    
+
     <div id="displayArea">
       <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1973 <button>Show/Edit</button></p>
       <label for="brand">Brand: </label><input id="brand">Ford<br>
@@ -117,4 +117,30 @@ Perhaps as the value in the input fields.
 ## Exercise 01  
   
 Now that we have decided on what views we want to support, and roughly what they look like, go ahead and develop our client-side code to support CRUD operations on Cars, using these views.  
-  
+   
+Starting with a top-down code design approach, we might define some of the functions for displaying the views:  
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>CarList</title>
+  </head>
+  <body>
+    <h1>Car List</h1>
+    <div id='displayArea'>
+    </div>
+    <script>
+      // displayIndex() shows a list of cars, in the displayArea div:
+      function displayIndex() {}
+
+      // displayNew() shows input fields used to create a new car:
+      function displayNew() {}
+
+      // displayShow(carId) takes a carId argument, and shows that car 
+      // in a paragraph with editable input fields:
+      function displayShowAndEdit(carId) {}
+    </script>
+  </body>
+</html>
+```
