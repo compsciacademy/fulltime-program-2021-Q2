@@ -5,23 +5,38 @@
     <title>CarList</title>
   </head>
   <body>
-
+    <h1>Heading Title</h1>
+    <div id='displayArea'></div>
     <script>
-      // displayIndex() shows a list of cars, in the displayArea div:
-      //
-      // <h1>Cars</h1>
+      const url = 'http://localhost:4567/api/cars';
 
-      // <div id="displayArea">
-      //   <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1968 <button>Show/Edit</button></p>
-      //   <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1969 <button>Show/Edit</button></p>
-      //   <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1970 <button>Show/Edit</button></p>
-      //   <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1971 <button>Show/Edit</button></p>
-      //   <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1972 <button>Show/Edit</button></p>
-      //   <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1973 <button>Show/Edit</button></p>
-      //   <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1974 <button>Show/Edit</button></p>
-      //   <hr>
-      // </div>
-      function displayIndex() {}
+      // getCars() calls the Car List web api, and returns an array of car objects.
+      function getCars() {
+        return fetch(url)
+          .then(cars => cars.json())
+      }
+
+      // displayIndex() shows a list of cars, in the displayArea div
+      function displayIndex() {
+        let heading = document.querySelector('h1');
+        heading.textContent = 'Car List';
+        getCars()
+          .then(cars => {
+            cars.forEach(car => {
+              let myDiv = document.querySelector('#displayArea');
+              let pElement = document.createElement('p');
+              let link = document.createElement('a');
+              link.setAttribute('href', '#')
+              link.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
+              link.setAttribute('onclick', `loadCar("${car.id}");return false;`)
+              pElement.appendChild(link)
+              myDiv.appendChild(pElement);
+              console.log(car);
+            })
+          })
+      }
+
+      displayIndex();
 
       // displayNew() shows input fields used to create a new car:
       // <h1>New Car</h1>
@@ -50,7 +65,6 @@
       //   <hr>
       // </div>
       function displayShowAndEdit(carId) {}
-
     </script>
   </body>
 </html>

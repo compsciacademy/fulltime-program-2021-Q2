@@ -154,6 +154,88 @@ function getCarsIndex() {
 function displayIndex() {
   let cars = getCarsIndex();
   // use the cars object to populate the displayArea
-  cars.forEach();
+  // cars.forEach();
+  console.log(cars);
 }
 ```  
+
+Here's how we accomplished this before.
+```javascript
+function loadIndex(url) {
+  fetch(url)
+    .then(lol => lol.json())
+    .then(cars => {
+      cars.forEach(car => {
+        let myDiv = document.querySelector('#myDiv');
+        let pElement = document.createElement('p');
+        let link = document.createElement('a');
+        link.setAttribute('href', '#')
+        link.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
+        link.setAttribute('onclick', `loadCar("${car.id}");return false;`)
+        pElement.appendChild(link)
+        myDiv.appendChild(pElement);
+        console.log(car);
+      })
+    })
+}
+```
+This time, we're pulling this out into different functions. Trying to separate the api call frmo the building of the view. We can work on refacting and refining our next step after we get it working, but for now, let's consider a couple of ways we could handle this:  
+
+One is the logic from above:  
+```javascript
+function getCars() {
+  // call the cars_list web api, and return a list of car objects.
+  return fetch(url)
+    .then(cars => cars.json())
+}
+
+// call getCarsIndex, and wait for promise to return, then iterate...
+function displayIndex() {
+  getCarsIndex()
+    // use the cars object to populate the displayArea
+    .then((cars) => {
+      cars.forEach(car => {
+        let myDiv = document.querySelector('#displayArea');
+        let pElement = document.createElement('p');
+        let link = document.createElement('a');
+        link.setAttribute('href', '#')
+        link.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
+        link.setAttribute('onclick', `loadCar("${car.id}");return false;`)
+        pElement.appendChild(link)
+        myDiv.appendChild(pElement);
+        console.log(car);
+      })
+    });
+}
+
+displayIndex();
+```
+
+
+One is to reverse the logic from above:
+```javascript
+// takes a cars argument, and populates the displayArea div
+function displayIndex(cars) {
+  cars.forEach(car => {
+    let myDiv = document.querySelector('#displayArea');
+    let pElement = document.createElement('p');
+    let link = document.createElement('a');
+    link.setAttribute('href', '#')
+    link.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
+    link.setAttribute('onclick', `loadCar("${car.id}");return false;`)
+    pElement.appendChild(link)
+    myDiv.appendChild(pElement);
+    console.log(car);
+  })
+}
+
+function getCarsIndex() {
+  // call the cars_list web api, transform the return to json and pass it
+  // into displayIndex
+  fetch(url)
+    .then(lol => lol.json())
+    .then(cars => displayIndex(cars));
+}
+
+getCarsIndex();
+```
