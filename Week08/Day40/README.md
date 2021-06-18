@@ -144,3 +144,16 @@ Starting with a top-down code design approach, we might define some of the funct
   </body>
 </html>
 ```
+**Exercise 01) a.** Create a function `getCarsIndex()` that calls the Cars List web api, and returns a list of car objects. Use that within the `displayIndex()` function to display the list of cars in the `displayArea` div.  
+
+```javascript
+function getCarsIndex() {
+  // call the cars_list web api, and return a list of car objects.
+}
+
+function displayIndex() {
+  let cars = getCarsIndex();
+  // use the cars object to populate the displayArea
+  cars.forEach();
+}
+```  
