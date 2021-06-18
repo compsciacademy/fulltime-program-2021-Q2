@@ -10,10 +10,45 @@
     <script>
       const url = 'http://localhost:4567/api/cars';
 
+      // getCar(id) takes a car idea, and returns a car object.
+      function getCar(id) {
+        car_url = `${url}/${id}`;
+        return fetch(car_url).then(car => car.json());
+      }
+
       // getCars() calls the Car List web api, and returns an array of car objects.
       function getCars() {
         return fetch(url)
           .then(cars => cars.json())
+      }
+
+      function updateCar(car) {
+        const allInput = document.querySelectorAll('input');
+        allInput.forEach ((input) =>{
+          let inputName = input.name
+          console.log(`"old car.${inputName}": ${car[inputName]}`);
+          console.log(`"new car.${inputName}": ${input.value}`);
+        });
+
+        // for (const [key, value] of Object.entries(car)) {
+        //   // car.key = input where input.name == key
+        // }
+      }
+
+      function buildInputsFor(car) {
+        for (const [key, value] of Object.entries(car)) {
+          if(key !== 'id') {
+            let keyInput = document.createElement('input');
+            keyInput.setAttribute('id', key);
+            keyInput.setAttribute('name', key);
+            keyInput.setAttribute('value', value);
+            keyLabel = document.createElement('label');
+            keyLabel.setAttribute('for', key);
+            keyLabel.textContent = `${key}: `;
+            displayArea.appendChild(keyLabel);
+            keyLabel.appendChild(keyInput);
+          }
+        }
       }
 
       // displayIndex() shows a list of cars, in the displayArea div
@@ -62,9 +97,24 @@
       //   <label for="color">Color: </label><input id="color">Black<br>
       //   <label for="year">Year: </label><input id="year">1973<br>
       //   <button>Update</button>
-      //   <hr>
       // </div>
-      function displayShowAndEdit(carId) {}
+      function displayShowAndEdit(car_id) {
+        getCar(car_id).then(car => {
+          let heading = document.querySelector('h1')
+          heading.textContent = `${car.year} ${car.model}`;
+          buildInputsFor(car);
+          let updateButton = document.createElement('button');
+          updateButton.textContent = 'Update';
+          displayArea.appendChild(updateButton);
+          updateButton.addEventListener('click', () => {
+            updateCar(car);
+          }, false);
+        }); 
+      }
+
+      // debugging code:
+      displayShowAndEdit('60c8e9a24bd63c0cc2491278');
+
     </script>
   </body>
 </html>

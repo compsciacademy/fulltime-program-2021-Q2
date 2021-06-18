@@ -244,3 +244,64 @@ getCarsIndex();
   
 In fact, why don't we try both ways and compare.  
   
+```js
+
+      function getCar(id) {
+        car_url = `${url}/${id}`;
+        return fetch(car_url).then(car => car.json());
+      }
+      // displayShow() shows a car in a paragraph, and editable input fields for
+      // updated it:
+      // <h1>1973 Mustang</h1>
+      
+      // <div id="displayArea">
+      //   <p>Brand: Ford, Model: Mustang, Color: Black, Year: 1973 <button>Show/Edit</button></p>
+      //   <label for="brand">Brand: </label><input id="brand">Ford<br>
+      //   <label for="model">Model: </label><input id="model">Mustang<br>
+      //   <label for="color">Color: </label><input id="color">Black<br>
+      //   <label for="year">Year: </label><input id="year">1973<br>
+      //   <button>Update</button>
+      //   <hr>
+      // </div> -->
+      function displayShowAndEdit(car_id) {
+        getCar(car_id).then(car => {
+          brandInput = document.createElement('input');
+          brandInput.setAttribute('id', 'brand');
+          brandInput.setAttribute('value', car.brand)
+          brandLabel = document.createElement('label');
+          brandLabel.setAttribute('for', 'brand');
+          brandLabel.textContent = 'Brand: ';
+          displayArea.appendChild(brandLabel);
+          brandLabel.appendChild(brandInput);
+          
+          // car.brand
+          // car.model
+          // car.color
+          // car.year
+        }); 
+      }
+```
+
+If we start by defining each element that is required for each attribute, then we will end up with a lot of repetetion. That's not necessarily a bad thing. It can clearly show the intent, and we might not yet be ready to break out a pattern. However, we also might not want to do something that's repetative if we don't have to. So, let's think this through...
+
+**Exercise 01) b. part II** Write a function that takes a car object as an input, then iterates over the car's attributes, creating a label and input for each of them.  
+  
+This function can be called from within `displayShowAndEDit(car_id)`:
+```js
+      function displayShowAndEdit(car_id) {
+        getCar(car_id).then(car => {
+          buildInputsFor(car);
+
+          // ...
+        }); 
+      }
+
+```
+
+We expect this function to create the following output (or rather output that looks similar to this):
+```html
+  <label for="brand">Brand: </label><input id="brand">Ford<br>
+  <label for="model">Model: </label><input id="model">Mustang<br>
+  <label for="color">Color: </label><input id="color">Black<br>
+  <label for="year">Year: </label><input id="year">1973<br>
+```
