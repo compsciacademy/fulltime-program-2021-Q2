@@ -28,24 +28,6 @@ class Car
   end
 end
 
-# class Serializer
-#   def initialize(car)
-#     @car = car
-#   end
-
-#   def as_json(*)
-#     fields = {
-#       id: @car.id.to_s,
-#       brand: @car.brand,
-#       model: @car.model,
-#       color: @car.color,
-#       year: @car.year
-#     }
-#     fields[:errors] = @car.errors if @car.errors.any?
-#     fields
-#   end
-# end
-
 get '/' do
   redirect :"/api/cars"
 end
@@ -54,6 +36,10 @@ namespace '/api' do
   before do
     content_type 'application/json'
     response.headers['Access-Control-Allow-Origin'] = '*'
+  end
+
+  options '*' do
+    response.headers['Access-Control-Allow-Methods'] = ['PATCH', 'DELETE']
   end
 
   get '/cars' do
@@ -66,7 +52,6 @@ namespace '/api' do
     unless car
       halt(404, { message: 'unable to find a car with that id' }.to_json )
     end
-    # Serializer.new(car).to_json
     car.to_json
   end
 

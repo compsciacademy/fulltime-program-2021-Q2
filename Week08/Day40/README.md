@@ -291,6 +291,7 @@ This function can be called from within `displayShowAndEDit(car_id)`:
       function displayShowAndEdit(car_id) {
         getCar(car_id).then(car => {
           buildInputsFor(car);
+          // <label for="brand">Brand: </label><input id="brand">Ford<br>
 
           // ...
         }); 

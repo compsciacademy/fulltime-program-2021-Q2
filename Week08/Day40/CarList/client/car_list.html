@@ -25,14 +25,13 @@
       function updateCar(car) {
         const allInput = document.querySelectorAll('input');
         allInput.forEach ((input) =>{
-          let inputName = input.name
-          console.log(`"old car.${inputName}": ${car[inputName]}`);
-          console.log(`"new car.${inputName}": ${input.value}`);
+          car[input.name] = input.value
         });
-
-        // for (const [key, value] of Object.entries(car)) {
-        //   // car.key = input where input.name == key
-        // }
+        patchUrl = `${url}/${car.id}`
+        fetch(patchUrl, {
+          method: "PATCH",
+          body: JSON.stringify(car)
+        })
       }
 
       function buildInputsFor(car) {
@@ -98,7 +97,8 @@
       //   <label for="year">Year: </label><input id="year">1973<br>
       //   <button>Update</button>
       // </div>
-      function displayShowAndEdit(car_id) {
+      // function displayShowAndEdit(car_id) {
+      function loadCar(car_id) {
         getCar(car_id).then(car => {
           let heading = document.querySelector('h1')
           heading.textContent = `${car.year} ${car.model}`;
@@ -113,7 +113,7 @@
       }
 
       // debugging code:
-      displayShowAndEdit('60c8e9a24bd63c0cc2491278');
+      // displayShowAndEdit('60c8e9a24bd63c0cc2491278');
 
     </script>
   </body>
