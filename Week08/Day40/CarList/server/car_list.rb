@@ -15,6 +15,10 @@ class Car
   validates :brand, :model, :color, presence: true
   validates :year, numericality: { only_integer: true }, length: { is: 4 }
 
+  def self.page(offset_amount, limit_amount)
+    all.offset(offset_amount).limit(limit_amount)
+  end
+
   def as_json(*)
     fields = {
       id: self.id.to_s,
