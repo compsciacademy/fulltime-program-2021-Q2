@@ -306,3 +306,10 @@ We expect this function to create the following output (or rather output that lo
   <label for="color">Color: </label><input id="color">Black<br>
   <label for="year">Year: </label><input id="year">1973<br>
 ```
+
+## Homework  
+  
+Finish up Exercise 01. Keep in mind that we can remove elements from the display in a callback or even at the start of creating another view.  
+  
+**Stretch Goal**: Add paginition, so that only 6 cars display at a time on the index. **BONUS**: Add filters to sort cars by Year, Brand, Model, and Color.
+  
