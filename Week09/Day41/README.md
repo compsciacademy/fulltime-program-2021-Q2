@@ -321,3 +321,34 @@ Now that we have our index, let's move on to define a `show()` function that can
 </html>
 
 ```
+
+As we worked through our `show()` method, we ended up adding a supporting method to call for a single post, as well as modifying the `clear()` function.  
+  
+```js
+function getPost(id) {
+  let postUrl = `${url}/${id}`;
+  return fetch(postUrl)
+    .then(post => post.json());
+}
+
+function clear() {
+  elements = ['nav', 'ul', '#postBody'];
+  elements.forEach(element => {
+    document.querySelectorAll(element).forEach(item => {
+      item.parentNode.removeChild(item);
+    });
+  });
+}
+
+function show(id) {
+  clear();
+  displayNav();
+  getPost(id).then(post => {
+    setHeader(post.title);
+    postBody = document.createElement('d');
+    postBody.setAttribute('id', 'postBody');
+    postBody.textContent = post.body;
+    displayArea.appendChild(postBody);
+  });
+}
+```

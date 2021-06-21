@@ -10,15 +10,24 @@
     <script>
       const url = 'http://localhost:4567/api/posts';
       /* -----------------------
-          Supporting Functions
+          Web API Calls
       -------------------------*/
-      // getPosts fetches all posts from the api and
-      // returns them as a list of json objects
       function getPosts() {
         return fetch(url)
           .then(posts => posts.json())
       }
-
+      
+      function getPost(id) {
+        let postUrl = `${url}/${id}`;
+        return fetch(postUrl)
+          .then(post => post.json());
+      }
+      
+      /* -----------------------
+          Supporting Functions
+      -------------------------*/
+      // getPosts fetches all posts from the api and
+      // returns them as a list of json objects
       function setHeader(text) {
         let heading = document.querySelector('h1');
         heading.textContent = text;
@@ -34,7 +43,8 @@
         document.body.prepend(nav);
       }
 
-      function clear(elements) {
+      function clear() {
+        elements = ['nav', 'ul', '#postBody'];
         elements.forEach(element => {
           document.querySelectorAll(element).forEach(item => {
             item.parentNode.removeChild(item);
@@ -48,7 +58,7 @@
 
       // index does what is needed to display an index of blog posts
       function index() {
-        clear(['nav', 'ul']);
+        clear();
         displayNav();
         setHeader('All Posts');
         let myDiv = document.querySelector('#displayArea');
@@ -74,8 +84,15 @@
 
       // show takes a post id, and does what is needed to show a single blog post
       function show(id) {
-        // debugging code:
-        console.log("I need to show the post: " + id);
+        clear();
+        displayNav();
+        getPost(id).then(post => {
+          setHeader(post.title);
+          postBody = document.createElement('d');
+          postBody.setAttribute('id', 'postBody');
+          postBody.textContent = post.body;
+          displayArea.appendChild(postBody);
+        });
       }
 
       // show takes a post id, and does what is needed to show edit inputs for a single blog post
