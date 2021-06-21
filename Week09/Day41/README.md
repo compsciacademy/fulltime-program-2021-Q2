@@ -236,44 +236,88 @@ Now, we just need to make them all work. Let's start with the index view. And le
 Add a `index()` or `postIndex()` function and whatever supporting functions are required.
 
 ```js
-      /* -----------------------
-          Supporting Functions
-      -------------------------*/
-      // getPosts fetches all posts from the api and
-      // returns them as a list of json objects
-      function getPosts() {
-        return fetch(url)
-          .then(posts => posts.json())
-      }
+/* -----------------------
+    Supporting Functions
+-------------------------*/
+// getPosts fetches all posts from the api and
+// returns them as a list of json objects
+function getPosts() {
+  return fetch(url)
+    .then(posts => posts.json())
+}
 
-      function setHeader(text) {
-        let heading = document.querySelector('h1');
-        heading.textContent = text;
-      }
+function setHeader(text) {
+  let heading = document.querySelector('h1');
+  heading.textContent = text;
+}
 
-      /* -----------------------
-          View Logic
-      -------------------------*/
+function displayNav() {
+  nav = document.createElement('nav')
+  homeLink = document.createElement('a');
+  homeLink.textContent = 'Home';
+  homeLink.setAttribute('href', '#');
+  homeLink.setAttribute('onclick', "index()");
+  nav.appendChild(homeLink);
+  document.body.prepend(nav);
+}
 
-      // index does what is needed to display an index of blog posts
-      function index() {
-        setHeader('All Posts');
-        let myDiv = document.querySelector('#displayArea');
-        let myUl = document.createElement('ul');
-        myDiv.appendChild(myUl);
-        getPosts()
-          .then(posts => {
-            posts.forEach(post => {
-              button = document.createElement('button');
-              button.textContent = 'View';
-              button.addEventListener('click', () => {
-                show(post.id);
-              }, false);
-              postLi = document.createElement('li');
-              postLi.textContent = post.title + ' ';
-              postLi.appendChild(button);
-              myUl.appendChild(postLi);
-            });
-          })
-      }
+function clear(elements) {
+  elements.forEach(element => {
+    document.querySelectorAll(element).forEach(item => {
+      item.parentNode.removeChild(item);
+    });
+  });
+}
+
+/* -----------------------
+    View Logic
+-------------------------*/
+
+// index does what is needed to display an index of blog posts
+function index() {
+  clear(['nav', 'ul']);
+  displayNav();
+  setHeader('All Posts');
+  let myDiv = document.querySelector('#displayArea');
+  let myUl = document.createElement('ul');
+  myDiv.appendChild(myUl);
+  getPosts()
+    .then(posts => {
+      posts.forEach(post => {
+        button = document.createElement('button');
+        button.textContent = 'View';
+        button.addEventListener('click', () => {
+          show(post.id);
+        }, false);
+        postLi = document.createElement('li');
+        postLi.textContent = post.title + ' ';
+        postLi.appendChild(button);
+        myUl.appendChild(postLi);
+      });
+    })
+}
+
+index();
+```
+
+Now that we have our index, let's move on to define a `show()` function that can be used to create the view for a blog post. Before we code the function, let's write the expected HTML output.  
+  
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Blog</title>
+  </head>
+  <body>
+    <nav><a href="#">Home</a></nav>
+    <h1>Blog Post 1 Title</h1>
+    <div id='displayArea'>
+      <p>This is the first paragraph of my blog post. I have no idea how we are supposed to determine when a paragraph starts and ends. You know what I mean?</p>
+      <p>My body has more than one paragraph.</p>
+      <p>By paragraph, do you mean sentence? "No, I don't," said the duck.</p>
+    </div>
+  </body>
+</html>
+
 ```

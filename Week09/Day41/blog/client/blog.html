@@ -24,12 +24,32 @@
         heading.textContent = text;
       }
 
+      function displayNav() {
+        nav = document.createElement('nav')
+        homeLink = document.createElement('a');
+        homeLink.textContent = 'Home';
+        homeLink.setAttribute('href', '#');
+        homeLink.setAttribute('onclick', "index()");
+        nav.appendChild(homeLink);
+        document.body.prepend(nav);
+      }
+
+      function clear(elements) {
+        elements.forEach(element => {
+          document.querySelectorAll(element).forEach(item => {
+            item.parentNode.removeChild(item);
+          });
+        });
+      }
+      
       /* -----------------------
           View Logic
       -------------------------*/
 
       // index does what is needed to display an index of blog posts
       function index() {
+        clear(['nav', 'ul']);
+        displayNav();
         setHeader('All Posts');
         let myDiv = document.querySelector('#displayArea');
         let myUl = document.createElement('ul');
