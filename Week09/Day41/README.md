@@ -427,3 +427,71 @@ function newPost() {
   displayArea.appendChild(submitButton);
 }
 ```
+
+Since we've just added the create view and supporting functions, let's go ahead and add update.  
+  
+As we start to add our `update()` function, we can make some changes to other functions that so we can reuse code. One such change happens in our `displayNav()` function, where we pull out `createNavLink()` logic.
+```javascript
+function addNavLink(addTo, link) {
+  currentLink = document.createElement('a');
+  currentLink.textContent = ` ${link.linkName} `;
+  currentLink.setAttribute('href', '#');
+  currentLink.setAttribute('onclick', link.linkFunction);
+  addTo.appendChild(currentLink);
+}
+
+function displayNav() {
+  nav = document.createElement('nav')
+  links = [
+    {
+      linkName: 'Home',
+      linkFunction: 'index()'
+    },
+    { 
+      linkName: 'New',
+      linkFunction: 'newPost()'
+    }
+  ];
+
+  links.forEach(link => {
+    addNavLink(nav, link);
+  });
+
+  document.body.prepend(nav);
+}
+```
+
+Since we have pulled out `createNavLink()` we can use this function to create an "edit" link for the `show()` view that will call the `update()` function.  
+  
+```js
+function show(id) {
+  clear();
+  displayNav();
+  nav = document.querySelector('nav');
+  
+  getPost(id).then(post => {
+    setHeader(post.title);
+    postBody = document.createElement('d');
+    postBody.setAttribute('id', 'postBody');
+    postBody.textContent = post.body;
+    displayArea.appendChild(postBody);
+
+    addNavLink(nav, {
+      linkName: 'Edit',
+      linkFunction: `update("${id}")`
+    });
+  });
+}
+```
+
+The next step is to complete our `update()` function:  
+```js
+function update(id) {
+  // debugging
+  console.log("Ready to edit this post: " + id);
+}
+```
+
+## Homework  
+
+Finish the update function. This should display input fields with the text values of the post that it is intended to edit. Note: You may wish to pull out some logic from `newPost()` as its own function so you can reuse the code, provided there are some obvious variables.  

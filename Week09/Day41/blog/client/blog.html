@@ -30,6 +30,13 @@
         }).then(post => post.json());
       }
 
+      function updatePost(post) {
+        return fetch(postUrl, {
+          method: "PATCH",
+          body: JSON.stringify(post)
+        }).then(() => post);
+      }
+
       /* -----------------------
           Supporting Functions
       -------------------------*/
@@ -38,6 +45,14 @@
       function setHeader(text) {
         let heading = document.querySelector('h1');
         heading.textContent = text;
+      }
+
+      function addNavLink(addTo, link) {
+        currentLink = document.createElement('a');
+        currentLink.textContent = ` ${link.linkName} `;
+        currentLink.setAttribute('href', '#');
+        currentLink.setAttribute('onclick', link.linkFunction);
+        addTo.appendChild(currentLink);
       }
 
       function displayNav() {
@@ -54,12 +69,9 @@
         ];
 
         links.forEach(link => {
-          currentLink = document.createElement('a');
-          currentLink.textContent = ` ${link.linkName} `;
-          currentLink.setAttribute('href', '#');
-          currentLink.setAttribute('onclick', link.linkFunction);
-          nav.appendChild(currentLink);
+          addNavLink(nav, link);
         });
+
         document.body.prepend(nav);
       }
 
@@ -106,12 +118,19 @@
       function show(id) {
         clear();
         displayNav();
+        nav = document.querySelector('nav');
+        
         getPost(id).then(post => {
           setHeader(post.title);
           postBody = document.createElement('d');
           postBody.setAttribute('id', 'postBody');
           postBody.textContent = post.body;
           displayArea.appendChild(postBody);
+
+          addNavLink(nav, {
+            linkName: 'Edit',
+            linkFunction: `update("${id}")`
+          });
         });
       }
 
@@ -146,7 +165,6 @@
           createPost(post).then(post => show(post.id));
         }, false);
 
-
         displayArea.appendChild(titleLabel);
         displayArea.appendChild(bodyLabel);
         displayArea.appendChild(submitButton);
@@ -154,12 +172,12 @@
 
       // update takes a post id, does what is needed to update the post, then 'redirects' to show
       function update(id) {
-
+        // debugging
+        console.log("Ready to edit this post: " + id);
       }
 
       // destroy takes a post id, does what is needed to delete the post, then 'redirects' to index
       function destroy(id) {
-
       }
     </script>
   </body>
