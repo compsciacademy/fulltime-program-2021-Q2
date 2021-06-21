@@ -4,6 +4,10 @@ Filtering the data can be done by chaining methods. The [Mongoid documentation](
   
 The way that chaining methods works is that the methods combine to create a query string, and then the data is queried, so you're not hitting the database with calls on each method.  
   
+In order to query through IRB, you'll need to load the Mongoid model.  
+  
+E.g. `load "./car_list.rb"`  
+  
 Here are some example queries:
 ```ruby
 # Select all cars, and order by brand, ascending (alphabetically from a - z):
@@ -13,7 +17,7 @@ Car.order([:brand, :asc])
 Car.order([:brand, :asc]).page(6, 6)
 
 # Select all cars made between 1960 and 1975, ordered by model, descending (reverse alphabetical order)
-Car.order([:model, :desc]).where({year: {'$gt' > 1959}}).where(year: {'$lte': 1976})
+Car.order([:model, :desc]).where({year: {'$gt': 1959}}).where(year: {'$lte': 1976})
 ```
 
 Now, we would like to prove some things out. For example, we used `:asc` and `:desc` to see which direction they sort. To prove that to ourselves, we just look at the returned data.  
