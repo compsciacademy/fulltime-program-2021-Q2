@@ -42,4 +42,13 @@ Car.page(3,3).each { |car| puts car.to_json }
   
 2.) Are `'$gt'` and `'$lte'` inclusive or exclusive?  
 
+Interestingly, through our testing, we discovered that `'$gt'` is exclusing, but adding an `e` to it (`'$gte'`) makes it _inclusive_. Likewise, `'$lte'` is inclusive, but removing the `e` from it (`'$lt'`) makes it exclusive.  
+  
+```ruby
 
+# includes cars from years 1968 and 1970
+Car.where(year: {'$gte': 1968}).where(year: {'$lte': 1970}).each { |car| puts car.inspect }
+
+# Does not include cars from years 1968 and 1970
+Car.where(year: {'$gt': 1968}).where(year: {'$lt': 1970}).each { |car| puts car.inspect }
+```
