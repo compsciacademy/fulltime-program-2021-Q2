@@ -1,0 +1,6 @@
+development:
+  clients:
+    default:
+      database: Blog
+      hosts:
+        - localhost:27017

@@ -52,3 +52,228 @@ Car.where(year: {'$gte': 1968}).where(year: {'$lte': 1970}).each { |car| puts ca
 # Does not include cars from years 1968 and 1970
 Car.where(year: {'$gt': 1968}).where(year: {'$lt': 1970}).each { |car| puts car.inspect }
 ```
+
+---
+
+## Review & Progress  
+  
+Let's start out with a new project to replace our "Car List" project, but continue with the same concepts of using a web-api and a frontend to consume it.  
+  
+Let's convert our `car_list.rb` to `blog.rb`. We can imagine some features in the future such as likes, upvotes/downvotes, comments, and so on, but for now, let's just focus on review of the concepts we've already covered.  
+  
+This means, we need to have CRUD operations for Posts. Posts will have a Post Title and a Post Body. Once we have all that functioning, we can have pagination on the Blog Post index view.  
+  
+**Exercise 01**  
+  
+Create a web API for Blogs that is able to perform all CRUD operations for Posts (use `car_list.rb`) as a reference.  
+  
+```ruby
+require 'sinatra'
+require 'sinatra/namespace'
+require 'mongoid'
+
+Mongoid.load! 'mongoid_config.yml'
+
+class Post
+  include Mongoid::Document
+
+  field :title
+  field :body
+
+  validates :title, :body, presence: true
+
+  def self.page(offset_amount, limit_amount)
+    all.offset(offset_amount).limit(limit_amount)
+  end
+
+  def as_json(*)
+    fields = {
+      id: self.id.to_s,
+      title: self.title,
+      body: self.body
+    }
+    fields[:errors] = self.errors if self.errors.any?
+    fields
+  end
+end
+
+get '/' do
+  redirect :"/api/posts"
+end
+
+namespace '/api' do
+  before do
+    content_type 'application/json'
+    response.headers['Access-Control-Allow-Origin'] = '*'
+  end
+
+  options '*' do
+    response.headers['Access-Control-Allow-Methods'] = ['PATCH', 'DELETE']
+  end
+
+  get '/posts' do
+    Post.all.to_json
+  end
+
+  get '/posts/:id' do |id|
+    post = Post.where(id: id).first
+    unless post
+      halt(404, { message: 'unable to find a post with that id' }.to_json )
+    end
+    post.to_json
+  end
+
+  helpers do
+    def request_params
+    # read the request body and attempt to parse JSON
+      begin
+        JSON.parse(request.body.read)
+      rescue
+        halt 400, { message: 'The JSON was unparsable' }.to_json
+      end
+    end
+  end
+
+  post '/posts' do
+    begin
+      post = Post.new(request_params)
+    rescue
+      halt 406, { message: 'Incorrect params!'}.to_json
+    end
+
+    if post.save
+      host_address = "#{request.env['rack.url_scheme']}://#{request.env['HTTP_HOST']}"
+      response.headers['Location'] = "#{host_address}/api/posts/#{post.id}"
+      status 201
+      body post.to_json
+    else
+      status 422
+      body request_params
+    end
+  end
+
+  patch '/posts/:id' do |id|
+    post = Post.where(id: id).first
+    unless post
+      halt 404, { message: 'Cannot find a post with that id' }.to_json
+    end
+
+    if post.update(request_params)
+    else
+      status 422
+      body request_params
+    end
+  end
+
+  delete '/posts/:id' do |id|
+    post = Post.where(id: id).first
+    post.destroy if post 
+    status 204
+  end
+end
+
+```
+NOTE: you probably want to add a `Gemfile`, and run `bundle install` to prepare the dependencies.   
+  
+With that, we have our web api server, so let's create a frontend to access it. We can start by filling in the high level function definitions: 
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Blog</title>
+  </head>
+  <body>
+    <h1>Heading Title</h1>
+    <div id='displayArea'></div>
+    <script>
+      const url = 'http://localhost:4567/api/posts';
+
+      // index does what is needed to display an index of blog posts
+      function index() {}
+
+      // show takes a post id, and does what is needed to show a single blog post
+      function show(id) {}
+
+      // show takes a post id, and does what is needed to show edit inputs for a single blog post
+      function edit(id) {}
+
+      // update takes a post id, does what is needed to update the post, then 'redirects' to show
+      function update(id) {}
+
+      // destroy takes a post id, does what is needed to delete the post, then 'redirects' to index
+      function destroy(id) {}
+    </script>
+  </body>
+</html>
+```
+  
+Now, we just need to make them all work. Let's start with the index view. And let's define what we want the result to look like before we work towards building out the client-side code that creates it.  
+  
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Blog</title>
+  </head>
+  <body>
+    <nav><a href="#">Home</a></nav>
+    <h1>All Posts</h1>
+    <div id='displayArea'>
+      <ul>
+        <li>My Blog Post Title 1 <button>View</button></li>
+        <li>My Blog Post Title 2 <button>View</button></li>
+        <li>My Blog Post Title 3 <button>View</button></li>
+        <li>My Blog Post Title 4 <button>View</button></li>
+        <li>My Blog Post Title 5 <button>View</button></li>
+      </ul>
+    </div>
+  </body>
+</html>
+```
+
+Add a `index()` or `postIndex()` function and whatever supporting functions are required.
+
+```js
+      /* -----------------------
+          Supporting Functions
+      -------------------------*/
+      // getPosts fetches all posts from the api and
+      // returns them as a list of json objects
+      function getPosts() {
+        return fetch(url)
+          .then(posts => posts.json())
+      }
+
+      function setHeader(text) {
+        let heading = document.querySelector('h1');
+        heading.textContent = text;
+      }
+
+      /* -----------------------
+          View Logic
+      -------------------------*/
+
+      // index does what is needed to display an index of blog posts
+      function index() {
+        setHeader('All Posts');
+        let myDiv = document.querySelector('#displayArea');
+        let myUl = document.createElement('ul');
+        myDiv.appendChild(myUl);
+        getPosts()
+          .then(posts => {
+            posts.forEach(post => {
+              button = document.createElement('button');
+              button.textContent = 'View';
+              button.addEventListener('click', () => {
+                show(post.id);
+              }, false);
+              postLi = document.createElement('li');
+              postLi.textContent = post.title + ' ';
+              postLi.appendChild(button);
+              myUl.appendChild(postLi);
+            });
+          })
+      }
+```

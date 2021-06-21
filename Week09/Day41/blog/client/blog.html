@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Blog</title>
+  </head>
+  <body>
+    <h1>Heading Title</h1>
+    <div id='displayArea'></div>
+    <script>
+      const url = 'http://localhost:4567/api/posts';
+      /* -----------------------
+          Supporting Functions
+      -------------------------*/
+      // getPosts fetches all posts from the api and
+      // returns them as a list of json objects
+      function getPosts() {
+        return fetch(url)
+          .then(posts => posts.json())
+      }
+
+      function setHeader(text) {
+        let heading = document.querySelector('h1');
+        heading.textContent = text;
+      }
+
+      /* -----------------------
+          View Logic
+      -------------------------*/
+
+      // index does what is needed to display an index of blog posts
+      function index() {
+        setHeader('All Posts');
+        let myDiv = document.querySelector('#displayArea');
+        let myUl = document.createElement('ul');
+        myDiv.appendChild(myUl);
+        getPosts()
+          .then(posts => {
+            posts.forEach(post => {
+              button = document.createElement('button');
+              button.textContent = 'View';
+              button.addEventListener('click', () => {
+                show(post.id);
+              }, false);
+              postLi = document.createElement('li');
+              postLi.textContent = post.title + ' ';
+              postLi.appendChild(button);
+              myUl.appendChild(postLi);
+            });
+          })
+      }
+
+      index();
+
+      // show takes a post id, and does what is needed to show a single blog post
+      function show(id) {
+        // debugging code:
+        console.log("I need to show the post: " + id);
+      }
+
+      // show takes a post id, and does what is needed to show edit inputs for a single blog post
+      function edit(id) {
+
+      }
+
+      // update takes a post id, does what is needed to update the post, then 'redirects' to show
+      function update(id) {
+
+      }
+
+      // destroy takes a post id, does what is needed to delete the post, then 'redirects' to index
+      function destroy(id) {
+
+      }
+
+
+
+      // getCar(id) takes a car idea, and returns a car object.
+      function getCar(id) {
+        car_url = `${url}/${id}`;
+        return fetch(car_url).then(car => car.json());
+      }
+
+      // getCars() calls the Car List web api, and returns an array of car objects.
+      function getCars() {
+        return fetch(url)
+          .then(cars => cars.json())
+      }
+
+      function updateCar(car) {
+        const allInput = document.querySelectorAll('input');
+        allInput.forEach ((input) =>{
+          car[input.name] = input.value
+        });
+        patchUrl = `${url}/${car.id}`
+        fetch(patchUrl, {
+          method: "PATCH",
+          body: JSON.stringify(car)
+        })
+      }
+
+      function buildInputsFor(car) {
+        for (const [key, value] of Object.entries(car)) {
+          if(key !== 'id') {
+            let keyInput = document.createElement('input');
+            keyInput.setAttribute('id', key);
+            keyInput.setAttribute('name', key);
+            keyInput.setAttribute('value', value);
+            keyLabel = document.createElement('label');
+            keyLabel.setAttribute('for', key);
+            keyLabel.textContent = `${key}: `;
+            displayArea.appendChild(keyLabel);
+            keyLabel.appendChild(keyInput);
+          }
+        }
+      }
+
+      // displayIndex() shows a list of cars, in the displayArea div
+      function displayIndex() {
+        let heading = document.querySelector('h1');
+        heading.textContent = 'Car List';
+        getCars()
+          .then(cars => {
+            cars.forEach(car => {
+              let myDiv = document.querySelector('#displayArea');
+              let pElement = document.createElement('p');
+              let link = document.createElement('a');
+              link.setAttribute('href', '#')
+              link.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
+              link.setAttribute('onclick', `loadCar("${car.id}");return false;`)
+              pElement.appendChild(link)
+              myDiv.appendChild(pElement);
+              console.log(car);
+            })
+          })
+      }
+
+
+      function displayNew() {}
+
+      function loadCar(car_id) {
+        getCar(car_id).then(car => {
+          let heading = document.querySelector('h1')
+          heading.textContent = `${car.year} ${car.model}`;
+          buildInputsFor(car);
+          let updateButton = document.createElement('button');
+          updateButton.textContent = 'Update';
+          displayArea.appendChild(updateButton);
+          updateButton.addEventListener('click', () => {
+            updateCar(car);
+          }, false);
+        }); 
+      }
+
+    </script>
+  </body>
+</html>
