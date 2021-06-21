@@ -352,3 +352,78 @@ function show(id) {
   });
 }
 ```
+
+Now we have a fork in the road. We have the functionality that supports index and show. We still need to support create, update and delete. That is, _most_ of CRUD. LOL.  
+  
+This just means, we can select to work on Create, Update, or Delete next.  
+  
+Create can start by adding a "New" link to the navigation. If clicked, it displays some input fields to add a title and body. After we submit that input, upon successful creation, it should _show_ the post.  
+  
+Delete should be something... maybe this is a link added to the nav on a show view. Maybe it's a button at the end of a post. Likewise for Edit. Edit, like create, displays some input fields, for title and body, but unlike create, it has the current values in them.  
+  
+Since both Create _and_ Update require a view for input that more or less looks the same, let's describe in HTML what that should be.
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Blog</title>
+  </head>
+  <body>
+    <nav><a href="#">Home</a></nav>
+    <h1>New Blog Post ((OR)) Edit Blog Post Title</h1>
+    <div id='displayArea'>
+      <label for='title'>Title: </label><input name='title'></br>
+      <label for='body'>Body: </label><br>
+      <textarea name='body' rows='25' cols='150'></textarea>
+    </div>
+  </body>
+</html>
+```
+
+We've now added a `newPost()` function that generates a view with inputs, and a `createPost()` function to create a new post, and return that create post. This allows the `newPost()` function to wait for that post, then display `show()` passing in the new post's id.  
+  
+```js
+function createPost(post) {
+  return fetch(url, {
+    method: "POST",
+    body: JSON.stringify(post)
+  }).then(post => post.json());
+}
+
+function newPost() {
+  clear();
+  displayNav();
+  setHeader('New Post');
+  titleInput = document.createElement('input');
+  titleInput.setAttribute('name', 'title');
+  titleLabel = document.createElement('label')
+  titleLabel.setAttribute('for', 'title');
+  titleLabel.textContent = 'title: ';
+  titleLabel.appendChild(titleInput);
+
+  bodyInput = document.createElement('textarea');
+  bodyInput.setAttribute('name', 'body');
+  bodyInput.setAttribute('rows', '25');
+  bodyInput.setAttribute('cols', '100');
+  bodyLabel = document.createElement('label')
+  bodyLabel.setAttribute('for', 'body');
+  bodyLabel.textContent = 'body: ';
+  bodyLabel.appendChild(bodyInput);
+
+  submitButton = document.createElement('button');
+  submitButton.textContent = 'create';
+  submitButton.addEventListener('click', () => {
+    post = {
+      title: titleInput.value,
+      body: bodyInput.value,
+    };
+    createPost(post).then(post => show(post.id));
+  }, false);
+
+
+  displayArea.appendChild(titleLabel);
+  displayArea.appendChild(bodyLabel);
+  displayArea.appendChild(submitButton);
+}
+```

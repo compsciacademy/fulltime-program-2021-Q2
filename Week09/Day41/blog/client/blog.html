@@ -22,7 +22,14 @@
         return fetch(postUrl)
           .then(post => post.json());
       }
-      
+
+      function createPost(post) {
+        return fetch(url, {
+          method: "POST",
+          body: JSON.stringify(post)
+        }).then(post => post.json());
+      }
+
       /* -----------------------
           Supporting Functions
       -------------------------*/
@@ -35,16 +42,29 @@
 
       function displayNav() {
         nav = document.createElement('nav')
-        homeLink = document.createElement('a');
-        homeLink.textContent = 'Home';
-        homeLink.setAttribute('href', '#');
-        homeLink.setAttribute('onclick', "index()");
-        nav.appendChild(homeLink);
+        links = [
+          {
+            linkName: 'Home',
+            linkFunction: 'index()'
+          },
+          { 
+            linkName: 'New',
+            linkFunction: 'newPost()'
+          }
+        ];
+
+        links.forEach(link => {
+          currentLink = document.createElement('a');
+          currentLink.textContent = ` ${link.linkName} `;
+          currentLink.setAttribute('href', '#');
+          currentLink.setAttribute('onclick', link.linkFunction);
+          nav.appendChild(currentLink);
+        });
         document.body.prepend(nav);
       }
 
       function clear() {
-        elements = ['nav', 'ul', '#postBody'];
+        elements = ['nav', 'ul', '#postBody', 'input', 'textarea', 'button', 'label'];
         elements.forEach(element => {
           document.querySelectorAll(element).forEach(item => {
             item.parentNode.removeChild(item);
@@ -95,9 +115,41 @@
         });
       }
 
-      // show takes a post id, and does what is needed to show edit inputs for a single blog post
-      function edit(id) {
+      // new does what is needed to show inputs for a new blog post
+      function newPost() {
+        clear();
+        displayNav();
+        setHeader('New Post');
+        titleInput = document.createElement('input');
+        titleInput.setAttribute('name', 'title');
+        titleLabel = document.createElement('label')
+        titleLabel.setAttribute('for', 'title');
+        titleLabel.textContent = 'title: ';
+        titleLabel.appendChild(titleInput);
 
+        bodyInput = document.createElement('textarea');
+        bodyInput.setAttribute('name', 'body');
+        bodyInput.setAttribute('rows', '25');
+        bodyInput.setAttribute('cols', '100');
+        bodyLabel = document.createElement('label')
+        bodyLabel.setAttribute('for', 'body');
+        bodyLabel.textContent = 'body: ';
+        bodyLabel.appendChild(bodyInput);
+
+        submitButton = document.createElement('button');
+        submitButton.textContent = 'create';
+        submitButton.addEventListener('click', () => {
+          post = {
+            title: titleInput.value,
+            body: bodyInput.value,
+          };
+          createPost(post).then(post => show(post.id));
+        }, false);
+
+
+        displayArea.appendChild(titleLabel);
+        displayArea.appendChild(bodyLabel);
+        displayArea.appendChild(submitButton);
       }
 
       // update takes a post id, does what is needed to update the post, then 'redirects' to show
@@ -109,86 +161,6 @@
       function destroy(id) {
 
       }
-
-
-
-      // getCar(id) takes a car idea, and returns a car object.
-      function getCar(id) {
-        car_url = `${url}/${id}`;
-        return fetch(car_url).then(car => car.json());
-      }
-
-      // getCars() calls the Car List web api, and returns an array of car objects.
-      function getCars() {
-        return fetch(url)
-          .then(cars => cars.json())
-      }
-
-      function updateCar(car) {
-        const allInput = document.querySelectorAll('input');
-        allInput.forEach ((input) =>{
-          car[input.name] = input.value
-        });
-        patchUrl = `${url}/${car.id}`
-        fetch(patchUrl, {
-          method: "PATCH",
-          body: JSON.stringify(car)
-        })
-      }
-
-      function buildInputsFor(car) {
-        for (const [key, value] of Object.entries(car)) {
-          if(key !== 'id') {
-            let keyInput = document.createElement('input');
-            keyInput.setAttribute('id', key);
-            keyInput.setAttribute('name', key);
-            keyInput.setAttribute('value', value);
-            keyLabel = document.createElement('label');
-            keyLabel.setAttribute('for', key);
-            keyLabel.textContent = `${key}: `;
-            displayArea.appendChild(keyLabel);
-            keyLabel.appendChild(keyInput);
-          }
-        }
-      }
-
-      // displayIndex() shows a list of cars, in the displayArea div
-      function displayIndex() {
-        let heading = document.querySelector('h1');
-        heading.textContent = 'Car List';
-        getCars()
-          .then(cars => {
-            cars.forEach(car => {
-              let myDiv = document.querySelector('#displayArea');
-              let pElement = document.createElement('p');
-              let link = document.createElement('a');
-              link.setAttribute('href', '#')
-              link.textContent = `brand: ${car.brand}, model: ${car.model}, year: ${car.year}, color: ${car.color}`;
-              link.setAttribute('onclick', `loadCar("${car.id}");return false;`)
-              pElement.appendChild(link)
-              myDiv.appendChild(pElement);
-              console.log(car);
-            })
-          })
-      }
-
-
-      function displayNew() {}
-
-      function loadCar(car_id) {
-        getCar(car_id).then(car => {
-          let heading = document.querySelector('h1')
-          heading.textContent = `${car.year} ${car.model}`;
-          buildInputsFor(car);
-          let updateButton = document.createElement('button');
-          updateButton.textContent = 'Update';
-          displayArea.appendChild(updateButton);
-          updateButton.addEventListener('click', () => {
-            updateCar(car);
-          }, false);
-        }); 
-      }
-
     </script>
   </body>
 </html>
