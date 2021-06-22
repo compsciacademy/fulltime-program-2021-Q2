@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Blog</title>
+  </head>
+  <body>
+    <h1>Heading Title</h1>
+    <div id='displayArea'></div>
+    <script>
+      const url = 'http://localhost:4567/api/posts';
+      /* -----------------------
+          Web API Calls
+      -------------------------*/
+      function getPosts() {
+        return fetch(url)
+          .then(posts => posts.json())
+      }
+      
+      function getPost(id) {
+        let postUrl = `${url}/${id}`;
+        return fetch(postUrl)
+          .then(post => post.json());
+      }
+
+      function createPost(post) {
+        return fetch(url, {
+          method: "POST",
+          body: JSON.stringify(post)
+        }).then(post => post.json())
+        .catch((e) =>{
+          alert('Posts must have a title and body.');
+        });
+      }
+
+      function updatePost(post) {        
+        let patchUrl = `${url}/${post.id}`;
+        return fetch(patchUrl, {
+          method: "PATCH",
+          body: JSON.stringify(post)
+        });
+      }
+
+      /* -----------------------
+          Supporting Functions
+      -------------------------*/
+      // getPosts fetches all posts from the api and
+      // returns them as a list of json objects
+      function setHeader(text) {
+        let heading = document.querySelector('h1');
+        heading.textContent = text;
+      }
+
+      function addNavLink(addTo, link) {
+        currentLink = document.createElement('a');
+        currentLink.textContent = ` ${link.linkName} `;
+        currentLink.setAttribute('href', '#');
+        currentLink.setAttribute('onclick', link.linkFunction);
+        addTo.appendChild(currentLink);
+      }
+
+      function displayNav() {
+        nav = document.createElement('nav')
+        links = [
+          {
+            linkName: 'Home',
+            linkFunction: 'index()'
+          },
+          { 
+            linkName: 'New',
+            linkFunction: 'newPost()'
+          }
+        ];
+
+        links.forEach(link => {
+          addNavLink(nav, link);
+        });
+
+        document.body.prepend(nav);
+      }
+
+      function clear() {
+        elements = ['nav', 'ul', '#postBody', 'input', 'textarea', 'button', 'label'];
+        elements.forEach(element => {
+          document.querySelectorAll(element).forEach(item => {
+            item.parentNode.removeChild(item);
+          });
+        });
+      }
+
+      function buildForm(post = null) {
+        titleInput = document.createElement('input');
+        titleInput.setAttribute('name', 'title');
+        if(post) {
+          titleInput.value = post.title;
+        }
+        titleLabel = document.createElement('label')
+        titleLabel.setAttribute('for', 'title');
+        titleLabel.textContent = 'title: ';
+        titleLabel.appendChild(titleInput);
+
+        bodyInput = document.createElement('textarea');
+        bodyInput.setAttribute('name', 'body');
+        bodyInput.setAttribute('rows', '25');
+        bodyInput.setAttribute('cols', '100');
+        if(post) {
+          bodyInput.value = post.body;
+        }
+        bodyLabel = document.createElement('label')
+        bodyLabel.setAttribute('for', 'body');
+        bodyLabel.textContent = 'body: ';
+        bodyLabel.appendChild(bodyInput);
+
+        submitButton = document.createElement('button');
+        submitButton.textContent = post ? 'update' : 'create';
+     
+        submitButton.addEventListener('click', () => {
+          updatedPost = {
+            title: titleInput.value,
+            body: bodyInput.value,
+          };
+          if (post) {
+            updatedPost.id = post.id
+            updatePost(updatedPost).then(() => show(post.id));
+          } else {
+            createPost(updatedPost).then(post => show(post.id));
+          }
+        }, false);
+
+        displayArea.appendChild(titleLabel);
+        displayArea.appendChild(bodyLabel);
+        displayArea.appendChild(submitButton);
+      }
+      
+      /* -----------------------
+          View Logic
+      -------------------------*/
+
+      // index does what is needed to display an index of blog posts
+      function index() {
+        clear();
+        displayNav();
+        setHeader('All Posts');
+        let myDiv = document.querySelector('#displayArea');
+        let myUl = document.createElement('ul');
+        myDiv.appendChild(myUl);
+        getPosts()
+          .then(posts => {
+            posts.forEach(post => {
+              button = document.createElement('button');
+              button.textContent = 'View';
+              button.addEventListener('click', () => {
+                show(post.id);
+              }, false);
+              postLi = document.createElement('li');
+              postLi.textContent = post.title + ' ';
+              postLi.appendChild(button);
+              myUl.appendChild(postLi);
+            });
+          })
+      }
+
+      index();
+
+      // show takes a post id, and does what is needed to show a single blog post
+      function show(id) {
+        clear();
+        displayNav();
+        nav = document.querySelector('nav');
+        
+        getPost(id).then(post => {
+          setHeader(post.title);
+          postBody = document.createElement('d');
+          postBody.setAttribute('id', 'postBody');
+          postBody.textContent = post.body;
+          displayArea.appendChild(postBody);
+
+          addNavLink(nav, {
+            linkName: 'Edit',
+            linkFunction: `update("${id}")`
+          });
+        });
+      }
+
+      // new does what is needed to show inputs for a new blog post
+      function newPost() {
+        clear();
+        displayNav();
+        setHeader('New Post');
+        buildForm();
+      }
+
+      // update takes a post id, does what is needed to update the post, then 'redirects' to show
+      function update(id) {
+        getPost(id).then(post => {
+          clear();
+          displayNav();
+          setHeader('Editing ' + post.title);
+          buildForm(post);
+        });
+      }
+
+      // destroy takes a post id, does what is needed to delete the post, then 'redirects' to index
+      function destroy(id) {
+      }
+    </script>
+  </body>
+</html>
