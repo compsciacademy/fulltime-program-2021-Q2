@@ -38,7 +38,7 @@ namespace '/api' do
   end
 
   options '*' do
-    response.headers['Access-Control-Allow-Methods'] = ['PATCH', 'DELETE']
+    response.headers['Access-Control-Allow-Methods'] = 'PATCH, DELETE'
   end
 
   get '/posts' do

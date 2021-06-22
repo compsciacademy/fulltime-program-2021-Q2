@@ -41,6 +41,13 @@
         });
       }
 
+      function deletePost(id) {
+        let deleteUrl = `${url}/${id}`;
+        return fetch(deleteUrl, {
+          method: "DELETE"
+        });
+      }
+
       /* -----------------------
           Supporting Functions
       -------------------------*/
@@ -179,6 +186,11 @@
             linkName: 'Edit',
             linkFunction: `update("${id}")`
           });
+
+          addNavLink(nav, {
+            linkName: 'Delete',
+            linkFunction: `destroy("${id}")`
+          });
         });
       }
 
@@ -202,6 +214,9 @@
 
       // destroy takes a post id, does what is needed to delete the post, then 'redirects' to index
       function destroy(id) {
+        deletePost(id).then(() => {
+          index();
+        });
       }
     </script>
   </body>
