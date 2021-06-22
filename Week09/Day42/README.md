@@ -118,3 +118,61 @@ Our home page (index view) displays the title for each blog post, with a button 
 ```
 Display a link for however many pages there are. So, how can we determine many pages? Let's rephrase... if we have 25 posts, and each page has 5 posts, then how many pages should we have? What if we have 25.
 
+```javascript
+function index(offset=0) {
+  clear();
+  displayNav();
+  setHeader('All Posts');
+  let myDiv = document.querySelector('#displayArea');
+  let myUl = document.createElement('ul');
+  myDiv.appendChild(myUl);
+  getPostsPaginated(offset, postsPerPage)
+    .then(data => {
+      data.posts.forEach(post => {
+        button = document.createElement('button');
+        button.textContent = 'View';
+        button.addEventListener('click', () => {
+          show(post.id);
+        }, false);
+        postLi = document.createElement('li');
+        postLi.textContent = post.title + ' ';
+        postLi.appendChild(button);
+        myUl.appendChild(postLi);
+      })
+      generatePageLinks(data.count, myDiv);
+    })
+}
+```
+In this case, we changed the logic of our `index()` view function slightly, to call a `getPostsPaginated()` function that takes an `offset` and a `postsPerPage` argument. It will then return the number of posts defined in the `postsPerPage` parameter, and return posts starting after the `offset`.
+```javascript
+function getPostsPaginated(offset, limit=null) {
+  let postsPaginatedUrl = `${url}?offset=${offset}`
+  if(limit) { postsPaginatedUrl += `&limit=${limit}` };
+  return fetch(postsPaginatedUrl)
+    .then(posts => posts.json())
+    .catch(e => alert(e));
+}
+```  
+  
+We also defined a `generatePageLinks()` function. It determines the `NumberOfPages`, then creates links for each, and appends them to whatever the `element` parameter is.
+```javascript
+function generatePageLinks(count, element) {
+  let NumberOfPages;
+  if(count % postsPerPage == 0) {
+    numberOfPages = count / postsPerPage
+  } else {
+    numberOfPages = Math.ceil(count / postsPerPage)
+  } 
+
+  for (i=0; i < numberOfPages; i++) {
+    link = document.createElement('a');
+    link.textContent = `${i+1} `;
+    link.setAttribute('href', '#');
+    link.setAttribute('onclick', `index(${i * postsPerPage})`);
+    link.setAttribute('class', 'pageLink');
+    element.appendChild(link);
+  }
+} 
+```
+
+

@@ -8,13 +8,26 @@
     <h1>Heading Title</h1>
     <div id='displayArea'></div>
     <script>
+      /* -----------------------
+          Configuration Variables
+      -------------------------*/
       const url = 'http://localhost:4567/api/posts';
+      const postsPerPage = 5;
+
       /* -----------------------
           Web API Calls
       -------------------------*/
       function getPosts() {
         return fetch(url)
           .then(posts => posts.json())
+      }
+
+      function getPostsPaginated(offset, limit=null) {
+        let postsPaginatedUrl = `${url}?offset=${offset}`
+        if(limit) { postsPaginatedUrl += `&limit=${limit}` };
+        return fetch(postsPaginatedUrl)
+          .then(posts => posts.json())
+          .catch(e => alert(e));
       }
       
       function getPost(id) {
@@ -87,7 +100,7 @@
       }
 
       function clear() {
-        elements = ['nav', 'ul', '#postBody', 'input', 'textarea', 'button', 'label'];
+        elements = ['.pageLink', 'nav', 'ul', '#postBody', 'input', 'textarea', 'button', 'label'];
         elements.forEach(element => {
           document.querySelectorAll(element).forEach(item => {
             item.parentNode.removeChild(item);
@@ -138,22 +151,40 @@
         displayArea.appendChild(bodyLabel);
         displayArea.appendChild(submitButton);
       }
+
+      function generatePageLinks(count, element) {
+        let NumberOfPages;
+        if(count % postsPerPage == 0) {
+          numberOfPages = count / postsPerPage
+        } else {
+          numberOfPages = Math.ceil(count / postsPerPage)
+        } 
+
+        for (i=0; i < numberOfPages; i++) {
+          link = document.createElement('a');
+          link.textContent = `${i+1} `;
+          link.setAttribute('href', '#');
+          link.setAttribute('onclick', `index(${i * postsPerPage})`);
+          link.setAttribute('class', 'pageLink');
+          element.appendChild(link);
+        }
+      } 
       
       /* -----------------------
           View Logic
       -------------------------*/
 
       // index does what is needed to display an index of blog posts
-      function index() {
+      function index(offset=0) {
         clear();
         displayNav();
         setHeader('All Posts');
         let myDiv = document.querySelector('#displayArea');
         let myUl = document.createElement('ul');
         myDiv.appendChild(myUl);
-        getPosts()
-          .then(posts => {
-            posts.forEach(post => {
+        getPostsPaginated(offset, postsPerPage)
+          .then(data => {
+            data.posts.forEach(post => {
               button = document.createElement('button');
               button.textContent = 'View';
               button.addEventListener('click', () => {
@@ -163,7 +194,8 @@
               postLi.textContent = post.title + ' ';
               postLi.appendChild(button);
               myUl.appendChild(postLi);
-            });
+            })
+            generatePageLinks(data.count, myDiv);
           })
       }
 

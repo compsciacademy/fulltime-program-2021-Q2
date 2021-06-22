@@ -41,15 +41,16 @@ namespace '/api' do
     response.headers['Access-Control-Allow-Methods'] = 'PATCH, DELETE'
   end
 
-  get '/posts/paginated/:offset' do
-    {
-      "count": Post.count,
-      "posts": Post.page(params[:offset], 5)
-    }.to_json
-  end
-
   get '/posts' do
-    Post.all.to_json
+    limit = params[:limit] ? params[:limit] : 5
+    if params[:offset]
+      {
+        "count": Post.count,
+        "posts": Post.page(params[:offset], limit)
+      }.to_json
+    else
+      Post.all.to_json
+    end
   end
 
   get '/posts/:id' do |id|
@@ -106,5 +107,20 @@ namespace '/api' do
     post = Post.where(id: id).first
     post.destroy if post 
     status 204
+  end
+end
+
+def random_word
+  ('a'..'z').to_a.sample(rand(10)).join.capitalize
+end
+
+def make_posts(number)
+  number.times do
+    title = "#{random_word} #{random_word} #{random_word}"
+    body = ''
+    100.times do
+      body += "#{random_word} "
+    end
+    Post.create(title: title, body: body)
   end
 end
