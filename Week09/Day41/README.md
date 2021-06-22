@@ -195,8 +195,8 @@ With that, we have our web api server, so let's create a frontend to access it. 
       // show takes a post id, and does what is needed to show a single blog post
       function show(id) {}
 
-      // show takes a post id, and does what is needed to show edit inputs for a single blog post
-      function edit(id) {}
+      // show takes a post id, and does what is needed to show create inputs for a single blog post
+      function create(id) {}
 
       // update takes a post id, does what is needed to update the post, then 'redirects' to show
       function update(id) {}
