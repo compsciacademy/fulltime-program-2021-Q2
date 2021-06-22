@@ -175,4 +175,12 @@ function generatePageLinks(count, element) {
 } 
 ```
 
+## Homework  
+  
+Update MyNatra:  
 
+1. To have a presentable Readme.
+2. Add options `--api-only` and `--with-api`
+3. To use JavaScript to handle input data and requests.
+4. To have _optional_ support for MongoDB.
+  

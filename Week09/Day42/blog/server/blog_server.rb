@@ -44,7 +44,7 @@ namespace '/api' do
   get '/posts' do
     limit = params[:limit] ? params[:limit] : 5
     if params[:offset]
-      {
+      return {
         "count": Post.count,
         "posts": Post.page(params[:offset], limit)
       }.to_json
