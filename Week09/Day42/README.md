@@ -82,3 +82,39 @@ function buildForm(post = null) {
   displayArea.appendChild(submitButton);
 }
 ```
+
+Adding the destroy function is pretty straightforward from this point...  
+  
+---
+
+## Exercise 01  
+  
+Add pagination! --- what should it look like? How should it work?
+
+Our home page (index view) displays the title for each blog post, with a button to view it. Let's limit the view count to 5 posts, and add some pagination below it. Something like:  
+  
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>Blog</title>
+  </head>
+  <body>
+    <nav><a href="#">Home</a></nav>
+    <h1>All Posts</h1>
+    <div id='displayArea'>
+      <ul>
+        <li>My Blog Post Title 1 <button>View</button></li>
+        <li>My Blog Post Title 2 <button>View</button></li>
+        <li>My Blog Post Title 3 <button>View</button></li>
+        <li>My Blog Post Title 4 <button>View</button></li>
+        <li>My Blog Post Title 5 <button>View</button></li>
+      </ul>
+      <a>1</a> <a>2</a> <a>3</a> <a>4</a> <a>5</a>
+    </div>
+  </body>
+</html>
+```
+Display a link for however many pages there are. So, how can we determine many pages? Let's rephrase... if we have 25 posts, and each page has 5 posts, then how many pages should we have? What if we have 25.
+

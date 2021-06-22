@@ -41,6 +41,13 @@ namespace '/api' do
     response.headers['Access-Control-Allow-Methods'] = 'PATCH, DELETE'
   end
 
+  get '/posts/paginated/:offset' do
+    {
+      "count": Post.count,
+      "posts": Post.page(params[:offset], 5)
+    }.to_json
+  end
+
   get '/posts' do
     Post.all.to_json
   end
