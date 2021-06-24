@@ -107,3 +107,27 @@ class ArticlesController < ApplicationController
   end
 end
 ```
+
+That was pretty easy! Rails sure does things as you might expect. Now, let's add in a way to view a single article. Following the order we used last time, let's start with a route, then a controller, and a view...   
+   
+... and then full crud, with a form partial and the use of some nice helper methods.  
+  
+And may as well add another resource for comments!  
+  
+```
+bin/rails generate model Comment commenter:string body:text article:references
+```
+
+This adds a `article_id` field on comments. You can also see in the comment model, the line, `belongs_to :article`.  
+  
+You will have to manually edit the article model to add the line: `has_many :comments`. This will give you some nice methods, such as `comment = Article.last.comments.new`  
+  
+Generate a comments controller  
+```
+bin/rails generate controller Comments
+```
+
+We want to be able to create comments on articles, so it probably makes sense to add a comment form on the article show view.  
+  
+
+

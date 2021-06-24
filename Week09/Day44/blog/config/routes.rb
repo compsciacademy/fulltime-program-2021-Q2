@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   # get '/articles', to: 'articles#index'
   # get '/articles/:id', to: 'articles#show'
   # resources :articles, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-  resources :articles
+  resources :articles do
+    resources :comments
+  end
 end
