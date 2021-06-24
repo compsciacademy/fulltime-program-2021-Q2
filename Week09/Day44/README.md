@@ -52,3 +52,58 @@ Rails.application.routes.draw do
 end
 
 ```
+
+Let's generate a model to go along with our articles. When we generate controllers, we use a plural name `Articles`, and when we generate a model, we use a singular name `Article`.  
+  
+```
+bin/rails generate model Article title:string body:text
+```
+
+This generator will create a couple of files for us, noteably, a model generator creates a _migration_ file. Run this migration to make the appropriate changes to the database.  
+  
+```
+bin/rails db:migrate
+```  
+
+There should be some output to show that the migration successfully created a table `:articles`.   
+  
+---   
+
+Load up rails console and let's see if we can create some articles.... 
+
+```
+bin/rails console
+```
+
+This automatically loads our app, so we have access to the same sorts of methods on models as we did when we were using irb and loading our sinatra app with mongoid.  
+  
+```
+article = Article.new(title: 'My Title', body: 'My Article Body')
+article.save
+
+article = Article.new(title: 'My Other Title', body: 'My Other Article Body')
+article.save
+
+Article.all
+```  
+  
+Update the article index view and controller to display a list of all article titles.  
+  
+```html
+<h1>Articles</h1>
+
+<ul>
+  <% @articles.each do |article| %>
+    <li><%= article.title %>
+  <% end %>
+</ul>
+
+```
+
+```ruby
+class ArticlesController < ApplicationController
+  def index
+    @articles = Article.all
+  end
+end
+```
