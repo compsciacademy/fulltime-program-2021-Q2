@@ -207,3 +207,43 @@ end
 
 Look at the various ways to write our functions using string variables vs `.map` vs `Array.new`, and come up with some benchmarks to see which way is the best for our use case.  
   
+We will want to remove the randomness, so we can focus on the techniques for writing the functions, not on whether they happen to be doing more work or not.
+
+```ruby 
+# benchmarks.rb
+require 'benchmark'
+def rand_word(num=3)
+  ('a'..'z').to_a.sample(num).join
+end
+
+def rand_title_one
+  title = ''
+  5.times do
+    title += rand_word.capitalize + ' '
+  end
+  title.rstrip!
+end
+
+# could be rewritten to:
+def rand_title_two
+  5.times.map do
+    rand_word(8).capitalize + ' '
+  end.join(' ').rstrip!
+end
+
+# we can take this a step further
+def rand_title_three
+  Array.new(4) do
+    rand_word(5).capitalize + ' '
+  end.join(' ').rstrip!
+end
+
+n = 10000
+
+Benchmark.bm(10) do |x|
+  x.report("one: ") { n.times { rand_title_one }}
+  x.report("two: ") { n.times { rand_title_two }}
+  x.report("three: ") { n.times {rand_title_three }}
+end
+
+```
