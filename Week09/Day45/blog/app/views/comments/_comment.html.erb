@@ -1,0 +1,11 @@
+<% unless @article.comments.empty? %>
+  <h2>Comments</h2>
+  <p>Comment count: <%= Comment.public_count %>
+<% end %>
+
+<% @article.comments.each do |comment| %>
+  <% unless comment.archived? %>
+    <p><strong>Commenter:</strong> <%= comment.commenter %></p>
+    <p><strong>Comment: </strong><em><%= comment.body %></em></p>
+  <% end %>
+<% end %>
