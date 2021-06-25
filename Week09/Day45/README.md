@@ -155,3 +155,55 @@ end
 create_articles_with_comments 100
 
 ```
+
+If you noticed the pattern of initializing a variable as an empty string, then concating a string with it, and then returning it at the end, you may also notice that wew could use `.map` to clean this up somewhat...  
+  
+e.g. 
+```ruby
+def rand_title
+  title = ''
+  rand(3..5).times do
+    title += rand_word(5..15).capitalize + ' '
+  end
+  title
+end
+
+# could be rewritten to:
+def rand_title
+  rand(3..5).times.map do
+    rand_word(5..15).capitalize + ' '
+  end.join(' ')
+end
+
+# we can take this a step further
+def rand_title
+  Array.new(rand(3..5)) do
+    rand_word(5..15).capitalize + ' '
+  end.join(' ').rstrip!
+end
+```
+
+You might be wondering which way is better, why, and how you might find out for yourself.  
+  
+One way that might come to mind is to find a way to make a measurement and determine based on the best numbers. What sort of measurement might we make with code?  
+  
+Lines of code, for the most part, is _not_ a very reasonable way to measure code quality. So what is a reasonable way to measure code? Perhaps _quality_ wasn't the best qualifier. How about we measure _speed_ or _resources_ required?  
+  
+Ruby has a great library that we can just _use_. It's called [Benchmark](https://ruby-doc.org/stdlib-2.5.0/libdoc/benchmark/rdoc/Benchmark.html). To use it, simply `require 'benchmark`  
+  
+```ruby
+require 'benchmark'
+
+Benchmark.bm do |x|
+  # now we can do something and get a benchmark.
+  # in order to read the results of the benchmark, we
+  # can use x.report { and put code in here }
+
+end
+  
+```
+
+## Exercise 02
+
+Look at the various ways to write our functions using string variables vs `.map` vs `Array.new`, and come up with some benchmarks to see which way is the best for our use case.  
+  
