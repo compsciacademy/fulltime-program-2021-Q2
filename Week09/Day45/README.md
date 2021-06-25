@@ -247,3 +247,41 @@ Benchmark.bm(10) do |x|
 end
 
 ```
+
+---  
+
+## Deleting Comments  
+
+Add a `destroy` method to the CommentsController:
+
+```rb
+# comments_controller.rb
+# ...
+def destroy
+  @article = Article.find(params[:article_id])
+  @comment = @article.comments.find(params[:id])
+  @comment.destroy
+  redirect_to article_path(@article)
+end
+# ...
+```
+
+And a link to delete the comment, on the article show view:
+
+```html
+<p>
+  <%= link_to 'Delete', article_comment_path([comment.article, comment]), method: :delete %>
+</p>
+
+```
+
+If you want to ensure that all associated comments to an article are deleted if an article is deleted, you can simply add the option `dependent: :destroy` to the `has_many` method in the Article model:  
+
+```ruby
+# app/models/article.rb
+# ...
+  has_many :comments, dependent: :destroy
+# ...
+```
+
+And it's as easy as that! 
