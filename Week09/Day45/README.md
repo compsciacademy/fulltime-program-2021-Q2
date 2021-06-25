@@ -285,3 +285,27 @@ If you want to ensure that all associated comments to an article are deleted if 
 ```
 
 And it's as easy as that! 
+  
+---  
+
+## Basic Authentication  
+
+We'll have a look at some basic auth for today, then you can have the weekend to poke around rails, and familiarize yourself with what we've done so far.  
+
+Next week, we'll dive into more robust authentication using some popular gems, [devise](https://github.com/heartcombo/devise) and [AuthLogic](https://github.com/binarylogic/authlogic).  
+
+Rails has a built-in method called [`http_basic_authenticate_with`](https://api.rubyonrails.org/classes/ActionController/HttpAuthentication/Basic.html).  
+  
+```ruby
+# articles_controller.rb
+#...
+http_basic_authenticate_with name: 'lol', password: 'haha', except: [:index, :show]
+#...
+
+```
+
+and then we might want to prevent people from deleting comments
+```ruby
+# comments_controller.rb
+http_basic_authenticate_with name: 'lol', password: 'haha', only: :delete
+```
