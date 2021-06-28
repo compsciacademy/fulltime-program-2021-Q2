@@ -1,5 +1,11 @@
 # Day 46  
   
+**Note**: While reviewing documentation, we frequently come across areas of interest. Here are some from today:  
+  
+  * [ActionMailer](https://guides.rubyonrails.org/action_mailer_basics.html)
+  * [ActionCable](https://guides.rubyonrails.org/action_cable_overview.html)
+  * [ActiveStorage](https://guides.rubyonrails.org/active_storage_overview.html)
+  
 Have a look at rails documentation. Feel free to Google as well, but there's an amazing resource available at your fingertips that will allow you to answer this question:  
   
 What is the difference between `resource` and `scaffold` in the context of `rails generate`, e.g.
