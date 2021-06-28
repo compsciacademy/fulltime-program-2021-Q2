@@ -30,3 +30,7 @@ After playing around with them, it was pretty easy to find out precisely what th
   
 _"Unlike the scaffold generator, the resource generator does not create views or add any methods to the generated controller."_  
   
+## Exercise 01  
+  
+Create a new rails project with blog posts and users. Posts belong to users. Let's use [Devise](https://github.com/heartcombo/devise) for our user authentication.  
+  
