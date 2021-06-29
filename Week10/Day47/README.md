@@ -36,3 +36,30 @@ ALTER USER drewnix CREATEDB;
 # quit the psql console
 \q
 ```
+
+Since we have decided to use ReactJS for our frontend, we will need to _install_ it. With Rails, we have [Webpacker](https://edgeguides.rubyonrails.org/webpacker.html) which is a Rails _wrapper_ around [Webpack](https://webpack.js.org/). We can run:
+
+```
+bin/rails webpacker:install:react
+```
+
+Now that we are all set up, we're ready to get to work on the functionality of our app.  
+  
+```
+bin/rails generate controller Todos index
+```
+
+Update the application view `application.html.erb` to use the `index.jsx`
+
+Let's generate a model for todos, with 2 fields, one for the todo name or title, and another that we can use to show whether it is complete or not.  
+  
+```
+bin/rails generate model Todo title:string complete:boolean
+```
+
+We can use `yarn` to add [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) to our app:
+
+```
+yarn add bootstrap jquery popper.js
+```
+
