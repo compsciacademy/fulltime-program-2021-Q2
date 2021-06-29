@@ -63,3 +63,12 @@ We can use `yarn` to add [Bootstrap](https://getbootstrap.com/docs/4.0/getting-s
 yarn add bootstrap jquery popper.js
 ```
 
+Add a bunch of react components and you're good!  
+  
+## Homework Excercises  
+  
+  1. Update the Pending component such that a TODO item is moved to the Complete List if checked, not on reload.
+  2. Also, update the Complete component so that there is an onClick event to update its complete field, and move it to the Pending component.
+  
+Tomorrow, we'll have a look at [Build Your Own React](https://pomb.us/build-your-own-react/) to step through some of the most common features of React, and how they work.  
+  
