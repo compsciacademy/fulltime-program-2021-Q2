@@ -504,3 +504,95 @@ Didact.render(element, container)
 
 2.) What happens if you remove the references to Didact? e.g. `Didact.render()` changes to `React.render()`. Does that work? Why or why not?
 
+To answer question 1, we can set up an HTML page with the script:
+
+```html
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>Counter</title>
+
+<body>
+  <div id="root">
+  </div>
+</body>
+
+<script>
+/** @jsx Didact.createElement */
+function Counter() {
+  const [state, setState] = Didact.useState(1)
+  return(
+    <h1 onClick={()=> setState(c => c + 1)}>count: {state}</h1>
+  )
+}
+const element = <Counter />
+const container = document.getElementById("root");
+Didact.render(element, container)
+</script>
+```
+We first get an error that there is an unexpected `<` because the JavaScript interpreter doesn't know what to do with that. Of course, we can remember that Babel can interpret it for us, so we need to do a couple of things:  
+  - import babel
+  - add `type="text/babel"` as a script element attribute.
+```html
+<!-- babel -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+// ...
+</script>
+
+<!-- ... -->
+```
+We then get an error message that `Didact` does not exist. We could potentially resolve this by importing the code we have above that defines Didact.  
+  
+---
+
+As for question 2, we have the same issue when we change the references to Didact to React. React does not exist (in our code base).
+
+```html
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>Counter</title>
+
+<body>
+  <div id="root">
+  </div>
+</body>
+
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+/** @jsx React.createElement */
+function Counter() {
+  const [state, setState] = React.useState(1)
+  return(
+    <h1 onClick={()=> setState(c => c + 1)}>count: {state}</h1>
+  )
+}
+const element = <Counter />
+const container = document.getElementById("root");
+React.render(element, container)
+</script>
+```
+
+We can resolve that first part by importing react: 
+```html
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+```
+
+We then see that `React.render` is not a `React` function. Some GoogleFu shows that what we need is `ReactDOM`, so we can import that as well, and update the call to `render()`
+
+```html
+<!-- react dom -->
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+<!-- ... -->
+<script type="text/babel">
+  // ...
+  ReactDOM.render(element, container)
+</script>
+```
+
+And that works.
+
+---
+
+3.) Resolve the issues for question one, such that it works.

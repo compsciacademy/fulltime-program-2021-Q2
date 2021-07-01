@@ -10,11 +10,14 @@
 <!-- imports -->
 <!-- babel -->
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- react -->
+<script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<!-- react dom -->
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
 
 <script type="text/babel">
-/** @jsx Didact.createElement */
 function Counter() {
-  const [state, setState] = Didact.userState(1)
+  const [state, setState] = React.useState(1)
   return(
     <h1 onClick={() => setState(c => c + 1)}>count: {state}</h1>
   )
@@ -22,5 +25,5 @@ function Counter() {
 
 const element = <Counter />
 const container = document.getElementById("root");
-Didact.render(element, container)
+ReactDOM.render(element, container)
 </script>
