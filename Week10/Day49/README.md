@@ -297,7 +297,33 @@ const isNew = (prev, next) => (key) => { prev[key] !== next[key] }
 ```
 
 1.) Write some code that shows whether this is accurate, and why. Use it with some _words_ to explain.
+
+```js
+// initialize a couple of objects:
+let objOld = {a: "one", b: "two", c: "three", d: "different"}
+let objNew = {a: "one", b: "two", c: "three", e: "five", f: "six"}
+
+// In this case, we expect `d: "different"` to be recognized as old.
+// Let's iterate over the keys in objOld, and use filters to find
+// just `d`
+
+Object.keys(objOld)
+  .filter(key => 
+    // if the key from objOld is not in objNew or
+    !(key in objNew) ||
+    // if the objOld[key] is not equal to objNew[key]
+    isNew(objOld, objNew)(key)
+  )
+  // log each key that passes those filters to the console   
+  .forEach(name => console.log(name))
+
+// That returns d.
+```
   
+2.) Now, try again, but this time instead of using `!(key in objNew) || isNew(objOld, objNew)(key)` as a filter, separate each side of the `||` into a single filter, and give an example of each of them logging a name to the console.  
+```js
+
+```
 
 ## Step 7: Function Components
 
