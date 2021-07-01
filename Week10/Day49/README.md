@@ -902,4 +902,69 @@ Didact.render(element, container)
 ```
 
 ---  
+
+Now that we've seen how `useState` behaves in action, let's take a look at the building blocks. We've already discussed the main differences between `functionComponents` and `hostComponents`, one of which being that we get `functionComponent` children from calling the function.  
   
+Since we want to use some variables inside the `useState` function, we can initialize them as globals before the function gets called in `updateFunctionComponent`:
+
+```js
+
+let wipFiber = null
+// we are going to add a hooks array to the wipFiber, and we 
+// use hookIndex to keep track of the current hook index, which
+// is based on how many times we have called useState.
+let hookIndex = null
+
+function updateComponentFiber(fiber) {
+  wipFiber = fiber
+  hookIndex = 0
+  wipFiber.hooks = []
+  
+  const children = [fiber.type(fiber.props)]
+  reconcileChildren(fiber, children)
+}
+
+```
+
+Now, we need our `useState` function. We want to check the _alternate_ fiber (the fiber that represents the current dom element), and check its `hooks[hookIndex]`. If it has state, we want to copy that state to the new fiber, if it doesn't, we will initialize the state of the new fiber.  
+  
+```js
+function useState(initial) {
+  const oldHook = 
+    wipFiber.alternate &&
+    wipFiber.alternate.hooks &&
+    wipFiber.alternate.hooks[hookIndex]
+  const hook = {
+    state: oldHook ? oldHook.state : initial,
+    queue: [],
+  }
+
+  const setState = action => {
+    hook.queue.push(action)
+    wipRoot = {
+      dom: currentRoot.dom,
+      props: currentRoot.props,
+      alternate: currentRoot,
+    }
+    nextUnitOfWork = wipRoot
+    deletions = []
+  }
+
+  wipFiber.hooks.push(hook)
+  hookIndex++
+  return [hook.state, setState]
+}
+```
+
+So now, we've looked at enough of how to build out our own version of react to be able to use `React.createElement`, `React.setState`, `ReactDOM.render` and have some inner knowledge of how they (might) function.
+  
+It was kind of a lot to go over, and a bit of a whirlwind tour. Phew!  
+  
+## Exercise 04/Homework  
+
+Now, that we have a library (`Didact`) that we can use in place of React, have a look at the TODOs app we made the other day, and perhaps reference some other online materials, and build out a TODOs app using Didact.  
+
+Some Reference Materials: 
+  * [MSDN - TODOs](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/React_todo_list_beginning)  
+  * [OpenSource.com - TODOs](https://opensource.com/article/21/3/react-app-hooks)
+  * [DigitalOcean - TODOs](https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks)
