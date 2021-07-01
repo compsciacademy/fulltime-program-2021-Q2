@@ -293,7 +293,7 @@ In the `updateDom` function, there is some code to remove old event listeners:
 
 Why does it call `isNew`? which is a filter defined as such:
 ```js
-const isNew = (prev, next) => (key) => { prev[key] !== next[key] }
+const isNew = (prev, next) => key => prev[key] !== next[key]
 ```
 
 1.) Write some code that shows whether this is accurate, and why. Use it with some _words_ to explain.
@@ -322,8 +322,34 @@ Object.keys(objOld)
   
 2.) Now, try again, but this time instead of using `!(key in objNew) || isNew(objOld, objNew)(key)` as a filter, separate each side of the `||` into a single filter, and give an example of each of them logging a name to the console.  
 ```js
+// This satisfies the first condition, without any changes to
+// the example objects, because there is an old key from 
+// objOld (d) that is not present in objNew
+Object.keys(objOld)
+  .filter(key =>
+    !(key in objNew)
+  ).forEach(name => console.log(name))
 
 ```
+
+```js
+const isNew = (prev, next) => key => prev[key] !== next[key]
+// This time, using the same example objects will return no results,
+// so we must change the examples to satisfy the condition.
+let objOld = {a: "one", b: "two", c: "three", f: 'hey'}
+let objNew = {a: "one", b: "five", c: "three", e: 'lol'}
+Object.keys(objOld)
+  .filter(key => 
+    isNew(objOld, objNew)(key)
+  ).forEach(name => console.log(name))
+
+// This returns b and f, because both of the _values_ for 
+// those keys are different.
+```
+
+What have we learned from this exercise? Hopefully, it has become clear that `!(key in objNew) || isNew(objOld, objNew)(key)` is doing two things:
+  - 1.) If a key exists in the old object, but not the new object (the left side of the `||` evaluation), it will return that key.
+  - 2.) If a key exists in both objects, but the values are different (the right side of the `||` evaluation), it will return that key.
 
 ## Step 7: Function Components
 
