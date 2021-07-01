@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>Counter</title>
+
+<body>
+  <div id="root">
+  </div>
+</body>
+
+<!-- imports -->
+<!-- babel -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+/** @jsx Didact.createElement */
+function Counter() {
+  const [state, setState] = Didact.userState(1)
+  return(
+    <h1 onClick={() => setState(c => c + 1)}>count: {state}</h1>
+  )
+}
+
+const element = <Counter />
+const container = document.getElementById("root");
+Didact.render(element, container)
+</script>

@@ -348,8 +348,159 @@ Object.keys(objOld)
 ```
 
 What have we learned from this exercise? Hopefully, it has become clear that `!(key in objNew) || isNew(objOld, objNew)(key)` is doing two things:
-  - 1.) If a key exists in the old object, but not the new object (the left side of the `||` evaluation), it will return that key.
-  - 2.) If a key exists in both objects, but the values are different (the right side of the `||` evaluation), it will return that key.
+  1. If a key exists in the old object, but not the new object (the left side of the `||` evaluation), it will return that key.
+  2. If a key exists in both objects, but the values are different (the right side of the `||` evaluation), it will return that key.
+
+This means that if we change the example objects to have both different keys, and different values with same keys, we will expect all of the keys that meet those requirements to be logged to the console:
+
+```js
+const isNew = (prev, next) => key => prev[key] !== next[key]
+// initialize a couple of objects:
+let objOld = {a: "one", b: "too", c: "three", d: "different", g: "surprise"}
+let objNew = {a: "won", b: "two", c: "three", e: "five", f: "six"}
+
+Object.keys(objOld)
+  .filter(key => 
+    !(key in objNew) ||
+    isNew(objOld, objNew)(key)
+  )
+  .forEach(name => console.log(name))
+
+// Here we expect the results to be:
+// a, b, d, g
+```
 
 ## Step 7: Function Components
+
+Function Components are a different in a couple of ways, one is that the fiber from a function component does not have a DOM node, and the other is that rather than getting the children from the `props`, they come from running the function.  
+  
+```js
+/*** @jsx Didact.createElement **/
+function App(props) {
+  return <h1>Hi {props.name}</h1>
+}
+
+const element = <App name="foo" />
+const container = document.getElementById("root")
+Didact.render(element, container)
+
+// transforming this JSX to JavaScript looks like
+function App(props) {
+  return Didact.createElement(
+    "h1",
+    null,
+    "Hi ",
+    props.name
+  )
+}
+
+const element = Didact.createElement(App, {name: "foo" })
+```
+
+So, now we update our `performUnitOfWork` function to see if the fiber is a functionComponent
+
+```js
+function performUnitOfWork(fiber) {
+  const isFunctionComponent = fiber.type instanceOf Function
+  if (isFunctionComponent) {
+    updateFunctionComponent(fiber)
+  } else {
+    updateHostComponent(fiber)
+  }
+
+  if (fiber.child) {
+    return fiber.child
+  }
+  let nextFiber = fiber
+  while (nextFiber) {
+    if (nextFiber.sibling) {
+      return nextFiber.sibling
+    }
+    nextFiber = nextFiber.parent
+  }
+}
+
+function updateFunctionComponent(fiber) {
+  const children = [fiber.type(fiber.props)]
+  reconcileChildren(fiber, children)
+}
+
+function updateHostComponent(fiber) {
+  if (!fiber.dom) {
+    fiber.dom = createDom(fiber)
+  }
+  reconcileChildren(fiber, fiber.props.children)
+}
+```
+
+Now that we have some fibers without DOM nodes, we need to change the `commitWork` function to traverse the DOM tree upwards in order to find a parent fiber with a DOM node, and set it as the `domParent` and likewise we add a recursive function that will traverse the DOM tree downwards to find a child with a DOM node to be removed if selected for DELETION.  
+
+```js
+function commitWork(fiber) {
+  if (!fiber) {
+    return
+  }
+
+  let domParentFiber = fiber.parent
+  while (!domParentFiber.dom) {
+    domParentFiber = domParentFiber.parent
+  }
+  const domParent = domParentFiber.dom
+
+  if (
+    fiber.effectTag === "PLACEMENT" &&
+    fiber.dom != null
+  ) {
+    domParent.appendChild(fiber.dom)
+  } else if (
+    fiber.effectTag === "UPDATE" &&
+    fiber.dom != null
+  ) {
+    updateDom(
+      fiber.dom,
+      fiber.alternate.props,
+      fiber.props
+    )
+  } else if (fiber.effectTag === "DELETION") {
+    commitDeletion(fiber, domParent)
+  }
+
+  commitWork(fiber.child)
+  commitWork(fiber.sibling)
+}
+
+function commitDeletion(fiber, domParent) {
+  if (fiber.dom) {
+    domParent.removeChild(fiber.dom)
+  } else {
+    commitDeletion(fiber.child, domParent)
+  }
+}
+```
+
+## Step 8: Hooks  
+
+Let's talk about hooks, which is what we will use to handle state changes.  
+
+We'll look at a counter component that increments by one each time it is clicked.  
+
+## Exercise 03
+
+1.) Have a look at this counter code. Try running it in your browser. Does it work? Why or why not?  
+  
+
+```js
+/** @jsx Didact.createElement */
+function Counter() {
+  const [state, setState] = Didact.useState(1)
+  return(
+    <h1 onClick={()=> setState(c => c + 1)}>count: {state}</h1>
+  )
+}
+const element = <Counter />
+const container = document.getElementById("root");
+Didact.render(element, container)
+```
+
+2.) What happens if you remove the references to Didact? e.g. `Didact.render()` changes to `React.render()`. Does that work? Why or why not?
 
