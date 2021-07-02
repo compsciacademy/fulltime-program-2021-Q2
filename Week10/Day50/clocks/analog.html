@@ -7,16 +7,18 @@
     margin: auto;
     height: 50vw;
     width: 50vw;
-    background: url(clock_free.png) no-repeat;
+    background: url(clock.png) no-repeat;
     background-size: 100%;
   }
 
   #hour, 
   #minute, 
-  #second {
+  #second
+   {
     position: absolute;
-    background: red;
+    background: black;
     transform-origin: bottom;
+    border-radius: 30px;
   }
 
   #hour {
@@ -25,6 +27,7 @@
     top: 25%;
     left: 49%;
   }
+
   #minute {
     width: 1.5%;
     height: 42%;
@@ -32,11 +35,13 @@
     left: 49.4%;
   }
   #second {
+    background: red;
     width: 1%;
     height: 45%;
     top: 5%;
     left: 49.5%;
   }
+
 </style>
 
 <body>
