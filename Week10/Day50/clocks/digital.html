@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>My Clock</title>
+
+<body>
+  <div id="root">
+  </div>
+</body>
+<script>
+  let container = document.getElementById("root");
+
+  function displayTime() {
+    let date = new Date();
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    let time = `${hour}:${minutes}:${seconds} ${amOrPm(hour)}`;
+    container.textContent = time;
+  }
+
+  function amOrPm(hour) {
+      return hour >= 12 ? "PM" : "AM"
+  }
+
+  setInterval(displayTime, 1000);
+</script>

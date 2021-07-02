@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Analog Clock</title>
+<style>
+  #container {
+    position: relative;
+    margin: auto;
+    height: 50vw;
+    width: 50vw;
+    background: url(clock_free.png) no-repeat;
+    background-size: 100%;
+  }
+
+  #hour, 
+  #minute, 
+  #second {
+    position: absolute;
+    background: red;
+    transform-origin: bottom;
+  }
+
+  #hour {
+    width: 2%;
+    height: 25%;
+    top: 25%;
+    left: 49%;
+  }
+  #minute {
+    width: 1.5%;
+    height: 42%;
+    top: 8%;
+    left: 49.4%;
+  }
+  #second {
+    width: 1%;
+    height: 45%;
+    top: 5%;
+    left: 49.5%;
+  }
+</style>
+
+<body>
+  <div id="container">
+    <div id="hour"></div>
+    <div id="minute"></div>
+    <div id="second"></div>
+  </div>
+</body>
+
+<script>
+  function moveHands() {
+    let date = new Date();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+    // 360/12 = 30
+    let hour_rotation = 30 * hour + minutes / 2;
+    let minute_rotation = 6 * minutes;
+    let second_rotation = 6 * seconds;
+ 
+    second.style.transform = `rotate(${second_rotation}turn)`;
+    minute.style.transform = `rotate(${minute_rotation}turn)`;
+    hour.style.transform = `rotate(${hour_rotation}turn)`;
+  }
+
+  setInterval(moveHands, 1000);
+</script>
