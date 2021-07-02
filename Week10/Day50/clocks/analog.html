@@ -54,13 +54,13 @@
     let minutes = date.getMinutes();
     let seconds = date.getSeconds();
     // 360/12 = 30
-    let hour_rotation = 30 * hour + minutes / 2;
+    let hour_rotation = (30 * hours) + (minutes/2);
     let minute_rotation = 6 * minutes;
     let second_rotation = 6 * seconds;
- 
-    second.style.transform = `rotate(${second_rotation}turn)`;
-    minute.style.transform = `rotate(${minute_rotation}turn)`;
-    hour.style.transform = `rotate(${hour_rotation}turn)`;
+
+    second.style.transform = `rotate(${second_rotation}deg)`;
+    minute.style.transform = `rotate(${minute_rotation}deg)`;
+    hour.style.transform = `rotate(${hour_rotation}deg)`;
   }
 
   setInterval(moveHands, 1000);
