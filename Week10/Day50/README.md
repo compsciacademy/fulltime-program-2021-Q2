@@ -78,4 +78,38 @@ Let's start out with defining the HTML
 
 We can use this [clock.png](https://e7.pngegg.com/pngimages/449/884/png-clipart-clock-face-digital-clock-time-clock-angle-white.png) as a background image for the `container` div, and that will free us up from spending time on trying to make one with CSS.  
   
+## Exercise 03  
+  
+This time, let's rewrite our previous digital and analog clocks using Didact or React components.  
 
+We could also add styles or a CSS based clock background. The sky is the limit. Here are some examples that might spark your imagination:
+
+  - [CSS/JavaScript Analog Clock](https://dev.to/eris202/how-to-make-an-analog-clock-with-html-css-and-pure-javascript-4ap9)
+  - [React Ticking Digital Clock](https://dev.to/olanetsoft/how-to-build-a-ticking-clock-with-react-425f)
+  - [React Analog Clock](https://medium.com/@guyrashko/how-to-create-an-analog-clock-using-react-2e2e382367c3)
+  - [CSS Amazing Clock](https://codepen.io/istavros/pen/wRRNOx)
+
+```html
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Clock Component</title>
+  <style link="styles.css">
+
+  </style>
+</head>
+<body>
+  <div class="root">
+  </div>
+</body>
+
+<!-- src babel to transpile -->
+<script src="..."></script>
+
+<!-- src didact -->
+<script src="..."></script>
+
+<script>
+  /** @jsx Didact.createComponent */
+</script>
+```
