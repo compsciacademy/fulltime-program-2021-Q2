@@ -40,3 +40,32 @@ class User < ApplicationModel
   validates :email, presence: true
 end
 ```
+
+Run db migrations to set up the database and add users. Then hop into the rails console to see what we can do:
+
+```
+bin/rails db:migrate
+bin/rails console
+```
+
+Now we can see that we can access `User`, `Moderator`, and `Admin` with the same interface methods, but the validations are different. All the children inherit from the parent, i.e. `Moderator` and `Admin` require an email before they can be saved, whereas `User` and `Admin` do not require `first_name` or `last_name`.  
+  
+```ruby
+u = User.new
+u.save
+> false
+u.email = 'drew@example.com'
+u.save
+> true
+
+m = Moderator.new
+m.email = 'mod@example.com'
+m.save
+> false
+m.first_name = 'modperson'
+m.last_name = 'lastname'
+m.save
+> true
+```
+
+All three classes use the same table in the database. This is a pretty simple version of STI, but it exemplifies a use case and how it can work.  
