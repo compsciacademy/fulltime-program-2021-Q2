@@ -12,3 +12,31 @@ Today, we're going to talk about [polymorphic associations](https://en.wikipedia
   
 "_Relational databases don't support inheritance, so when mapping from objects to databases we have to consider how to represent our nice inheritance struc-tures in relational tables. When mapping to a relational database, we try to minimize the joins that can quickly mount up when processing an inheritance structure in multiple tables. Single Table Inheritance maps all fields of all classes of an inheritance structure into a single table._" - [Martin Fowler](https://www.martinfowler.com/eaaCatalog/singleTableInheritance.html)  
   
+Create a new Rails app, and generate a user model: 
+
+```
+rails new test_sti -T -J 
+
+```
+
+Create a new model for Moderator and Admin, both of which inherit from User. However, we'll create them in a separate folder in the models folder. Rails will treat this as a module, and we'll be able to access these models using the double colon style: `User::Moderator`  
+  
+```ruby
+# app/models/user/moderator.rb
+class Moderator < User
+  validates :first_name, :last_name, presence: true
+end
+```
+
+```ruby
+# app/models/user/admin.rb
+class Admin < User
+end
+```
+
+and of course, we need a User model `rails generate model User first_name last_name email`
+```ruby
+class User < ApplicationModel
+  validates :email, presence: true
+end
+```
