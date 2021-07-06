@@ -69,3 +69,83 @@ m.save
 ```
 
 All three classes use the same table in the database. This is a pretty simple version of STI, but it exemplifies a use case and how it can work.  
+  
+## Polymorphic Associations  
+  
+Let's generate some resources, say discussions and comments:  
+  
+```
+bin/rails generate resource discussion title:string body:text user:references
+bin/rails generate resource comment body:text commentable:references
+```
+
+Then open up the comments migration file and set `polymorphic: true`
+
+```ruby
+class CreateComments < ActiveRecord::Migration[6.1]
+  def change
+    create_table :comments do |t|
+      t.text :body
+      t.references :commentable, null: false, polymorphic: true
+
+      t.timestamps
+    end
+  end
+end
+```
+
+Another way we could do this, would be:
+```ruby
+class CreateComments < ActiveRecord::Migration[6.1]
+  def change
+    create_table :comments do |t|
+      t.text :body
+      t.bigint :commentable_id
+      t.string :commentable_type
+
+      t.timestamps
+    end
+
+    add_index :comments, [:commentable_id, :commentable_type]
+  end
+end
+```
+
+Run `bin/rails db:migrate` and add some commentable and comment associations to the comment, user, and discussion models.
+
+```ruby
+# app/models/user.rb
+class User < ApplicationRecord
+  validates :email, presence: true
+  has_many :discussions
+  has_many :comments, as: :commentable
+end
+```
+
+```ruby
+# app/models/comment.rb
+class Comment < ApplicationRecord
+  belongs_to :commentable, polymorphic: true
+end
+```
+
+```ruby
+class Discussion < ApplicationRecord
+  belongs_to :user
+  has_many :comments, as: :commentable
+end
+```
+
+We also needed to add `has_many :discussions` to the `User` model.  
+  
+Now, we can open up `bin/rails console` and create some discussions and comments... 
+
+```ruby
+user = User.last
+discussion = user.discussions.create(title: "This is a Wonderful Title!", body: "What an amazing body this discussion has. Have you ever thought about bread?")
+
+discussion.comments.create(body: 'I have thought about bread. Have you thought about dough, though?')
+
+discussion.comments.create(body: 'What about dough?')
+```
+
