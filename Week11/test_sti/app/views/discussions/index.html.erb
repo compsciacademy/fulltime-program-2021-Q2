@@ -2,6 +2,6 @@
 
 <ul>
   <% @discussions.each do |discussion| %>
-    <ul><%= discussion.title %> <%= link_to "show", disscussion_path(discussion) %></ul>
+    <li><%= discussion.title %> <%= link_to "show", discussion_path(discussion) %></li>
   <% end %>
 </ul>

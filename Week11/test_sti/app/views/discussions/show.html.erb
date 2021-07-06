@@ -1,0 +1,11 @@
+<h1><%= @discussion.title %></h1>
+
+<p><%= @discussion.body %>
+
+<h2>Comments</h2>
+
+<ul>
+  <% @discussion.comments.each do |comment| %>
+    <li><%= comment.body %></li>
+  <% end %>
+</ul>

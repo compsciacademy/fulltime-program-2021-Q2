@@ -154,7 +154,7 @@ discussion.comments.create(body: 'What about dough?')
 Update the routes, nesting comments resources in discussions
 ```ruby
 Rails.application.routes.draw do
-  root, to "discussions/index"
+  root to: "discussions#index"
   
   resources :discussions do
     resources :comments
@@ -179,14 +179,32 @@ end
 ```
 
 And the index and show views
-
+  
+index.html.erb
 ```html
 <h1>All Discussions</h1>
 
 <ul>
   <% @discussions.each do |discussion| %>
-    <ul><%= discussion.title %> <%= link_to "show", disscussion_path(discussion) %></ul>
+    <li><%= discussion.title %> <%= link_to "show", discussion_path(discussion) %></li>
   <% end %>
 </ul>
 
 ```
+  
+show.html.erb
+```html
+<h1><%= @discussion.title %></h1>
+
+<p><%= @discussion.body %>
+
+<h2>Comments</h2>
+
+<ul>
+  <% @discussion.comments.each do |comment| %>
+    <li><%= comment.body %></li>
+  <% end %>
+</ul>
+
+```
+
