@@ -9,3 +9,9 @@
     <li><%= comment.body %></li>
   <% end %>
 </ul>
+
+<%= form_for [@discussion, @discussion.comments.new] do |f| %>
+  <%= f.text_area :body %>
+  <br>
+  <%= f.submit %>
+<% end %>

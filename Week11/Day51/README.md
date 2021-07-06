@@ -208,3 +208,49 @@ show.html.erb
 
 ```
 
+Now that we are able to view discussions and comments, we want a way to add (and maybe delete) a comment.
+  
+Add a form for creating comments to the Discussions show view
+
+```html
+
+<%= form_for [@discussion, @discussion.comments.new] do |f| %>
+  <%= f.text_area :body %>
+  <br>
+  <%= f.submit %>
+<% end %>
+
+```
+
+And a create action in the comments controller
+
+```ruby
+class CommentsController < ApplicationController
+  def create
+    @discussion = Discussion.find(params[:discussion_id])
+    @comment = @discussion.comments.new(comment_params)
+    if @comment.save
+      redirect_to @discussion, notice: "Comment Created"
+    else
+      render discussion_path(@discussion)
+    end
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
+end
+
+```
+
+We can add a validation on the Comment model that ensures it has a `:body` attribute.
+
+```ruby
+class Comment < ApplicationRecord
+  belongs_to :commentable, polymorphic: true
+  validates :body, presence: true
+end
+
+```
