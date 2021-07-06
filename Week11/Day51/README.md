@@ -149,3 +149,44 @@ discussion.comments.create(body: 'I have thought about bread. Have you thought a
 discussion.comments.create(body: 'What about dough?')
 ```
 
+## Consider the Views  
+  
+Update the routes, nesting comments resources in discussions
+```ruby
+Rails.application.routes.draw do
+  root, to "discussions/index"
+  
+  resources :discussions do
+    resources :comments
+  end
+end
+
+```
+
+Add an index view for Discussions, and show view for individual discussions, with accompanying controllers
+
+```ruby
+class DiscussionsController < ApplicationController
+  def index
+    @discussions = Discussion.all
+  end
+
+  def show
+    @discussion = Discussion.find(params[:id])
+  end
+end
+
+```
+
+And the index and show views
+
+```html
+<h1>All Discussions</h1>
+
+<ul>
+  <% @discussions.each do |discussion| %>
+    <ul><%= discussion.title %> <%= link_to "show", disscussion_path(discussion) %></ul>
+  <% end %>
+</ul>
+
+```
