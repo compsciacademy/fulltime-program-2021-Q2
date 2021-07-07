@@ -1,8 +1,7 @@
 class CommentsController < ApplicationController
   def create
-    if params[:discussion_id]
-      @discussion = Discussion.find(params[:discussion_id])
-      @comment = @discussion.comments.new(comment_params)
+    @discussion = Discussion.find(params[:discussion_id])
+    @comment = @discussion.comments.new(comment_params)
     if @comment.save
       redirect_to @discussion, notice: "Comment Created"
     else
