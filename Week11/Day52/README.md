@@ -105,10 +105,102 @@ end
 
 <ul>
   <% @projects.each do |project| %>
-    <li><%= project.title %>
+    <li><%= project.title %> <%= link_to "show", project_path(project) %>
   <% end %>
 </ul>
 
+```
+
+Next up, let's add a _show_ view and links to it from the project index view.
+
+```html
+<h1><%= @project.title %></h1>
+
+<ul>
+  <% @project.discussions.each do |discussion| %>
+    <li><%= discussion.title %> <%= link_to "show", project_discussion_path([@project, discussion]) %></li>
+  <% end %>
+</ul>
+
+```
+
+Before we can make that work, however, we are going to need to do a _bunch_ of stuff. What sort of stuff? Well, we will want to modify the routes, so that discussions are nested in projects:
+
+```ruby
+Rails.application.routes.draw do
+  root to: "projects#index"
+  
+  resources :projects do
+    resources :discussions do
+      resources :comments
+    end
+  end
+end
+
+```
+
+We'll need to add a show action in the projects controller:
+
+```ruby
+class ProjectsController < ApplicationController
+  def index
+    @projects = Project.all
+  end
+
+  def show
+    @project = Project.find(params[:id])
+  end
+end
+```
+
+We will now encounter an issue with the new comments form on the discussion show view:
+
+```html
+<%= form_for [@discussion, @discussion.comments.new] do |f| %>
+  <%= f.text_area :body %> 
+  <br>
+  <%= f.submit %> 
+<% end %> 
+```
+
+We need to make 2 changes to resolve this. 1 in the show view, and 1 in the comments controller:  
+  
+**NOTE**: Actually 3 changes, because we forgot to add `belongs_to :project` to the discussion model
+  
+First, update the form to point to `project_disucussion_comments_path` by adding a project to the list of objects passed in. We could set this in the discussion controller, and pass it to the view, or we can simply get it from the discussion that we already have.
+
+```html
+<%= form_for [@discussion.project, @discussion, @discussion.comments.new] do |f| %>
+  <%= f.text_area :body %> 
+  <br>
+  <%= f.submit %> 
+<% end %> 
+```
+
+Now, update the comments controller create action to redirect to the project discussion, rather than the discussion
+
+```ruby
+redirect_to [@discussion.project, @discussion], notice: "Comment Created"
+```
+And change the else clause to `render project_discussion_path(@discussion)`
+```ruby
+class CommentsController < ApplicationController
+  def create
+    @discussion = Discussion.find(params[:discussion_id])
+    @comment = @discussion.comments.new(comment_params)
+    if @comment.save
+      redirect_to [@discussion.project, @discussion], notice: "Comment Created"
+    else
+      render project_discussion_path(@discussion)
+    end
+  end
+
+  private
+  
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
+end
 ```
 
 ## Exercise 02

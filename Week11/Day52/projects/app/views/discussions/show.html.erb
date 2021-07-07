@@ -10,8 +10,8 @@
   <% end %>
 </ul>
 
-<%= form_for [@discussion, @discussion.comments.new] do |f| %>
-  <%= f.text_area :body %>
+<%= form_for [@discussion.project, @discussion, @discussion.comments.new] do |f| %>
+  <%= f.text_area :body %> 
   <br>
-  <%= f.submit %>
-<% end %>
+  <%= f.submit %> 
+<% end %> 

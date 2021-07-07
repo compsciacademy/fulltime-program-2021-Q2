@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
     @discussion = Discussion.find(params[:discussion_id])
     @comment = @discussion.comments.new(comment_params)
     if @comment.save
-      redirect_to @discussion, notice: "Comment Created"
+      redirect_to [@discussion.project, @discussion], notice: "Comment Created"
     else
-      render discussion_path(@discussion)
+      render project_discussion_path(@discussion)
     end
   end
 
