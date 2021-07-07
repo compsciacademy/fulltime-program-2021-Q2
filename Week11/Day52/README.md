@@ -75,6 +75,42 @@ discussion = project.discussions.create(title: 'My First Project Discussion', bo
 comment = discussion.comments.create(body: 'How do you like this comment?')
 ```
 
+Now that we have a working backend, we want to update the frontend. This includes setting up the routes, controllers, and of course views.  
+  
+Let's start with just adding resources for projects and setting the root route to the projects index (note: we will revisit the routing structure to better reflect the relationship between projects and discussions in a little bit).
+
+```ruby
+Rails.application.routes.draw do
+  root to: "projects#index"
+  resources :projects 
+  resources :discussions do
+    resources :comments
+  end
+end
+```
+
+We now need a projects controller with an index action, and a view to support it.
+
+```ruby
+class ProjectsController < ApplicationController
+  def index
+    @projects = Project.all
+  end
+end
+
+```
+
+```html
+<h1>All Projects</h1>
+
+<ul>
+  <% @projects.each do |project| %>
+    <li><%= project.title %>
+  <% end %>
+</ul>
+
+```
+
 ## Exercise 02
 
 Add [Bootstrap](https://getbootstrap.com/) to the application with appropriate classes for styling. Additionally, add a navigation menu.  
