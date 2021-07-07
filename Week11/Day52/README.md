@@ -59,6 +59,22 @@ We want to ensure that a project has many discussions and a discussion belongs t
 bin/rails generate migration AddProjectRefToDiscussions project:references
 ```
 
+This migration may fail, if you have existing discussions that do not have a `project_id` when the migration specifies `null: false`. We could remove that specification, or give a default value, or remove the existing discussions for the database to resolve that.  
+  
+In our case, since we're still very much in development mode, we decided it easiest to just drop the db `bin/rails db:drop` and then `bin/rails db:migrate`.  
+  
+Since we dropped the database, we need to create some records.
+
+```ruby
+user = User.create(first_name: 'Drew', last_name: 'Ogryzek', email: 'drew@compsci.academy')
+
+project = user.projects.create(title: 'My First Project')
+
+discussion = project.discussions.create(title: 'My First Project Discussion', body: 'What is this project about anyway?', user_id: project.user_id)
+
+comment = discussion.comments.create(body: 'How do you like this comment?')
+```
+
 ## Exercise 02
 
 Add [Bootstrap](https://getbootstrap.com/) to the application with appropriate classes for styling. Additionally, add a navigation menu.  

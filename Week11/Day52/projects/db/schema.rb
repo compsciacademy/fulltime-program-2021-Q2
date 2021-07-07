@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_164035) do
+ActiveRecord::Schema.define(version: 2021_07_07_165525) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 2021_07_07_164035) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "project_id", null: false
+    t.index ["project_id"], name: "index_discussions_on_project_id"
     t.index ["user_id"], name: "index_discussions_on_user_id"
   end
 
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 2021_07_07_164035) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "discussions", "projects"
   add_foreign_key "discussions", "users"
   add_foreign_key "projects", "users"
 end
