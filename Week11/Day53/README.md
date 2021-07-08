@@ -55,6 +55,18 @@ git checkout -b feature/bootstrap-webpacker
 ```
 
 Add webpacker to the rails project with `bin/rails webpacker:install`
+
+If you have an issue that rails cannot find the task webpacker:install, then add webpacker to your gemfile:
+
+```ruby
+gem 'webpacker', '~> 5.4'
+```
+
+Then:
+```
+bundle install
+bin/rails webpacker:install
+```
   
 This means that any JavaScript file in the `app/javascript/packs/` directory will get compiled into its own pack file by default. 
 
@@ -67,6 +79,11 @@ import bootstrap from 'bootstrap';
 Add Bootstrap with `yarn add boostrap`  
   
 Add a `style.scss` as if it was a JavaScript file in `app/javascript/styles/styles.css`. It can be imported with `import styles/styles` and loaded in an ERB page with `<%= stylesheet_pack_tag "application" %>`
+
+Import bootstrap in the `styles.scss`
+```scss
+@import 'bootstrap';
+``` 
 
 ## Exercise 03  
   
