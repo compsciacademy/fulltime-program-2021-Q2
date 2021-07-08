@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to [@discussion.project, @discussion], notice: "Comment Created"
     else
-      render project_discussion_path(@discussion)
+      render project_discussion_path([@discussion.project, @discussion])
     end
   end
 
