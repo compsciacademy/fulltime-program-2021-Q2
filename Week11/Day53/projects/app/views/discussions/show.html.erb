@@ -11,7 +11,7 @@
 </ul>
 
 <%= form_for [@discussion.project, @discussion, @discussion.comments.new] do |f| %>
-  <%= f.text_area :body %> 
+  <%= f.text_area :body, class: "input-group mb-3" %> 
   <br>
-  <%= f.submit %> 
+  <%= f.submit class: "btn btn-outline-secondary" %> 
 <% end %> 
