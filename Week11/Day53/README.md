@@ -47,6 +47,12 @@ For bootstrap JavaScript dependencies, add them to the `application.js` file, li
 ```
 
 ### Webpacker
+  
+**IMPORTANT**: From the `main` branch
+
+```
+git checkout -b feature/bootstrap-webpacker
+```
 
 Add webpacker to the rails project with `bin/rails webpacker:install`
   
