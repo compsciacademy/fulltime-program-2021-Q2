@@ -1,0 +1,2710 @@
+  [1m[35m (14.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (113.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210706171940)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210706171940"]]
+  [1m[36mTRANSACTION (5.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-06 17:28:42.164382"], ["updated_at", "2021-07-06 17:28:42.164382"]]
+  [1m[36mTRANSACTION (5.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (2.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first_name", "Drew"], ["last_name", "Ogryzek"], ["email", "drew@example.com"], ["created_at", "2021-07-06 17:30:38.388838"], ["updated_at", "2021-07-06 17:30:38.388838"]]
+  [1m[36mTRANSACTION (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mModerator Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mAdmin Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (2.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "drew2@example.com"], ["created_at", "2021-07-06 17:33:06.941955"], ["updated_at", "2021-07-06 17:33:06.941955"]]
+  [1m[36mTRANSACTION (26.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mModerator Create (2.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first_name", "drew"], ["last_name", "ogryzek"], ["email", "drewmod@example.com"], ["created_at", "2021-07-06 17:34:11.453964"], ["updated_at", "2021-07-06 17:34:11.453964"]]
+  [1m[36mTRANSACTION (26.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[36mModerator Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mModerator Create (2.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first_name", "drew"], ["last_name", "ogryzek"], ["email", "drew@example.com"], ["created_at", "2021-07-06 17:39:55.274760"], ["updated_at", "2021-07-06 17:39:55.274760"]]
+  [1m[36mTRANSACTION (27.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mAdmin Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["email", "drew@example.com"], ["created_at", "2021-07-06 17:40:04.924237"], ["updated_at", "2021-07-06 17:40:04.924237"]]
+  [1m[36mTRANSACTION (7.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateDiscussions (20210706182529)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "discussions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d9cd4185ac"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_discussions_on_user_id" ON "discussions" ("user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210706182529"]]
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20210706182546)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "commentable_type" varchar NOT NULL, "commentable_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_comments_on_commentable" ON "comments" ("commentable_type", "commentable_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210706182546"]]
+  [1m[36mTRANSACTION (5.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUserRefToDiscussions (20210706184638)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "adiscussions" ("id" integer NOT NULL PRIMARY KEY, "title" varchar DEFAULT NULL, "body" text DEFAULT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "tindex_adiscussions_on_user_id" ON "adiscussions" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "adiscussions" ("id","title","body","user_id","created_at","updated_at")
+                     SELECT "id","title","body","user_id","created_at","updated_at" FROM "discussions"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE "discussions"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (4.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mDiscussion Create (2.5ms)[0m  [1m[32mINSERT INTO "discussions" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "This is my Discussion One"], ["body", "Has it ever occured to you that the very time this is now, was then when you read it?"], ["user_id", 5], ["created_at", "2021-07-06 18:57:12.951110"], ["updated_at", "2021-07-06 18:57:12.951110"]]
+  [1m[36mTRANSACTION (29.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComment Create (1.0ms)[0m  [1m[32mINSERT INTO "comments" ("body", "commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "What an amazing discussion we have here!"], ["commentable_type", "Discussion"], ["commentable_id", 1], ["created_at", "2021-07-06 18:57:51.722249"], ["updated_at", "2021-07-06 18:57:51.722249"]]
+  [1m[36mTRANSACTION (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" ORDER BY "discussions"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 5], ["commentable_type", "User"]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComment Create (2.5ms)[0m  [1m[32mINSERT INTO "comments" ("commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["commentable_type", "User"], ["commentable_id", 5], ["created_at", "2021-07-06 18:59:44.849818"], ["updated_at", "2021-07-06 18:59:44.849818"]]
+  [1m[36mTRANSACTION (26.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" ORDER BY "comments"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mComment Update (2.0ms)[0m  [1m[33mUPDATE "comments" SET "body" = ?, "updated_at" = ? WHERE "comments"."id" = ?[0m  [["body", "This comment is not associated with any discussions"], ["updated_at", "2021-07-06 19:00:21.624683"], ["id", 2]]
+  [1m[36mTRANSACTION (7.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" ORDER BY "comments"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/rails/info/routes" for ::1 at 2021-07-06 13:24:36 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb [43 times] (Duration: 16.8ms | Allocations: 6763)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 46.5ms | Allocations: 1253)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 104.4ms | Allocations: 14257)
+  Rendered layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb (Duration: 111.3ms | Allocations: 14527)
+Completed 200 OK in 223ms (Views: 151.0ms | ActiveRecord: 0.0ms | Allocations: 18892)
+
+
+Started GET "/" for ::1 at 2021-07-06 13:35:58 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  Rendered discussions/index.html.erb within layouts/application (Duration: 30.7ms | Allocations: 2049)
+  Rendered layout layouts/application.html.erb (Duration: 31.3ms | Allocations: 2144)
+Completed 500 Internal Server Error in 45ms (ActiveRecord: 0.0ms | Allocations: 7829)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>All Discussions</h1>
+
+<ul>
+  <% @discussions.each do |discussion| %>
+    <ul><%= link_to "show", discussion_path discussion %><%= discussion.title %></ul>
+  <% end %
+</ul>
+
+):
+1:    <h1>All Discussions</h1>
+2:    
+3:    <ul>
+4:      <% @discussions.each do |discussion| %>
+5:        <ul><%= link_to "show", discussion_path discussion %><%= discussion.title %></ul>
+6:      <% end %
+7:    </ul>
+  
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/" for ::1 at 2021-07-06 13:36:35 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  Rendered discussions/index.html.erb within layouts/application (Duration: 14.4ms | Allocations: 1731)
+  Rendered layout layouts/application.html.erb (Duration: 15.3ms | Allocations: 1826)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.0ms | Allocations: 7511)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>All Discussions</h1>
+
+<ul>
+  <% @discussions.each do |discussion| %>
+    <ul><%= link_to "show", discussion_path(discussion) %><%= discussion.title %></ul>
+  <% end %
+</ul>
+
+):
+1:    <h1>All Discussions</h1>
+2:    
+3:    <ul>
+4:      <% @discussions.each do |discussion| %>
+5:        <ul><%= link_to "show", discussion_path(discussion) %><%= discussion.title %></ul>
+6:      <% end %
+7:    </ul>
+  
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/" for ::1 at 2021-07-06 13:36:43 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  Rendered discussions/index.html.erb within layouts/application (Duration: 15.1ms | Allocations: 1154)
+  Rendered layout layouts/application.html.erb (Duration: 16.7ms | Allocations: 1230)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.0ms | Allocations: 2438)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>All Discussions</h1>
+
+<ul>
+  <% @discussions.each do |discussion| %>
+    <ul><%= link_to "show", discussion_path %><%= discussion.title %></ul>
+  <% end %
+</ul>
+
+):
+1:    <h1>All Discussions</h1>
+2:    
+3:    <ul>
+4:      <% @discussions.each do |discussion| %>
+5:        <ul><%= link_to "show", discussion_path %><%= discussion.title %></ul>
+6:      <% end %
+7:    </ul>
+  
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/" for ::1 at 2021-07-06 13:38:27 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  Rendered discussions/index.html.erb within layouts/application (Duration: 13.3ms | Allocations: 1731)
+  Rendered layout layouts/application.html.erb (Duration: 14.6ms | Allocations: 1826)
+Completed 500 Internal Server Error in 34ms (ActiveRecord: 0.0ms | Allocations: 7511)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>All Discussions</h1>
+
+<ul>
+  <% @discussions.each do |discussion| %>
+    <ul><%= link_to "show", discussion %><%= discussion.title %></ul>
+  <% end %
+</ul>
+
+):
+1:    <h1>All Discussions</h1>
+2:    
+3:    <ul>
+4:      <% @discussions.each do |discussion| %>
+5:        <ul><%= link_to "show", discussion %><%= discussion.title %></ul>
+6:      <% end %
+7:    </ul>
+  
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+app/views/discussions/index.html.erb:10: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/" for ::1 at 2021-07-06 13:38:38 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 16.1ms | Allocations: 4506)
+  Rendered layout layouts/application.html.erb (Duration: 147.1ms | Allocations: 19690)
+Completed 200 OK in 150ms (Views: 148.6ms | ActiveRecord: 0.9ms | Allocations: 20967)
+
+
+Started GET "/" for ::1 at 2021-07-06 13:38:47 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 13.2ms | Allocations: 1069)
+  Rendered layout layouts/application.html.erb (Duration: 17.8ms | Allocations: 2968)
+Completed 200 OK in 21ms (Views: 20.4ms | ActiveRecord: 0.2ms | Allocations: 4259)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 13:38:50 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  Rendered discussions/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 127)
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 1791)
+Completed 200 OK in 13ms (Views: 8.6ms | ActiveRecord: 0.2ms | Allocations: 3720)
+
+
+Started GET "/" for ::1 at 2021-07-06 13:38:52 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 756)
+  Rendered layout layouts/application.html.erb (Duration: 10.0ms | Allocations: 2260)
+Completed 200 OK in 12ms (Views: 11.3ms | ActiveRecord: 0.2ms | Allocations: 2607)
+
+
+Started GET "/" for ::1 at 2021-07-06 13:39:02 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  Rendered discussions/index.html.erb within layouts/application (Duration: 11.3ms | Allocations: 1180)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 1256)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms | Allocations: 2442)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1>All Discussions</h1>
+
+<ul>
+  <% @discussions.each do |discussion| %>
+    <ul><%= discussion.title %> <%= link_to "show", discussion_path discussion %></ul>
+  <% end %>
+</ul>
+
+):
+1:    <h1>All Discussions</h1>
+2:    
+3:    <ul>
+4:      <% @discussions.each do |discussion| %>
+5:        <ul><%= discussion.title %> <%= link_to "show", discussion_path discussion %></ul>
+6:      <% end %>
+7:    </ul>
+  
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+app/views/discussions/index.html.erb:5: syntax error, unexpected local variable or method, expecting `do' or '{' or '('
+Started GET "/" for ::1 at 2021-07-06 13:39:19 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 14.0ms | Allocations: 1047)
+  Rendered layout layouts/application.html.erb (Duration: 21.5ms | Allocations: 2919)
+Completed 200 OK in 25ms (Views: 23.7ms | ActiveRecord: 0.2ms | Allocations: 4147)
+
+
+Started GET "/" for ::1 at 2021-07-06 13:39:24 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 13.9ms | Allocations: 2225)
+  Rendered layout layouts/application.html.erb (Duration: 14.7ms | Allocations: 2299)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.2ms | Allocations: 3484)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"discussions"}, missing required keys: [:id]
+Did you mean?  discussion_url
+               discussions_url
+               discussions_path
+               new_discussion_url):
+    2: 
+    3: <ul>
+    4:   <% @discussions.each do |discussion| %>
+    5:     <ul><%= discussion.title %> <%= link_to "show", discussion_path %></ul>
+    6:   <% end %>
+    7: </ul>
+  
+app/views/discussions/index.html.erb:5
+app/views/discussions/index.html.erb:4
+Started GET "/" for ::1 at 2021-07-06 13:39:36 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 14.8ms | Allocations: 1047)
+  Rendered layout layouts/application.html.erb (Duration: 19.7ms | Allocations: 2919)
+Completed 200 OK in 24ms (Views: 22.6ms | ActiveRecord: 0.2ms | Allocations: 4146)
+
+
+Started GET "/" for ::1 at 2021-07-06 13:39:43 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.1ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 4.4ms | Allocations: 1043)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 2907)
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.1ms | Allocations: 4135)
+
+
+Started GET "/" for ::1 at 2021-07-06 13:39:51 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 7.7ms | Allocations: 1062)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | Allocations: 2937)
+Completed 200 OK in 15ms (Views: 14.0ms | ActiveRecord: 0.3ms | Allocations: 4166)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 13:39:55 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  Rendered discussions/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 97)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 1599)
+Completed 200 OK in 10ms (Views: 6.3ms | ActiveRecord: 0.2ms | Allocations: 2630)
+
+
+Started GET "/" for ::1 at 2021-07-06 13:39:56 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 724)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | Allocations: 2226)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.2ms | Allocations: 2559)
+
+
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started GET "/" for ::1 at 2021-07-06 14:09:34 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 17.3ms | Allocations: 4641)
+  Rendered layout layouts/application.html.erb (Duration: 108.0ms | Allocations: 9217)
+Completed 200 OK in 119ms (Views: 110.3ms | ActiveRecord: 0.7ms | Allocations: 14966)
+
+
+Started GET "/rails/info/routes" for ::1 at 2021-07-06 14:10:05 -0700
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb [43 times] (Duration: 10.9ms | Allocations: 6736)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 2.3ms | Allocations: 1055)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 21.3ms | Allocations: 13409)
+  Rendered layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb (Duration: 22.7ms | Allocations: 13666)
+Completed 200 OK in 26ms (Views: 24.6ms | Allocations: 14979)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:10:07 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/discussions/index.html.erb:4
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 11.5ms | Allocations: 4922)
+  Rendered layout layouts/application.html.erb (Duration: 16.4ms | Allocations: 6798)
+Completed 200 OK in 23ms (Views: 18.9ms | ActiveRecord: 1.7ms | Allocations: 9384)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:10:08 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 724)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 2228)
+Completed 200 OK in 9ms (Views: 8.4ms | ActiveRecord: 0.2ms | Allocations: 2593)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:10:09 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  Rendered discussions/show.html.erb within layouts/application (Duration: 0.6ms | Allocations: 101)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 1616)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.0ms | Allocations: 2038)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:10:13 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  Rendered discussions/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 39)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 1543)
+Completed 200 OK in 7ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 1864)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:10:14 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 720)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 2222)
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.2ms | Allocations: 2555)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:10:15 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 3.7ms | Allocations: 718)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 2220)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.3ms | Allocations: 2551)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:10:16 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 2.6ms | Allocations: 718)
+  Rendered layout layouts/application.html.erb (Duration: 6.7ms | Allocations: 2220)
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.2ms | Allocations: 2551)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:10:16 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 2.3ms | Allocations: 718)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 2232)
+Completed 200 OK in 8ms (Views: 7.1ms | ActiveRecord: 0.2ms | Allocations: 2565)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:10:17 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 18.7ms | Allocations: 720)
+  Rendered layout layouts/application.html.erb (Duration: 36.0ms | Allocations: 2222)
+Completed 200 OK in 38ms (Views: 37.2ms | ActiveRecord: 0.2ms | Allocations: 2553)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:11:39 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/discussions/index.html.erb:4
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 12.2ms | Allocations: 4731)
+  Rendered layout layouts/application.html.erb (Duration: 17.6ms | Allocations: 6461)
+Completed 200 OK in 22ms (Views: 19.3ms | ActiveRecord: 2.7ms | Allocations: 8340)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:15:13 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 1056)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | Allocations: 2927)
+Completed 200 OK in 13ms (Views: 12.5ms | ActiveRecord: 0.2ms | Allocations: 4195)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:15:14 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.4ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  Rendered discussions/show.html.erb within layouts/application (Duration: 5.7ms | Allocations: 189)
+  Rendered layout layouts/application.html.erb (Duration: 10.1ms | Allocations: 1852)
+Completed 200 OK in 22ms (Views: 11.6ms | ActiveRecord: 0.4ms | Allocations: 5509)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:15:46 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  Rendered discussions/show.html.erb within layouts/application (Duration: 0.2ms | Allocations: 45)
+  Rendered layout layouts/application.html.erb (Duration: 5.0ms | Allocations: 1548)
+Completed 200 OK in 9ms (Views: 6.9ms | ActiveRecord: 0.2ms | Allocations: 2412)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:17:30 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 24.7ms | Allocations: 7832)
+  Rendered layout layouts/application.html.erb (Duration: 30.3ms | Allocations: 9750)
+Completed 200 OK in 46ms (Views: 33.0ms | ActiveRecord: 1.8ms | Allocations: 16146)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:23:29 -0700
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 26.2ms | Allocations: 9299)
+  Rendered layout layouts/application.html.erb (Duration: 27.7ms | Allocations: 9393)
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 1.9ms | Allocations: 19720)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for [@discussion, @comment] do |f| %>
+    14: <% end %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:27:08 -0700
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.1ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 17.3ms | Allocations: 9301)
+  Rendered layout layouts/application.html.erb (Duration: 18.1ms | Allocations: 9395)
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 1.6ms | Allocations: 19721)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for [@discussion, @comment] do |f| %>
+    14: <% end %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:27:36 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 41.9ms | Allocations: 4645)
+  Rendered layout layouts/application.html.erb (Duration: 57.6ms | Allocations: 8859)
+Completed 200 OK in 66ms (Views: 60.3ms | ActiveRecord: 0.4ms | Allocations: 10756)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:30:55 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 110.7ms | Allocations: 7117)
+  Rendered layout layouts/application.html.erb (Duration: 115.9ms | Allocations: 8826)
+Completed 200 OK in 121ms (Views: 118.5ms | ActiveRecord: 0.4ms | Allocations: 10709)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:31:11 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 16.0ms | Allocations: 2009)
+  Rendered layout layouts/application.html.erb (Duration: 19.9ms | Allocations: 3688)
+Completed 200 OK in 27ms (Views: 23.0ms | ActiveRecord: 0.4ms | Allocations: 5574)
+
+
+Started POST "/discussions/1/comments" for ::1 at 2021-07-06 14:31:17 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"Hello everybody!"}, "commit"=>"Create Comment", "discussion_id"=>"1"}
+Completed 404 Not Found in 1ms (ActiveRecord: 0.0ms | Allocations: 843)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Discussion without an ID):
+  
+app/controllers/comments_controller.rb:3:in `create'
+Started GET "/discussions/1/comments" for ::1 at 2021-07-06 14:31:42 -0700
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for CommentsController
+Did you mean?  create):
+  
+actionpack (6.1.4) lib/abstract_controller/base.rb:160:in `process'
+actionview (6.1.4) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.1.4) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.4) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.4) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.2) lib/mini_profiler/profiler.rb:384:in `call'
+railties (6.1.4) lib/rails/engine.rb:539:in `call'
+puma (5.3.2) lib/puma/configuration.rb:249:in `call'
+puma (5.3.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.3.2) lib/puma/thread_pool.rb:338:in `with_force_shutdown'
+puma (5.3.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.3.2) lib/puma/server.rb:438:in `process_client'
+puma (5.3.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:31:48 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 12.1ms | Allocations: 6140)
+  Rendered layout layouts/application.html.erb (Duration: 16.8ms | Allocations: 7690)
+Completed 200 OK in 36ms (Views: 17.4ms | ActiveRecord: 3.1ms | Allocations: 14174)
+
+
+Started POST "/discussions/1/comments" for ::1 at 2021-07-06 14:31:57 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"Here is my comment\r\n"}, "commit"=>"Create Comment", "discussion_id"=>"1"}
+Completed 500 Internal Server Error in 27804ms (ActiveRecord: 0.0ms | Allocations: 96922)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/comments_controller.rb:4:in `create'
+Started GET "/discussions/" for ::1 at 2021-07-06 14:32:45 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 4641)
+  Rendered layout layouts/application.html.erb (Duration: 22.9ms | Allocations: 9218)
+Completed 200 OK in 38ms (Views: 26.7ms | ActiveRecord: 0.7ms | Allocations: 14966)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:32:47 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 26.2ms | Allocations: 10498)
+  Rendered layout layouts/application.html.erb (Duration: 30.3ms | Allocations: 11988)
+Completed 200 OK in 36ms (Views: 30.5ms | ActiveRecord: 1.4ms | Allocations: 13959)
+
+
+Started POST "/discussions/1/comments" for ::1 at 2021-07-06 14:32:54 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"What a great day!"}, "commit"=>"Create Comment", "discussion_id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mComment Create (1.1ms)[0m  [1m[32mINSERT INTO "comments" ("body", "commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "What a great day!"], ["commentable_type", "Discussion"], ["commentable_id", 1], ["created_at", "2021-07-06 21:32:54.137312"], ["updated_at", "2021-07-06 21:32:54.137312"]]
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (6.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+Redirected to http://localhost:3000/discussions/1
+Completed 302 Found in 20ms (ActiveRecord: 7.9ms | Allocations: 6869)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:32:54 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 37.6ms | Allocations: 1497)
+  Rendered layout layouts/application.html.erb (Duration: 45.8ms | Allocations: 2972)
+Completed 200 OK in 54ms (Views: 48.1ms | ActiveRecord: 0.6ms | Allocations: 3871)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:41:16 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  [1m[36mDiscussion Load (0.4ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 9.2ms | Allocations: 5780)
+  Rendered layout layouts/application.html.erb (Duration: 13.7ms | Allocations: 7328)
+Completed 200 OK in 26ms (Views: 15.1ms | ActiveRecord: 1.0ms | Allocations: 13369)
+
+
+Started POST "/discussions/1/comments" for ::1 at 2021-07-06 14:41:23 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"What a lovely thing to say."}, "commit"=>"Create Comment", "discussion_id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mComment Create (1.1ms)[0m  [1m[32mINSERT INTO "comments" ("body", "commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "What a lovely thing to say."], ["commentable_type", "Discussion"], ["commentable_id", 1], ["created_at", "2021-07-06 21:41:23.856440"], ["updated_at", "2021-07-06 21:41:23.856440"]]
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (6.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+Redirected to http://localhost:3000/discussions/1
+Completed 302 Found in 21ms (ActiveRecord: 7.8ms | Allocations: 5710)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:41:23 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1518)
+  Rendered layout layouts/application.html.erb (Duration: 8.6ms | Allocations: 3002)
+Completed 200 OK in 12ms (Views: 9.4ms | ActiveRecord: 0.5ms | Allocations: 3902)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:45:42 -0700
+Started GET "/" for ::1 at 2021-07-06 14:45:42 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/discussions/index.html.erb:4
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 9.2ms | Allocations: 5245)
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 15.3ms | Allocations: 6794)
+  Rendered layout layouts/application.html.erb (Duration: 34.0ms | Allocations: 13850)
+  Rendered layout layouts/application.html.erb (Duration: 34.5ms | Allocations: 14085)
+Completed 200 OK in 41ms (Views: 36.0ms | ActiveRecord: 0.6ms | Allocations: 16826)
+
+
+Completed 200 OK in 50ms (Views: 38.1ms | ActiveRecord: 1.0ms | Allocations: 20605)
+
+
+Started GET "/" for ::1 at 2021-07-06 14:50:12 -0700
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 8.5ms | Allocations: 4641)
+  Rendered layout layouts/application.html.erb (Duration: 25.9ms | Allocations: 9225)
+Completed 200 OK in 42ms (Views: 28.1ms | ActiveRecord: 1.3ms | Allocations: 14973)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:50:14 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 29.0ms | Allocations: 10631)
+  Rendered layout layouts/application.html.erb (Duration: 33.4ms | Allocations: 12121)
+Completed 200 OK in 40ms (Views: 35.2ms | ActiveRecord: 1.1ms | Allocations: 14094)
+
+
+Started POST "/discussions/1/comments" for ::1 at 2021-07-06 14:50:22 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"My favorite comment yo!\r\n"}, "commit"=>"Create Comment", "discussion_id"=>"1"}
+Completed 500 Internal Server Error in 300673ms (Allocations: 89216)
+
+
+  
+SystemExit (exit):
+  
+(byebug):1:in `exit'
+(byebug):1:in `create'
+app/controllers/comments_controller.rb:4:in `create'
+Started GET "/discussions/1" for ::1 at 2021-07-06 14:55:25 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  [1m[36mDiscussion Load (1.6ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (1.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 171.9ms | Allocations: 1737192)
+  Rendered layout layouts/application.html.erb (Duration: 210.1ms | Allocations: 2090256)
+Completed 200 OK in 398ms (Views: 223.0ms | ActiveRecord: 5.4ms | Allocations: 3662168)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Started GET "/" for ::1 at 2021-07-06 15:16:38 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 8.4ms | Allocations: 4642)
+  Rendered layout layouts/application.html.erb (Duration: 25.4ms | Allocations: 9226)
+Completed 200 OK in 49ms (Views: 27.9ms | ActiveRecord: 1.0ms | Allocations: 15014)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-06 15:16:40 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 35.0ms | Allocations: 10799)
+  Rendered layout layouts/application.html.erb (Duration: 39.2ms | Allocations: 12301)
+Completed 200 OK in 58ms (Views: 39.9ms | ActiveRecord: 1.2ms | Allocations: 14276)
+
+
+Started GET "/" for 127.0.0.1 at 2021-07-07 09:29:44 -0700
+  [1m[35m (14.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 20.3ms | Allocations: 4747)
+  Rendered layout layouts/application.html.erb (Duration: 345.7ms | Allocations: 20078)
+Completed 200 OK in 680ms (Views: 419.2ms | ActiveRecord: 0.8ms | Allocations: 27401)
+
+
+Started GET "/discussions/1" for 127.0.0.1 at 2021-07-07 09:29:57 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.4ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 252.0ms | Allocations: 15042)
+  Rendered layout layouts/application.html.erb (Duration: 256.4ms | Allocations: 16558)
+Completed 200 OK in 288ms (Views: 256.3ms | ActiveRecord: 1.4ms | Allocations: 20553)
+
+
+Started GET "/discussions/1?pp=help" for 127.0.0.1 at 2021-07-07 09:30:06 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"pp"=>"help", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 4.3ms | Allocations: 1534)
+  Rendered layout layouts/application.html.erb (Duration: 8.9ms | Allocations: 2913)
+Completed 200 OK in 17ms (Views: 11.0ms | ActiveRecord: 0.4ms | Allocations: 3906)
+
+
+Started GET "/discussions/1?pp=disable" for 127.0.0.1 at 2021-07-07 09:30:09 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"pp"=>"disable", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1249)
+  Rendered layout layouts/application.html.erb (Duration: 16.6ms | Allocations: 2632)
+Completed 200 OK in 20ms (Views: 17.7ms | ActiveRecord: 0.4ms | Allocations: 3388)
+
+
+Started POST "/discussions/1/comments" for 127.0.0.1 at 2021-07-07 09:30:23 -0700
+  
+SyntaxError (/mnt/d/Code/fulltime-program-2021-Q2/Week11/Day52/projects/app/controllers/comments_controller.rb:18: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/comments_controller.rb:18: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/comments_controller.rb:18: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/comments_controller.rb:18: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/" for ::1 at 2021-07-07 09:31:10 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/discussions/index.html.erb:4
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 13.0ms | Allocations: 4374)
+  Rendered layout layouts/application.html.erb (Duration: 20.9ms | Allocations: 6101)
+Completed 200 OK in 26ms (Views: 22.4ms | ActiveRecord: 2.6ms | Allocations: 7972)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-07 09:31:11 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 13.1ms | Allocations: 5991)
+  Rendered layout layouts/application.html.erb (Duration: 19.6ms | Allocations: 7471)
+Completed 200 OK in 24ms (Views: 19.7ms | ActiveRecord: 1.4ms | Allocations: 8461)
+
+
+Started POST "/discussions/1/comments" for ::1 at 2021-07-07 09:31:16 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"What a comment!"}, "commit"=>"Create Comment", "discussion_id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mComment Create (1.2ms)[0m  [1m[32mINSERT INTO "comments" ("body", "commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "What a comment!"], ["commentable_type", "Discussion"], ["commentable_id", 1], ["created_at", "2021-07-07 16:31:16.220325"], ["updated_at", "2021-07-07 16:31:16.220325"]]
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (7.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+Redirected to http://localhost:3000/discussions/1
+Completed 302 Found in 19ms (ActiveRecord: 8.8ms | Allocations: 5924)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-07 09:31:16 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1361)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 2833)
+Completed 200 OK in 14ms (Views: 11.0ms | ActiveRecord: 0.4ms | Allocations: 3612)
+
+
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateProjects (20210707164035)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "projects" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_b872a6760a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_projects_on_user_id" ON "projects" ("user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210707164035"]]
+  [1m[36mTRANSACTION (6.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."user_id" = ?[0m  [["user_id", 5]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mProject Create (2.4ms)[0m  [1m[32mINSERT INTO "projects" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "My First Project"], ["user_id", 5], ["created_at", "2021-07-07 16:50:46.149391"], ["updated_at", "2021-07-07 16:50:46.149391"]]
+  [1m[36mTRANSACTION (27.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddProjectRefToDiscussions (20210707165525)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "adiscussions" ("id" integer NOT NULL PRIMARY KEY, "title" varchar DEFAULT NULL, "body" text DEFAULT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "tindex_adiscussions_on_user_id" ON "adiscussions" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "adiscussions" ("id","title","body","user_id","created_at","updated_at")
+                     SELECT "id","title","body","user_id","created_at","updated_at" FROM "discussions"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE "discussions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "discussions" ("id" integer NOT NULL PRIMARY KEY, "title" varchar DEFAULT NULL, "body" text DEFAULT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "project_id" integer NOT NULL, CONSTRAINT "fk_rails_d9cd4185ac"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_discussions_on_user_id" ON "discussions" ("user_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "discussions" ("id","title","body","user_id","created_at","updated_at")
+                     SELECT "id","title","body","user_id","created_at","updated_at" FROM "adiscussions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mTRANSACTION (5.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (163.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210706171940)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar, "last_name" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210706171940"]]
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateDiscussions (20210706182529)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "discussions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_d9cd4185ac"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_discussions_on_user_id" ON "discussions" ("user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210706182529"]]
+  [1m[36mTRANSACTION (6.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateComments (20210706182546)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "body" text, "commentable_type" varchar NOT NULL, "commentable_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_comments_on_commentable" ON "comments" ("commentable_type", "commentable_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210706182546"]]
+  [1m[36mTRANSACTION (5.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateProjects (20210707164035)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "projects" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_b872a6760a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_projects_on_user_id" ON "projects" ("user_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210707164035"]]
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddProjectRefToDiscussions (20210707165525)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "adiscussions" ("id" integer NOT NULL PRIMARY KEY, "title" varchar DEFAULT NULL, "body" text DEFAULT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_adiscussions_on_user_id" ON "adiscussions" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "adiscussions" ("id","title","body","user_id","created_at","updated_at")
+                     SELECT "id","title","body","user_id","created_at","updated_at" FROM "discussions"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE "discussions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "discussions" ("id" integer NOT NULL PRIMARY KEY, "title" varchar DEFAULT NULL, "body" text DEFAULT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "project_id" integer NOT NULL, CONSTRAINT "fk_rails_d9cd4185ac"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_discussions_on_user_id" ON "discussions" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "discussions" ("id","title","body","user_id","created_at","updated_at")
+                     SELECT "id","title","body","user_id","created_at","updated_at" FROM "adiscussions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "adiscussions"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_discussions_on_project_id" ON "discussions" ("project_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "adiscussions" ("id" integer NOT NULL PRIMARY KEY, "title" varchar DEFAULT NULL, "body" text DEFAULT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "project_id" integer NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_adiscussions_on_project_id" ON "adiscussions" ("project_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_adiscussions_on_user_id" ON "adiscussions" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "adiscussions" ("id","title","body","user_id","created_at","updated_at","project_id")
+                     SELECT "id","title","body","user_id","created_at","updated_at","project_id" FROM "discussions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "discussions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "discussions" ("id" integer NOT NULL PRIMARY KEY, "title" varchar DEFAULT NULL, "body" text DEFAULT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "project_id" integer NOT NULL, CONSTRAINT "fk_rails_d9cd4185ac"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_042f90c7ec"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_discussions_on_user_id" ON "discussions" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE INDEX "index_discussions_on_project_id" ON "discussions" ("project_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "discussions" ("id","title","body","user_id","created_at","updated_at","project_id")
+                     SELECT "id","title","body","user_id","created_at","updated_at","project_id" FROM "adiscussions"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "adiscussions"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210707165525"]]
+  [1m[36mTRANSACTION (7.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-07-07 16:59:40.607101"], ["updated_at", "2021-07-07 16:59:40.607101"]]
+  [1m[36mTRANSACTION (7.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Create (3.0ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["first_name", "Drew"], ["last_name", "Ogryzek"], ["email", "drew@example.com"], ["created_at", "2021-07-07 17:02:28.826659"], ["updated_at", "2021-07-07 17:02:28.826659"]]
+  [1m[36mTRANSACTION (26.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mProject Create (2.2ms)[0m  [1m[32mINSERT INTO "projects" ("title", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "My First Project"], ["user_id", 1], ["created_at", "2021-07-07 17:05:25.269655"], ["updated_at", "2021-07-07 17:05:25.269655"]]
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" ORDER BY "projects"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" ORDER BY "discussions"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mDiscussion Create (2.2ms)[0m  [1m[32mINSERT INTO "discussions" ("title", "body", "user_id", "created_at", "updated_at", "project_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "My first project discussion"], ["body", "What is this project about anyway?"], ["user_id", 1], ["created_at", "2021-07-07 17:06:48.080034"], ["updated_at", "2021-07-07 17:06:48.080034"], ["project_id", 1]]
+  [1m[36mTRANSACTION (9.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mComment Create (2.4ms)[0m  [1m[32mINSERT INTO "comments" ("body", "commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "How do you like this comment?"], ["commentable_type", "Discussion"], ["commentable_id", 1], ["created_at", "2021-07-07 17:07:40.751915"], ["updated_at", "2021-07-07 17:07:40.751915"]]
+  [1m[36mTRANSACTION (8.0ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/discussions/1" for ::1 at 2021-07-07 10:08:11 -0700
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 27.2ms | Allocations: 10845)
+  Rendered layout layouts/application.html.erb (Duration: 43.6ms | Allocations: 15080)
+Completed 200 OK in 65ms (Views: 46.4ms | ActiveRecord: 1.9ms | Allocations: 25776)
+
+
+Started POST "/discussions/1/comments" for ::1 at 2021-07-07 10:08:25 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"And another comment!"}, "commit"=>"Create Comment", "discussion_id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mComment Create (1.5ms)[0m  [1m[32mINSERT INTO "comments" ("body", "commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "And another comment!"], ["commentable_type", "Discussion"], ["commentable_id", 1], ["created_at", "2021-07-07 17:08:25.245546"], ["updated_at", "2021-07-07 17:08:25.245546"]]
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (7.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+Redirected to http://localhost:3000/discussions/1
+Completed 302 Found in 36ms (ActiveRecord: 9.4ms | Allocations: 6504)
+
+
+Started GET "/discussions/1" for ::1 at 2021-07-07 10:08:25 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 3.4ms | Allocations: 1319)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 2805)
+Completed 200 OK in 12ms (Views: 8.8ms | ActiveRecord: 0.5ms | Allocations: 3589)
+
+
+Started GET "/" for ::1 at 2021-07-07 10:08:53 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 2.2ms | Allocations: 779)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 2291)
+Completed 200 OK in 10ms (Views: 9.5ms | ActiveRecord: 0.2ms | Allocations: 2790)
+
+
+Started GET "/" for ::1 at 2021-07-07 10:13:28 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 17.4ms | Allocations: 8872)
+  Rendered layout layouts/application.html.erb (Duration: 18.5ms | Allocations: 8966)
+Completed 500 Internal Server Error in 33ms (ActiveRecord: 1.1ms | Allocations: 14632)
+
+
+  
+ActionView::Template::Error (undefined method `discussion_path' for #<ActionView::Base:0x00000000007288>):
+    2: 
+    3: <ul>
+    4:   <% @discussions.each do |discussion| %>
+    5:     <li><%= discussion.title %> <%= link_to "show", discussion_path(discussion) %></li>
+    6:   <% end %>
+    7: </ul>
+  
+app/views/discussions/index.html.erb:5
+app/views/discussions/index.html.erb:4
+Started GET "/rails/info/routes" for ::1 at 2021-07-07 10:13:41 -0700
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb [50 times] (Duration: 20.0ms | Allocations: 7737)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 77.7ms | Allocations: 1195)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 130.3ms | Allocations: 15535)
+  Rendered layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb (Duration: 136.9ms | Allocations: 15792)
+Completed 200 OK in 141ms (Views: 139.2ms | ActiveRecord: 0.0ms | Allocations: 17141)
+
+
+Started GET "/rails/info/routes" for ::1 at 2021-07-07 10:14:16 -0700
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb [51 times] (Duration: 15.8ms | Allocations: 7722)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 1.2ms | Allocations: 731)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 23.5ms | Allocations: 14377)
+  Rendered layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb (Duration: 25.2ms | Allocations: 14607)
+Completed 200 OK in 28ms (Views: 27.1ms | Allocations: 15804)
+
+
+Started GET "/rails/info/routes" for ::1 at 2021-07-07 10:14:31 -0700
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb [51 times] (Duration: 14.6ms | Allocations: 7422)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.7ms | Allocations: 111)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 19.6ms | Allocations: 13004)
+  Rendered layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb (Duration: 20.7ms | Allocations: 13078)
+Completed 200 OK in 22ms (Views: 21.9ms | Allocations: 13450)
+
+
+Started GET "/" for ::1 at 2021-07-07 10:14:37 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/discussions/index.html.erb:4
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 24.0ms | Allocations: 8737)
+  Rendered layout layouts/application.html.erb (Duration: 26.0ms | Allocations: 8812)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 2.4ms | Allocations: 11319)
+
+
+  
+ActionView::Template::Error (undefined method `discussion_path' for #<ActionView::Base:0x000000000092b8>):
+    2: 
+    3: <ul>
+    4:   <% @discussions.each do |discussion| %>
+    5:     <li><%= discussion.title %> <%= link_to "show", discussion_path(discussion) %></li>
+    6:   <% end %>
+    7: </ul>
+  
+app/views/discussions/index.html.erb:5
+app/views/discussions/index.html.erb:4
+Started GET "/" for ::1 at 2021-07-07 10:15:23 -0700
+Processing by DiscussionsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/discussions/index.html.erb:4
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions"[0m
+  ↳ app/views/discussions/index.html.erb:4
+  Rendered discussions/index.html.erb within layouts/application (Duration: 9.0ms | Allocations: 4835)
+  Rendered layout layouts/application.html.erb (Duration: 27.7ms | Allocations: 9248)
+Completed 200 OK in 32ms (Views: 29.7ms | ActiveRecord: 1.4ms | Allocations: 11114)
+
+
+Started GET "/" for ::1 at 2021-07-07 10:16:55 -0700
+  
+ActionController::RoutingError (uninitialized constant ProjectsController):
+  
+Started GET "/" for ::1 at 2021-07-07 10:21:47 -0700
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/projects/index.html.erb:4
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 14.2ms | Allocations: 3983)
+  Rendered layout layouts/application.html.erb (Duration: 18.7ms | Allocations: 5732)
+Completed 200 OK in 24ms (Views: 20.7ms | ActiveRecord: 1.8ms | Allocations: 8060)
+
+
+Started GET "/" for ::1 at 2021-07-07 10:40:22 -0700
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 7.8ms | Allocations: 3769)
+  Rendered layout layouts/application.html.erb (Duration: 25.0ms | Allocations: 8382)
+Completed 200 OK in 40ms (Views: 27.7ms | ActiveRecord: 1.1ms | Allocations: 14111)
+
+
+Started GET "/rails/info/routes" for ::1 at 2021-07-07 10:47:18 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::InfoController#routes as HTML
+  Rendering layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb
+  Rendering /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb [51 times] (Duration: 13.1ms | Allocations: 7873)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/actionpack-6.1.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 2.6ms | Allocations: 1031)
+  Rendered /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 25.4ms | Allocations: 15371)
+  Rendered layout /home/drewnix/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.4/lib/rails/templates/layouts/application.html.erb (Duration: 27.0ms | Allocations: 15628)
+Completed 200 OK in 30ms (Views: 29.1ms | ActiveRecord: 0.0ms | Allocations: 16941)
+
+
+Started GET "/" for ::1 at 2021-07-07 10:49:51 -0700
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/projects/index.html.erb:4
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 17.5ms | Allocations: 4092)
+  Rendered layout layouts/application.html.erb (Duration: 21.5ms | Allocations: 5976)
+Completed 200 OK in 27ms (Views: 23.9ms | ActiveRecord: 1.4ms | Allocations: 8543)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-07 10:49:53 -0700
+  
+AbstractController::ActionNotFound (The action 'show' could not be found for ProjectsController
+Did you mean?  index):
+  
+actionpack (6.1.4) lib/abstract_controller/base.rb:160:in `process'
+actionview (6.1.4) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.1.4) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.4) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.4) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.2) lib/mini_profiler/profiler.rb:268:in `call'
+railties (6.1.4) lib/rails/engine.rb:539:in `call'
+puma (5.3.2) lib/puma/configuration.rb:249:in `call'
+puma (5.3.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.3.2) lib/puma/thread_pool.rb:338:in `with_force_shutdown'
+puma (5.3.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.3.2) lib/puma/server.rb:438:in `process_client'
+puma (5.3.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started PUT "/__web_console/repl_sessions/541452d2143ecf87e557565aaae05080" for ::1 at 2021-07-07 10:50:05 -0700
+Started PUT "/__web_console/repl_sessions/541452d2143ecf87e557565aaae05080" for ::1 at 2021-07-07 10:50:07 -0700
+Started PUT "/__web_console/repl_sessions/541452d2143ecf87e557565aaae05080" for ::1 at 2021-07-07 10:50:09 -0700
+Started PUT "/__web_console/repl_sessions/541452d2143ecf87e557565aaae05080" for ::1 at 2021-07-07 10:50:13 -0700
+Started PUT "/__web_console/repl_sessions/541452d2143ecf87e557565aaae05080" for ::1 at 2021-07-07 10:52:25 -0700
+Started GET "/" for ::1 at 2021-07-07 10:52:33 -0700
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/views/projects/index.html.erb:4
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 10.9ms | Allocations: 3918)
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | Allocations: 5657)
+Completed 200 OK in 19ms (Views: 16.4ms | ActiveRecord: 2.6ms | Allocations: 7535)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-07 10:52:35 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+Completed 406 Not Acceptable in 6ms (ActiveRecord: 0.4ms | Allocations: 3059)
+
+
+  
+ActionController::MissingExactTemplate (ProjectsController#show is missing a template for request formats: text/html):
+  
+actionpack (6.1.4) lib/action_controller/metal/implicit_render.rb:45:in `default_render'
+actionpack (6.1.4) lib/action_controller/metal/basic_implicit_render.rb:6:in `block in send_action'
+<internal:kernel>:90:in `tap'
+actionpack (6.1.4) lib/action_controller/metal/basic_implicit_render.rb:6:in `send_action'
+actionpack (6.1.4) lib/abstract_controller/base.rb:228:in `process_action'
+actionpack (6.1.4) lib/action_controller/metal/rendering.rb:30:in `process_action'
+actionpack (6.1.4) lib/abstract_controller/callbacks.rb:42:in `block in process_action'
+activesupport (6.1.4) lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+actiontext (6.1.4) lib/action_text/rendering.rb:20:in `with_renderer'
+actiontext (6.1.4) lib/action_text/engine.rb:59:in `block (4 levels) in <class:Engine>'
+activesupport (6.1.4) lib/active_support/callbacks.rb:126:in `instance_exec'
+activesupport (6.1.4) lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+activesupport (6.1.4) lib/active_support/callbacks.rb:137:in `run_callbacks'
+actionpack (6.1.4) lib/abstract_controller/callbacks.rb:41:in `process_action'
+actionpack (6.1.4) lib/action_controller/metal/rescue.rb:22:in `process_action'
+actionpack (6.1.4) lib/action_controller/metal/instrumentation.rb:34:in `block in process_action'
+activesupport (6.1.4) lib/active_support/notifications.rb:203:in `block in instrument'
+activesupport (6.1.4) lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+activesupport (6.1.4) lib/active_support/notifications.rb:203:in `instrument'
+actionpack (6.1.4) lib/action_controller/metal/instrumentation.rb:33:in `process_action'
+actionpack (6.1.4) lib/action_controller/metal/params_wrapper.rb:249:in `process_action'
+activerecord (6.1.4) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.4) lib/abstract_controller/base.rb:165:in `process'
+actionview (6.1.4) lib/action_view/rendering.rb:39:in `process'
+actionpack (6.1.4) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+actionpack (6.1.4) lib/action_dispatch/http/permissions_policy.rb:22:in `call'
+actionpack (6.1.4) lib/action_dispatch/http/content_security_policy.rb:18:in `call'
+rack (2.2.3) lib/rack/session/abstract/id.rb:266:in `context'
+rack (2.2.3) lib/rack/session/abstract/id.rb:260:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/cookies.rb:689:in `call'
+activerecord (6.1.4) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-mini-profiler (2.3.2) lib/mini_profiler/profiler.rb:268:in `call'
+railties (6.1.4) lib/rails/engine.rb:539:in `call'
+puma (5.3.2) lib/puma/configuration.rb:249:in `call'
+puma (5.3.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.3.2) lib/puma/thread_pool.rb:338:in `with_force_shutdown'
+puma (5.3.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.3.2) lib/puma/server.rb:438:in `process_client'
+puma (5.3.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started PUT "/__web_console/repl_sessions/979f644e0023ac369ab5590f6d4148a3" for ::1 at 2021-07-07 10:52:40 -0700
+Started PUT "/__web_console/repl_sessions/979f644e0023ac369ab5590f6d4148a3" for ::1 at 2021-07-07 10:52:41 -0700
+Started GET "/projects/1" for ::1 at 2021-07-07 10:53:24 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  Rendered projects/show.html.erb within layouts/application (Duration: 6.1ms | Allocations: 137)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 2033)
+Completed 200 OK in 19ms (Views: 15.5ms | ActiveRecord: 0.6ms | Allocations: 3684)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-07 10:53:41 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  Rendered projects/show.html.erb within layouts/application (Duration: 6.3ms | Allocations: 138)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | Allocations: 2021)
+Completed 200 OK in 18ms (Views: 15.7ms | ActiveRecord: 0.2ms | Allocations: 3714)
+
+
+Started GET "/" for ::1 at 2021-07-07 10:53:44 -0700
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 1.9ms | Allocations: 769)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 2279)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.2ms | Allocations: 2757)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-07 10:53:46 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  Rendered projects/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 22)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 1534)
+Completed 200 OK in 7ms (Views: 5.0ms | ActiveRecord: 0.2ms | Allocations: 2298)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-07 10:55:08 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.erb:4
+  Rendered projects/show.html.erb within layouts/application (Duration: 31.8ms | Allocations: 10042)
+  Rendered layout layouts/application.html.erb (Duration: 36.2ms | Allocations: 11948)
+Completed 200 OK in 42ms (Views: 38.5ms | ActiveRecord: 1.1ms | Allocations: 13554)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-07 10:55:15 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.erb:4
+  Rendered projects/show.html.erb within layouts/application (Duration: 18.6ms | Allocations: 916)
+  Rendered layout layouts/application.html.erb (Duration: 26.2ms | Allocations: 2809)
+Completed 200 OK in 32ms (Views: 28.8ms | ActiveRecord: 0.4ms | Allocations: 4486)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-07 10:55:48 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.erb:4
+  Rendered projects/show.html.erb within layouts/application (Duration: 14.5ms | Allocations: 1097)
+  Rendered layout layouts/application.html.erb (Duration: 19.2ms | Allocations: 2967)
+Completed 200 OK in 25ms (Views: 21.5ms | ActiveRecord: 0.4ms | Allocations: 4604)
+
+
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 10:55:52 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 22.4ms | Allocations: 9605)
+  Rendered layout layouts/application.html.erb (Duration: 23.6ms | Allocations: 9688)
+Completed 500 Internal Server Error in 29ms (ActiveRecord: 1.5ms | Allocations: 11384)
+
+
+  
+ActionView::Template::Error (undefined method `discussion_comments_path' for #<ActionView::Base:0x0000000000cbe8>):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for [@discussion, @discussion.comments.new] do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1" for ::1 at 2021-07-07 10:55:57 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.erb:4
+  Rendered projects/show.html.erb within layouts/application (Duration: 3.1ms | Allocations: 775)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 2402)
+Completed 200 OK in 10ms (Views: 7.8ms | ActiveRecord: 0.5ms | Allocations: 3232)
+
+
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 10:55:58 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 13.3ms | Allocations: 3896)
+  Rendered layout layouts/application.html.erb (Duration: 14.2ms | Allocations: 3964)
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.5ms | Allocations: 4666)
+
+
+  
+ActionView::Template::Error (undefined method `discussion_comments_path' for #<ActionView::Base:0x0000000000d020>):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for [@discussion, @discussion.comments.new] do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 10:58:34 -0700
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 24.8ms | Allocations: 4570)
+  Rendered layout layouts/application.html.erb (Duration: 26.0ms | Allocations: 4644)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 0.4ms | Allocations: 6197)
+
+
+  
+ActionView::Template::Error (undefined method `project' for #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>
+Did you mean?  project_id):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for new_project_discussion_comment_path([@discussion.project, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 10:58:50 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 17.0ms | Allocations: 2515)
+  Rendered layout layouts/application.html.erb (Duration: 19.1ms | Allocations: 2589)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.4ms | Allocations: 4179)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"new", :controller=>"comments", :id=>"1", :project_id=>[1, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  new_project_discussion_comment_url):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for new_project_discussion_comment_path([@discussion.project_id, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 10:59:13 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 16.3ms | Allocations: 2472)
+  Rendered layout layouts/application.html.erb (Duration: 17.1ms | Allocations: 2546)
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.4ms | Allocations: 4134)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"new", :controller=>"comments", :id=>"1", :project_id=>[1, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  new_project_discussion_comment_path):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for new_project_discussion_comment_url([@discussion.project_id, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 10:59:20 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 18.9ms | Allocations: 3144)
+  Rendered layout layouts/application.html.erb (Duration: 20.0ms | Allocations: 3218)
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 0.4ms | Allocations: 4806)
+
+
+  
+ActionView::Template::Error (undefined method `to_model' for 1:Integer
+Did you mean?  to_yaml):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for [@discussion.project_id, @discussion, @discussion.comments.new] do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 10:59:29 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 22.5ms | Allocations: 4517)
+  Rendered layout layouts/application.html.erb (Duration: 23.4ms | Allocations: 4591)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.4ms | Allocations: 6179)
+
+
+  
+ActionView::Template::Error (undefined method `project' for #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>
+Did you mean?  project_id):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for [@discussion.project, @discussion, @discussion.comments.new] do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 10:59:41 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 7.6ms | Allocations: 3140)
+  Rendered layout layouts/application.html.erb (Duration: 8.5ms | Allocations: 3214)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.4ms | Allocations: 4802)
+
+
+  
+ActionView::Template::Error (undefined method `to_model' for 1:Integer
+Did you mean?  to_yaml):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for [@discussion.project_id, @discussion, @discussion.comments.new] do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:00:40 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  [1m[36mDiscussion Load (0.4ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 36.9ms | Allocations: 8589)
+  Rendered layout layouts/application.html.erb (Duration: 37.7ms | Allocations: 8666)
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 3.8ms | Allocations: 15900)
+
+
+  
+ActionView::Template::Error (undefined method `discussion_comments_path' for #<ActionView::Base:0x00000000010360>):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for [@project, @discussion, @discussion.comments.new] do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:01:10 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 17.3ms | Allocations: 2493)
+  Rendered layout layouts/application.html.erb (Duration: 18.4ms | Allocations: 2567)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.4ms | Allocations: 4155)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"comments", :id=>"1", :project_id=>[nil, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  project_discussion_comments_url):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for project_discussion_comments_path([@project, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:01:20 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 17.5ms | Allocations: 2468)
+  Rendered layout layouts/application.html.erb (Duration: 18.4ms | Allocations: 2542)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.7ms | Allocations: 4130)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"comments", :id=>"1", :project_id=>[nil, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  project_discussion_comments_path):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for project_discussion_comments_url([@project, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:01:29 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 6.3ms | Allocations: 2468)
+  Rendered layout layouts/application.html.erb (Duration: 7.4ms | Allocations: 2542)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.6ms | Allocations: 4130)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"comments", :id=>"1", :project_id=>[nil, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  project_discussion_comments_url):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for project_discussion_comments_path([@project, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:01:51 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 17.5ms | Allocations: 2471)
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | Allocations: 2545)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.4ms | Allocations: 4133)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"comments", :id=>"1", :project_id=>[1, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  project_discussion_comments_url):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for project_discussion_comments_path([@discussion.project_id, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:02:20 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.4ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 5.1ms | Allocations: 2473)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 2547)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.6ms | Allocations: 4135)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"new", :controller=>"comments", :id=>"1", :project_id=>[1, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  new_project_discussion_comment_url):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for new_project_discussion_comment_path([@discussion.project_id, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:02:31 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 4.2ms | Allocations: 2469)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 2543)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.4ms | Allocations: 4131)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"new", :controller=>"comments", :id=>"1", :project_id=>[1, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  new_project_discussion_comment_path):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for new_project_discussion_comment_url([@discussion.project_id, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:02:37 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 4.7ms | Allocations: 2469)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 2543)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.5ms | Allocations: 4131)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"new", :controller=>"comments", :id=>"1", :project_id=>[1, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  new_project_discussion_comment_url):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for new_project_discussion_comment_path([@discussion.project_id, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:03:56 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 16.8ms | Allocations: 2175)
+  Rendered layout layouts/application.html.erb (Duration: 17.6ms | Allocations: 2249)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.5ms | Allocations: 3839)
+
+
+  
+ActionView::Template::Error (can't write unknown attribute `html`):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for @discussion, @discussion.comments.new do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:04:06 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 64.8ms | Allocations: 4309)
+  Rendered layout layouts/application.html.erb (Duration: 65.7ms | Allocations: 4383)
+Completed 500 Internal Server Error in 72ms (ActiveRecord: 0.5ms | Allocations: 5971)
+
+
+  
+ActionView::Template::Error (undefined method `discussion_comments_path' for #<ActionView::Base:0x00000000012a20>):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for [@discussion, @discussion.comments.new] do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:06:51 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 23.3ms | Allocations: 4303)
+  Rendered layout layouts/application.html.erb (Duration: 24.4ms | Allocations: 4377)
+Completed 500 Internal Server Error in 31ms (ActiveRecord: 0.4ms | Allocations: 5965)
+
+
+  
+ActionView::Template::Error (undefined method `comments_path' for #<ActionView::Base:0x00000000012e80>
+Did you mean?  font_path):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_with model: @discussion.comments.new do |f| %>
+    14:   <%= f.text_area :body %>
+    15:   <br>
+    16:   <%= f.submit %>
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:10:46 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  Rendered discussions/show.html.erb within layouts/application (Duration: 21.8ms | Allocations: 1788)
+  Rendered layout layouts/application.html.erb (Duration: 23.1ms | Allocations: 1883)
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 0.9ms | Allocations: 12510)
+
+
+  
+ActionView::SyntaxErrorInTemplate (Encountered a syntax error while rendering template: check <h1><%= @discussion.title %></h1>
+
+<p><%= @discussion.body %>
+
+<h2>Comments</h2>
+
+<ul>
+  <% @discussion.comments.each do |comment| %>
+    <li><%= comment.body %></li>
+  <% end %>
+</ul>
+
+<%# <%= form_for [@discussion, @discussion.comments.new] do |f| %>
+  <%= f.text_area :body %>
+  <br>
+  <%= f.submit %>
+<% end %> %>
+
+):
+1:    <h1><%= @discussion.title %></h1>
+2:    
+3:    <p><%= @discussion.body %>
+4:    
+5:    <h2>Comments</h2>
+6:    
+7:    <ul>
+8:      <% @discussion.comments.each do |comment| %>
+9:        <li><%= comment.body %></li>
+10:      <% end %>
+11:    </ul>
+12:    
+13:    <%# <%= form_for [@discussion, @discussion.comments.new] do |f| %>
+14:      <%= f.text_area :body %>
+15:      <br>
+16:      <%= f.submit %>
+17:    <% end %> %>
+  
+app/views/discussions/show.html.erb:20: syntax error, unexpected `end', expecting end-of-input
+app/views/discussions/show.html.erb:20: syntax error, unexpected `end', expecting end-of-input
+app/views/discussions/show.html.erb:20: syntax error, unexpected `end', expecting end-of-input
+app/views/discussions/show.html.erb:20: syntax error, unexpected `end', expecting end-of-input
+app/views/discussions/show.html.erb:20: syntax error, unexpected `end', expecting end-of-input
+app/views/discussions/show.html.erb:20: syntax error, unexpected `end', expecting end-of-input
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:10:59 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 31.2ms | Allocations: 7885)
+  Rendered layout layouts/application.html.erb (Duration: 44.7ms | Allocations: 12340)
+Completed 200 OK in 51ms (Views: 46.7ms | ActiveRecord: 1.2ms | Allocations: 14095)
+
+
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:11:11 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 14.5ms | Allocations: 1058)
+  Rendered layout layouts/application.html.erb (Duration: 18.9ms | Allocations: 2941)
+Completed 200 OK in 24ms (Views: 21.1ms | ActiveRecord: 0.5ms | Allocations: 4688)
+
+
+Started GET "/" for ::1 at 2021-07-07 11:14:48 -0700
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 8.9ms | Allocations: 3301)
+  Rendered layout layouts/application.html.erb (Duration: 15.2ms | Allocations: 5185)
+Completed 200 OK in 22ms (Views: 17.1ms | ActiveRecord: 1.3ms | Allocations: 7568)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-07 11:14:50 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.8ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.erb:4
+  Rendered projects/show.html.erb within layouts/application (Duration: 6.1ms | Allocations: 1795)
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | Allocations: 3306)
+Completed 200 OK in 16ms (Views: 12.2ms | ActiveRecord: 1.0ms | Allocations: 4393)
+
+
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:14:51 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  Rendered discussions/show.html.erb within layouts/application (Duration: 16.3ms | Allocations: 2796)
+  Rendered layout layouts/application.html.erb (Duration: 17.3ms | Allocations: 2871)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.3ms | Allocations: 4208)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"comments", :id=>"1", :project_id=>[1, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  project_discussion_comments_url):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for project_discussion_comments_path([@discussion.project_id, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %> 
+    15:   <br>
+    16:   <%= f.submit %> 
+  
+app/views/discussions/show.html.erb:13
+Started PUT "/__web_console/repl_sessions/c418864c41bd656cd953bd5bb2b2ad3f" for ::1 at 2021-07-07 11:15:56 -0700
+Started PUT "/__web_console/repl_sessions/c418864c41bd656cd953bd5bb2b2ad3f" for ::1 at 2021-07-07 11:15:57 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" ORDER BY "discussions"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" ORDER BY "discussions"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/" for ::1 at 2021-07-07 11:19:43 -0700
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 9.2ms | Allocations: 3940)
+  Rendered layout layouts/application.html.erb (Duration: 35.8ms | Allocations: 8524)
+Completed 200 OK in 55ms (Views: 38.9ms | ActiveRecord: 1.1ms | Allocations: 14253)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-07 11:19:45 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.erb:4
+  Rendered projects/show.html.erb within layouts/application (Duration: 18.3ms | Allocations: 9381)
+  Rendered layout layouts/application.html.erb (Duration: 23.7ms | Allocations: 11060)
+Completed 200 OK in 29ms (Views: 24.1ms | ActiveRecord: 1.1ms | Allocations: 12886)
+
+
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:19:46 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/discussions/show.html.erb:13
+  Rendered discussions/show.html.erb within layouts/application (Duration: 30.8ms | Allocations: 7950)
+  Rendered layout layouts/application.html.erb (Duration: 32.0ms | Allocations: 8034)
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 1.8ms | Allocations: 9759)
+
+
+  
+ActionView::Template::Error (unknown attribute 'discussion_id' for Comment.):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for project_discussion_comments_path([@discussion.project, @discussion, @discussion.comments.new(discussion_id: @discussion.id)]) do |f| %>
+    14:   <%= f.text_area :body %> 
+    15:   <br>
+    16:   <%= f.submit %> 
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:21:12 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/discussions/show.html.erb:13
+  Rendered discussions/show.html.erb within layouts/application (Duration: 52.6ms | Allocations: 10859)
+  Rendered layout layouts/application.html.erb (Duration: 53.8ms | Allocations: 10937)
+Completed 500 Internal Server Error in 71ms (ActiveRecord: 8.1ms | Allocations: 17684)
+
+
+  
+ActionView::Template::Error (unknown attribute 'discussion_id' for Comment.):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for project_discussion_comments_path([@discussion.project, @discussion, @discussion.comments.new(discussion_id: @discussion.id)]) do |f| %>
+    14:   <%= f.text_area :body %> 
+    15:   <br>
+    16:   <%= f.submit %> 
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:21:34 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/discussions/show.html.erb:13
+  Rendered discussions/show.html.erb within layouts/application (Duration: 23.2ms | Allocations: 3419)
+  Rendered layout layouts/application.html.erb (Duration: 24.5ms | Allocations: 3494)
+Completed 500 Internal Server Error in 32ms (ActiveRecord: 0.7ms | Allocations: 5110)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"index", :controller=>"comments", :id=>"1", :project_id=>[#<Project id: 1, title: "My First Project", user_id: 1, created_at: "2021-07-07 17:05:25.269655000 +0000", updated_at: "2021-07-07 17:05:25.269655000 +0000">, #<Discussion id: 1, title: "My first project discussion", body: "What is this project about anyway?", user_id: 1, created_at: "2021-07-07 17:06:48.080034000 +0000", updated_at: "2021-07-07 17:06:48.080034000 +0000", project_id: 1>, #<Comment id: nil, body: nil, commentable_type: "Discussion", commentable_id: 1, created_at: nil, updated_at: nil>]}, missing required keys: [:discussion_id]
+Did you mean?  project_discussion_comments_url):
+    10:   <% end %>
+    11: </ul>
+    12: 
+    13: <%= form_for project_discussion_comments_path([@discussion.project, @discussion, @discussion.comments.new]) do |f| %>
+    14:   <%= f.text_area :body %> 
+    15:   <br>
+    16:   <%= f.submit %> 
+  
+app/views/discussions/show.html.erb:13
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-07 11:21:53 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/discussions/show.html.erb:13
+  Rendered discussions/show.html.erb within layouts/application (Duration: 35.8ms | Allocations: 6205)
+  Rendered layout layouts/application.html.erb (Duration: 42.4ms | Allocations: 7925)
+Completed 200 OK in 50ms (Views: 44.9ms | ActiveRecord: 0.9ms | Allocations: 9567)
+
+
+Started POST "/projects/1/discussions/1/comments" for ::1 at 2021-07-07 11:22:02 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"Can I do this comment?"}, "commit"=>"Create Comment", "project_id"=>"1", "discussion_id"=>"1"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 1254)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/comments_controller.rb:3:in `create'
+Started POST "/projects/1/discussions/1/comments" for ::1 at 2021-07-07 11:22:12 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"Can I do this comment?"}, "commit"=>"Create Comment", "project_id"=>"1", "discussion_id"=>"1"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1053)
+
+
+  
+NoMethodError (undefined method `[]' for nil:NilClass):
+  
+app/controllers/comments_controller.rb:3:in `create'
+Started PUT "/__web_console/repl_sessions/399ceac7772a946f569afbea614953e5" for ::1 at 2021-07-07 11:22:15 -0700
+Started PUT "/__web_console/repl_sessions/399ceac7772a946f569afbea614953e5" for ::1 at 2021-07-07 11:22:16 -0700
+Started POST "/projects/1/discussions/1/comments" for ::1 at 2021-07-07 11:22:51 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"Can I do this comment?"}, "commit"=>"Create Comment", "project_id"=>"1", "discussion_id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mComment Create (1.3ms)[0m  [1m[32mINSERT INTO "comments" ("body", "commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "Can I do this comment?"], ["commentable_type", "Discussion"], ["commentable_id", 1], ["created_at", "2021-07-07 18:22:51.210170"], ["updated_at", "2021-07-07 18:22:51.210170"]]
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+Redirected to 
+Completed 500 Internal Server Error in 50ms (ActiveRecord: 10.4ms | Allocations: 17655)
+
+
+  
+NoMethodError (undefined method `discussion_url' for #<CommentsController:0x0000000000bc48>):
+  
+app/controllers/comments_controller.rb:6:in `create'
+Started POST "/projects/1/discussions/1/comments" for ::1 at 2021-07-07 11:23:44 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"Can I do this comment?"}, "commit"=>"Create Comment", "project_id"=>"1", "discussion_id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mComment Create (1.3ms)[0m  [1m[32mINSERT INTO "comments" ("body", "commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "Can I do this comment?"], ["commentable_type", "Discussion"], ["commentable_id", 1], ["created_at", "2021-07-07 18:23:44.295713"], ["updated_at", "2021-07-07 18:23:44.295713"]]
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:6:in `create'
+Redirected to http://localhost:3000/projects/1/discussions/1
+Completed 302 Found in 51ms (ActiveRecord: 11.1ms | Allocations: 21645)
+
+
+Started GET "/projects/1/discussions/1" for ::1 at 2021-07-07 11:23:44 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/discussions/show.html.erb:13
+  Rendered discussions/show.html.erb within layouts/application (Duration: 14.2ms | Allocations: 2575)
+  Rendered layout layouts/application.html.erb (Duration: 21.3ms | Allocations: 4119)
+Completed 200 OK in 25ms (Views: 22.7ms | ActiveRecord: 0.6ms | Allocations: 5210)
+
+
+Started GET "/" for ::1 at 2021-07-08 10:22:32 -0700
+  [1m[35m (6.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 14.1ms | Allocations: 4166)
+  Rendered layout layouts/application.html.erb (Duration: 94.9ms | Allocations: 9058)
+Completed 200 OK in 207ms (Views: 116.9ms | ActiveRecord: 0.9ms | Allocations: 14845)
+
+
+Started GET "/?pp=help" for ::1 at 2021-07-08 10:22:40 -0700
+Processing by ProjectsController#index as HTML
+  Parameters: {"pp"=>"help"}
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 3.8ms | Allocations: 842)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 2531)
+Completed 200 OK in 14ms (Views: 12.8ms | ActiveRecord: 0.3ms | Allocations: 2944)
+
+
+Started GET "/?pp=disable" for ::1 at 2021-07-08 10:22:43 -0700
+Processing by ProjectsController#index as HTML
+  Parameters: {"pp"=>"disable"}
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 3.1ms | Allocations: 544)
+  Rendered layout layouts/application.html.erb (Duration: 37.5ms | Allocations: 2048)
+Completed 200 OK in 41ms (Views: 39.7ms | ActiveRecord: 0.3ms | Allocations: 2387)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-08 10:22:44 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.erb:4
+  Rendered projects/show.html.erb within layouts/application (Duration: 79.3ms | Allocations: 9400)
+  Rendered layout layouts/application.html.erb (Duration: 84.4ms | Allocations: 11070)
+Completed 200 OK in 105ms (Views: 84.8ms | ActiveRecord: 1.3ms | Allocations: 14603)
+
+
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-08 10:22:46 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.4ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/discussions/show.html.erb:13
+  Rendered discussions/show.html.erb within layouts/application (Duration: 124.6ms | Allocations: 9413)
+  Rendered layout layouts/application.html.erb (Duration: 129.1ms | Allocations: 10958)
+Completed 200 OK in 137ms (Views: 129.9ms | ActiveRecord: 2.4ms | Allocations: 12719)
+
+
+Started POST "/projects/1/discussions/1/comments" for ::1 at 2021-07-08 10:22:51 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>"Hello Comment?"}, "commit"=>"Create Comment", "project_id"=>"1", "discussion_id"=>"1"}
+  [1m[36mDiscussion Load (0.3ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:3:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mComment Create (1.4ms)[0m  [1m[32mINSERT INTO "comments" ("body", "commentable_type", "commentable_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["body", "Hello Comment?"], ["commentable_type", "Discussion"], ["commentable_id", 1], ["created_at", "2021-07-08 17:22:51.408110"], ["updated_at", "2021-07-08 17:22:51.408110"]]
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (6.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/comments_controller.rb:5:in `create'
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:6:in `create'
+Redirected to http://localhost:3000/projects/1/discussions/1
+Completed 302 Found in 25ms (ActiveRecord: 8.3ms | Allocations: 7956)
+
+
+Started GET "/projects/1/discussions/1" for ::1 at 2021-07-08 10:22:51 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.9ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/discussions/show.html.erb:13
+  Rendered discussions/show.html.erb within layouts/application (Duration: 8.2ms | Allocations: 1958)
+  Rendered layout layouts/application.html.erb (Duration: 15.5ms | Allocations: 3432)
+Completed 200 OK in 20ms (Views: 16.0ms | ActiveRecord: 1.3ms | Allocations: 4213)
+
+
