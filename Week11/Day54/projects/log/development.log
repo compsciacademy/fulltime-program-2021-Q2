@@ -3539,3 +3539,66 @@ Processing by DiscussionsController#show as HTML
 Completed 200 OK in 88ms (Views: 83.3ms | ActiveRecord: 1.5ms | Allocations: 14496)
 
 
+Started GET "/" for ::1 at 2021-07-09 11:48:22 -0700
+  [1m[35m (13.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 8.3ms | Allocations: 4171)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.8ms | Allocations: 6733)
+Completed 200 OK in 35ms (Views: 24.8ms | ActiveRecord: 1.0ms | Allocations: 12095)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-09 11:48:24 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.erb:4
+  Rendered projects/show.html.erb within layouts/application (Duration: 22.2ms | Allocations: 9595)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 28.1ms | Allocations: 11441)
+Completed 200 OK in 34ms (Views: 28.2ms | ActiveRecord: 1.4ms | Allocations: 13421)
+
+
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-09 11:48:25 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.4ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/discussions/show.html.erb:13
+  Rendered discussions/show.html.erb within layouts/application (Duration: 23.1ms | Allocations: 10186)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 30.8ms | Allocations: 11924)
+Completed 200 OK in 37ms (Views: 31.4ms | ActiveRecord: 1.8ms | Allocations: 13926)
+
+
+Started POST "/projects/1/discussions/1/comments" for ::1 at 2021-07-09 11:48:26 -0700
+Processing by CommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "comment"=>{"body"=>""}, "commit"=>"Create Comment", "project_id"=>"1", "discussion_id"=>"1"}
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.0ms | Allocations: 1327)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-07-09 11:48:26 -0700
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.9ms | Allocations: 609)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 7.2ms | Allocations: 2791)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | Allocations: 4588)
+Completed 200 OK in 36ms (Views: 16.1ms | ActiveRecord: 0.7ms | Allocations: 13680)
+
+
