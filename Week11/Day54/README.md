@@ -155,6 +155,12 @@ If you are using a different location for mail previews or if you need to set th
   * [Postmark](https://postmarkapp.com/send-email/rails)
   * [Mandrill](https://github.com/renz45/mandrill_mailer)
   * [Mailchimp](https://mailchimp.com/developer/transactional/docs/smtp-integration/)
+  
+## Homework
+
+  1. Try getting mail to send using GMail, Sendgrid, or whichever SMTP server provider you'd like. Perhaps even try out a couple, time permitting.  
+  
+  2. Add the functionality described above, such that user A is sent an email notification when _user B_ makes a comment on a discussion that user A created.  
 
 
 ## Storage with Rails  
