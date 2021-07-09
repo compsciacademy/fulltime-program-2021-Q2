@@ -3493,3 +3493,49 @@ Processing by Devise::RegistrationsController#new as HTML
 Completed 200 OK in 18ms (Views: 17.0ms | ActiveRecord: 0.0ms | Allocations: 5309)
 
 
+Started GET "/" for ::1 at 2021-07-09 11:38:27 -0700
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ProjectsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  ↳ app/views/projects/index.html.erb:4
+  Rendered projects/index.html.erb within layouts/application (Duration: 9.3ms | Allocations: 4174)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | Allocations: 6703)
+Completed 200 OK in 38ms (Views: 22.3ms | ActiveRecord: 1.1ms | Allocations: 12362)
+
+
+Started GET "/projects/1" for ::1 at 2021-07-09 11:38:29 -0700
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering projects/show.html.erb within layouts/application
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."project_id" = ?[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.erb:4
+  Rendered projects/show.html.erb within layouts/application (Duration: 25.1ms | Allocations: 9618)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 30.6ms | Allocations: 11458)
+Completed 200 OK in 36ms (Views: 30.6ms | ActiveRecord: 1.4ms | Allocations: 13438)
+
+
+Started GET "/projects/1%2F1/discussions/1" for ::1 at 2021-07-09 11:38:30 -0700
+Processing by DiscussionsController#show as HTML
+  Parameters: {"project_id"=>"1/1", "id"=>"1"}
+  [1m[36mDiscussion Load (0.2ms)[0m  [1m[34mSELECT "discussions".* FROM "discussions" WHERE "discussions"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/discussions_controller.rb:7:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering discussions/show.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."commentable_id" = ? AND "comments"."commentable_type" = ?[0m  [["commentable_id", 1], ["commentable_type", "Discussion"]]
+  ↳ app/views/discussions/show.html.erb:8
+  [1m[36mProject Load (0.2ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/discussions/show.html.erb:13
+  Rendered discussions/show.html.erb within layouts/application (Duration: 72.3ms | Allocations: 10805)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 82.4ms | Allocations: 12518)
+Completed 200 OK in 88ms (Views: 83.3ms | ActiveRecord: 1.5ms | Allocations: 14496)
+
+
