@@ -49,10 +49,10 @@ And a view in `app/views/user_mailer`. Note that the name of the view is consist
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to localhost:3000, <%= @user.name %></h1>
+    <h1>Welcome to localhost:3000, <%= @user.first_name %></h1>
     <p>
       You have successfully signed up to My Awesome Projects!,
-      your username is: <%= @user.login %>.<br>
+      your username is: <%= @user.email %>.<br>
     </p>
     <p>
       To login to the site, just follow this link: <%= @url %>.
@@ -65,11 +65,11 @@ And a view in `app/views/user_mailer`. Note that the name of the view is consist
 Also, we can add a text version of the email that Action Mailer will be able to detect and automatically generate `multipart/alternative` email ([MIME](https://en.wikipedia.org/wiki/MIME#:~:text=Most%20commonly%2C%20multipart%2Falternative%20is,use%20of%20formatting%20and%20hyperlinks.)). 
 
 ```text
-Welcome to localhost:3000, <%= @user.name %>
+Welcome to localhost:3000, <%= @user.first_name %>
 ===============================================
 
 You have successfully signed up to My Awesome Projects!,
-your username is: <%= @user.login %>.
+your username is: <%= @user.email %>.
 
 To login to the site, just follow this link: <%= @url %>.
 
@@ -106,12 +106,56 @@ We also see that this has generated controllers for a variety of things that we 
 
 Knowing this, we can look at the setup example given (sessions) and infer what needs to be done just for the registrations controller.  
   
-That is, we could have run `bin/rails generate devise:controller users -c=registrations` instead, and as for setting up the routes, we will want to add:
+That is, we could have run `bin/rails generate devise:controllers users -c=registrations` instead, and as for setting up the routes, we will want to add:
 ```ruby
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
 ```
+
+By default devise will not use this users controller, since the view is in the `views/devise` directory. So, copy the registrations view to a `views/users` directory.
+
+Now, inside the `users/registrations_controller.rb` we can access the `create` action, and add some functionality within it, rather than override it.  
+  
+To do this, we will add a callback to super, e.g.
+```ruby
+# this will just use the create method from the superclass
+# def create
+#   super
+# end
+
+# here's how we can add functionality to it:
+def create
+  super do |resource|
+    # in here, we'd like to add a call to the UserMailer
+    UserMailer.with(user: @user).welcome_email.deliver_now
+  end
+end
+```
+
+If we wish to [preview mail](https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails), we add a class of the same name, followed by Preview, e.g. `UserMailerPreview` to `test/mailers/previews` with action that calls the mailer as we did above in the user controller's `create` action, without the call to `deliver_later` or `deliver_now`.
+
+```ruby
+class UserMailerPreview < ActionMailer::Preview
+  def welcome_email
+    UserMailer.with(user: @user).welcome_email
+  end
+end
+
+```
+We can then view the preview at [http://localhost:3000/rails/mailers/user_mailer/welcome_email](http://localhost:3000/rails/mailers/user_mailer/welcome_email).
+
+If you are using a different location for mail previews or if you need to set the location for some reason, you can do so in the `config/application.rb`, e.g.
+```ruby
+  config.action_mailer.preview_path = "#{Rails.root}/tests/mailers/previews"
+```
+
+  * [simple Email configuration setup guide](https://guides.rubyonrails.org/action_mailer_basics.html#example-action-mailer-configuration)
+  * [Sendgrid](https://docs.sendgrid.com/for-developers/sending-email/rubyonrails)
+  * [Postmark](https://postmarkapp.com/send-email/rails)
+  * [Mandrill](https://github.com/renz45/mandrill_mailer)
+  * [Mailchimp](https://mailchimp.com/developer/transactional/docs/smtp-integration/)
+
 
 ## Storage with Rails  
   
