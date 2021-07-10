@@ -1,6 +1,7 @@
 tmp/*
 node_modules/*
 public/*
+storage/*
 
 /public/packs
 /public/packs-test

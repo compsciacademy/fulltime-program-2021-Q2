@@ -1,7 +1,12 @@
 <h1><%= @project.title %></h1>
 
+<% if @project.user.profile_photo.attached? %>
+  <%= image_tag @project.user.profile_photo %>
+<% end %>
+
 <ul>
   <% @project.discussions.each do |discussion| %>
     <li><%= discussion.title %> <%= link_to "show", project_discussion_path([@project, discussion])%></li>
   <% end %>
 </ul>
+tmux 
