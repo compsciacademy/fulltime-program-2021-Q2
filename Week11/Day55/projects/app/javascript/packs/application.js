@@ -1,2 +1,2 @@
 import 'styles/styles';
-import bootstrap from 'bootstrap';
+import 'bootstrap';
