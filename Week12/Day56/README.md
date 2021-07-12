@@ -24,3 +24,24 @@ Try to think through the situations where it makes sense to send email notificat
     - filter events by tags/interests
     - etc.
   * etc.
+
+
+## Proposal Based Rewrite of Project  
+  
+The new MVP list is going to focus around Events, and Organizations (or Clubs). Users can create Organizations, and also join organizations as members. Organizations have events. A member of an organization can be notified (emailed) when a new event is created, and they should be able to sign up to attend the event.  
+  
+Members of an organization should be able to comment on an organizations' event.
+
+Events should have a Photo, Description, Location, Day/Time. And of course a list of attendees.
+  
+Users should also have a User Profile, a user's profile can have a photo of the user, a description or tagline, a list of interests, list or organization memberships, list of events, list of comments, list of likes recieved and given.  
+  
+**BONUS** (Stretch Goals):  
+  
+  * Users should be able to create long-form posts. Which can also be _events_, that are not attached to an org.
+  * Users should be able to follow or friend other users.
+  * Users should also be able to create short-form posts (256 chars), which can include links or Thumbnail photos.
+  * Tags: Posts and Events should be _taggable_, such that a tag can be added to them, which can also be used to filter them in a search.
+    - This can be used to suggest events, posts, or users to follow based on a user's interests
+  * Rich-text editing for events and all posts.
+  
