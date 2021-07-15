@@ -71,3 +71,10 @@ Show:
   <%= image_tag @user.avatar %>
 <% end %>
 ```
+
+And make sure to add the appropriate routes.
+```ruby
+Rails.application.routes.draw do
+  resources :users
+end
+```
